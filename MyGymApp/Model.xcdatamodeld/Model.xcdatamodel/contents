@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="BodyPart" representedClassName="BodyPart" syncable="YES">
+        <attribute name="bodyPartTargeted" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="bodyParts" inverseEntity="Exercise" syncable="YES"/>
+    </entity>
+    <entity name="Exercise" representedClassName="Exercise" syncable="YES">
+        <attribute name="exerciseDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exerciseName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bodyParts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BodyPart" inverseName="exercise" inverseEntity="BodyPart" syncable="YES"/>
+        <relationship name="reps" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Rep" inverseName="exercise" inverseEntity="Rep" syncable="YES"/>
+        <relationship name="workoutSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutSession" inverseName="exercises" inverseEntity="WorkoutSession" syncable="YES"/>
+    </entity>
+    <entity name="Rep" representedClassName="Rep" syncable="YES">
+        <attribute name="numOfReps" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="numOfSets" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="restTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="weights" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="reps" inverseEntity="Exercise" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="birthdate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="workoutsessions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="WorkoutSession" inverseName="user" inverseEntity="WorkoutSession" syncable="YES"/>
+    </entity>
+    <entity name="WorkoutSession" representedClassName="WorkoutSession" syncable="YES">
+        <attribute name="sessionDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sessionEndTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sessionName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sessionStartTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timeLength" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Exercise" inverseName="workoutSession" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="workoutsessions" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="WorkoutSession" positionX="-54" positionY="54" width="128" height="150"/>
+        <element name="Rep" positionX="-54" positionY="81" width="128" height="120"/>
+        <element name="Exercise" positionX="-54" positionY="90" width="128" height="120"/>
+        <element name="BodyPart" positionX="-45" positionY="99" width="128" height="75"/>
+    </elements>
+</model>
