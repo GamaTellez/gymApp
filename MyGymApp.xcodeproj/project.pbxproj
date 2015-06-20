@@ -28,7 +28,7 @@
 		87CFD66D1B353CCC00AB0841 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CFD6661B353CCC00AB0841 /* User.m */; };
 		87CFD66E1B353CCC00AB0841 /* BodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CFD6681B353CCC00AB0841 /* BodyPart.m */; };
 		87CFD66F1B353CCC00AB0841 /* Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CFD66A1B353CCC00AB0841 /* Exercise.m */; };
-		87D171A31B30C86C00D3995D /* AddWorkoutLogsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D171A21B30C86C00D3995D /* AddWorkoutLogsVC.m */; };
+		87D171A31B30C86C00D3995D /* AddExercisesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D171A21B30C86C00D3995D /* AddExercisesVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +81,8 @@
 		87CFD6681B353CCC00AB0841 /* BodyPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPart.m; sourceTree = "<group>"; };
 		87CFD6691B353CCC00AB0841 /* Exercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exercise.h; sourceTree = "<group>"; };
 		87CFD66A1B353CCC00AB0841 /* Exercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Exercise.m; sourceTree = "<group>"; };
-		87D171A11B30C86C00D3995D /* AddWorkoutLogsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWorkoutLogsVC.h; sourceTree = "<group>"; };
-		87D171A21B30C86C00D3995D /* AddWorkoutLogsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddWorkoutLogsVC.m; sourceTree = "<group>"; };
+		87D171A11B30C86C00D3995D /* AddExercisesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExercisesVC.h; sourceTree = "<group>"; };
+		87D171A21B30C86C00D3995D /* AddExercisesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExercisesVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,8 +209,8 @@
 		875514491B348A02003C7FFE /* AddExercisesVC */ = {
 			isa = PBXGroup;
 			children = (
-				87D171A11B30C86C00D3995D /* AddWorkoutLogsVC.h */,
-				87D171A21B30C86C00D3995D /* AddWorkoutLogsVC.m */,
+				87D171A11B30C86C00D3995D /* AddExercisesVC.h */,
+				87D171A21B30C86C00D3995D /* AddExercisesVC.m */,
 				8755144D1B348A7A003C7FFE /* WorkoutLogsDetailVC */,
 			);
 			name = AddExercisesVC;
@@ -356,7 +356,7 @@
 				87CFD66B1B353CCC00AB0841 /* Rep.m in Sources */,
 				8740B8921B0E78B000D60630 /* ProfilleViewController.m in Sources */,
 				87CFC1AB1B1D4F4B004DEC16 /* WorkOutSessionsDataSource.m in Sources */,
-				87D171A31B30C86C00D3995D /* AddWorkoutLogsVC.m in Sources */,
+				87D171A31B30C86C00D3995D /* AddExercisesVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

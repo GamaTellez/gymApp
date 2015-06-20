@@ -9,7 +9,7 @@
 #import "WorkOutSessionsDataSource.h"
 #import "WorkoutSession.h"
 #import "ModelController.h"
-#import "AddWorkoutLogsVC.h"
+#import "AddExercisesVC.h"
 
 static NSString *cellID = @"cellID";
 

@@ -100,13 +100,16 @@ dispatch_once(&onceToken, ^{
 
 }
 
-- (void)addExerciseWithName:(NSString *)name withDescription:(NSString *)description andBodyPartstTaget:(NSOrderedSet *)bodyPart {
+- (void)addExerciseWithName:(NSString *)name withDescription:(NSString *)description withBodyPartstTaget:(NSOrderedSet *)bodyParts andWorkoutSession:(WorkoutSession *)session {
     
     Exercise *newExercise = [NSEntityDescription insertNewObjectForEntityForName:@"Exercise" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     newExercise.exerciseName = name;
     newExercise.exerciseDescription = description;
-    newExercise.bodyParts = bodyPart;
-
+    newExercise.workoutSession = session;
+    
+    for (BodyPart *localBodyPart in bodyParts) {
+        localBodyPart.exercise = newExercise;
+    }
     [self saveToCoreData];
 
 }

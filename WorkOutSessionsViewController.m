@@ -8,7 +8,7 @@
 
 #import "WorkOutSessionsViewController.h"
 #import "ModelController.h"
-#import "AddWorkoutLogsVC.h"
+#import "AddExercisesVC.h"
 
 
 
@@ -54,7 +54,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toSessionDetail"]) {
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-        AddWorkoutLogsVC *vc = (AddWorkoutLogsVC *)navController.viewControllers[0];
+        AddExercisesVC *vc = (AddExercisesVC *)navController.viewControllers[0];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         WorkoutSession *session = [ModelController sharedInstance].workoutSessionsArray[indexPath.row];
         vc.navigationItem.title = session.sessionName;

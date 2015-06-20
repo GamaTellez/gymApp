@@ -23,6 +23,7 @@
 
 - (User *)createUserWithName:(NSString *)name birthDate:(NSString *)birthDate height:(NSNumber *)height weight:(NSNumber *)weight andPicture:(NSData *)userPicture gender:(NSString *)gender;
 
+- (void)addExerciseWithName:(NSString *)name withDescription:(NSString *)description withBodyPartstTaget:(NSOrderedSet *)bodyParts andWorkoutSession:(WorkoutSession *)session;
 
 - (void)createWorkoutSessionWithName:(NSString *)name withUser:(User *)user;
 

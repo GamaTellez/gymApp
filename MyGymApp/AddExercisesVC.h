@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "WorkoutSession.h"
 
-@interface AddWorkoutLogsVC : UIViewController
+@interface AddExercisesVC : UIViewController
 @property (strong, nonatomic) WorkoutSession *session;
 @property (strong, nonatomic) IBOutlet UITextField *exerciseNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *bodyPartTextField;
+@property (strong, nonatomic) IBOutlet UITextField *bodyPart2TextField;
 @property (strong, nonatomic) IBOutlet UITextView *exerciseDescriptionTextField;
 
 
