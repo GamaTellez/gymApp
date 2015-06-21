@@ -48,6 +48,9 @@
                             ,@"Hamstrings (biceps femoris)"
                             ,@"Calves (gastrocnemius)"
                             ];
+     UITapGestureRecognizer *tapOutsideTextfields = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOutsideTextField:)];
+    tapOutsideTextfields.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapOutsideTextfields];
     
 }
 
@@ -82,4 +85,20 @@
     
     return self.bodyPartsArray[row];
 }
+- (void)handleTapOutsideTextField:(UITapGestureRecognizer *)tap {
+    
+    [self.view endEditing:YES];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    if (self.bodyPartTextField.isEditing == YES) {
+        self.bodyPartTextField.text = [self.bodyPartsArray objectAtIndex:row];
+    } if (self.bodyPart2TextField.isEditing == YES) {
+        self.bodyPart2TextField.text = [self.bodyPartsArray objectAtIndex:row];
+    }
+    
+}
+
+
 @end
