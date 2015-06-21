@@ -12,6 +12,8 @@
 @interface AddExercisesVC () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (nonatomic, strong) NSMutableArray *bodyParts;
 @property (nonatomic, strong) UIPickerView *pickerView;
+@property (nonatomic, strong) NSArray *bodyPartsArray;
+
 @end
 
 @implementation AddExercisesVC
@@ -24,6 +26,28 @@
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
+    self.bodyPartTextField.inputView = self.pickerView;
+    self.bodyPart2TextField.inputView = self.pickerView;
+    
+    self.bodyPartsArray = [[NSArray alloc] init];
+    self.bodyPartsArray = @[@"Traps (trapezius)"
+                            ,@"Shoulders (deltoids)"
+                            ,@"Chest (pectoralis)"
+                            ,@"Biceps (biceps brachii)"
+                            ,@"Forearm (brachioradialis)"
+                            ,@"Abs (rectus abdominis)"
+                            ,@"Quads (quadriceps)"
+                            ,@"Calves (gastrocnemius)"
+                            ,@"Traps (trapezius)"
+                            ,@"Lats (latissimus dorsi)"
+                            ,@"Triceps (triceps brachii)"
+                            ,@"Middle Back (rhomboids)"
+                            ,@"Lower Back"
+                            ,@"Glutes (gluteus maximus and medius)"
+                            ,@"Quads (quadriceps)"
+                            ,@"Hamstrings (biceps femoris)"
+                            ,@"Calves (gastrocnemius)"
+                            ];
     
 }
 
@@ -45,7 +69,7 @@
 #pragma mark - picker view protocol methods
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
-    return 1;
+    return self.bodyPartsArray.count;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -56,6 +80,6 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    return @"";
+    return self.bodyPartsArray[row];
 }
 @end

@@ -190,7 +190,7 @@
 
 
 - (IBAction)backButtonTapped:(id)sender {
-    [self dismissViewControllerAnimated:self completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark  - picker view delegate and data source methods
