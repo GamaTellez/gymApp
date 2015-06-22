@@ -8,11 +8,14 @@
 
 #import "AddExercisesVC.h"
 #import "ModelController.h"
+#import "BodyPart.h"
+
 
 @interface AddExercisesVC () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (nonatomic, strong) NSMutableArray *bodyParts;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSArray *bodyPartsArray;
+
 
 @end
 
@@ -61,11 +64,17 @@
 
 - (IBAction)saveButtonTapped:(id)sender {
     self.bodyParts = [[NSMutableArray alloc] init];
-    [self.bodyParts addObject:self.bodyPartTextField.text];
-    [self.bodyParts addObject:self.bodyPart2TextField.text];
-    NSOrderedSet *orderedBodyParts = [NSOrderedSet orderedSetWithArray:self.bodyParts];
+    
+    BodyPart * bodyPartOne = [[ModelController sharedInstance] createBodyPart:self.bodyPartTextField.text];
+    BodyPart * bodyPartTwo = [[ModelController sharedInstance] createBodyPart:self.bodyPart2TextField.text];
+    
+    
+    NSArray *arrayOfBodyParts = @[bodyPartOne, bodyPartTwo];
+    
+    [[ModelController sharedInstance] addExerciseWithName:self.exerciseNameTextField.text withDescription:self.exerciseDescriptionTextField.text withBodyPartstTaget:arrayOfBodyParts andWorkoutSession:self.session];
+    
+//    NSOrderedSet *orderedBodyParts = [NSOrderedSet orderedSetWithArray:self.bodyParts];
 
-    [[ModelController sharedInstance] addExerciseWithName:self.exerciseNameTextField.text withDescription:self.exerciseDescriptionTextField.text withBodyPartstTaget:orderedBodyParts andWorkoutSession:self.session];
 
 }
 

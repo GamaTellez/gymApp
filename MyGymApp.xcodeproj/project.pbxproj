@@ -28,6 +28,7 @@
 		87CFD66D1B353CCC00AB0841 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CFD6661B353CCC00AB0841 /* User.m */; };
 		87CFD66E1B353CCC00AB0841 /* BodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CFD6681B353CCC00AB0841 /* BodyPart.m */; };
 		87CFD66F1B353CCC00AB0841 /* Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CFD66A1B353CCC00AB0841 /* Exercise.m */; };
+		87D03C8B1B3869A000AD0CC2 /* AddExerciseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D03C8A1B3869A000AD0CC2 /* AddExerciseDataSource.m */; };
 		87D171A31B30C86C00D3995D /* AddExercisesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D171A21B30C86C00D3995D /* AddExercisesVC.m */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,8 @@
 		87CFD6681B353CCC00AB0841 /* BodyPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPart.m; sourceTree = "<group>"; };
 		87CFD6691B353CCC00AB0841 /* Exercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exercise.h; sourceTree = "<group>"; };
 		87CFD66A1B353CCC00AB0841 /* Exercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Exercise.m; sourceTree = "<group>"; };
+		87D03C891B3869A000AD0CC2 /* AddExerciseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExerciseDataSource.h; sourceTree = "<group>"; };
+		87D03C8A1B3869A000AD0CC2 /* AddExerciseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExerciseDataSource.m; sourceTree = "<group>"; };
 		87D171A11B30C86C00D3995D /* AddExercisesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExercisesVC.h; sourceTree = "<group>"; };
 		87D171A21B30C86C00D3995D /* AddExercisesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExercisesVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,6 +214,8 @@
 			children = (
 				87D171A11B30C86C00D3995D /* AddExercisesVC.h */,
 				87D171A21B30C86C00D3995D /* AddExercisesVC.m */,
+				87D03C891B3869A000AD0CC2 /* AddExerciseDataSource.h */,
+				87D03C8A1B3869A000AD0CC2 /* AddExerciseDataSource.m */,
 				8755144D1B348A7A003C7FFE /* WorkoutLogsDetailVC */,
 			);
 			name = AddExercisesVC;
@@ -352,6 +357,7 @@
 				8740B86D1B0E759900D60630 /* main.m in Sources */,
 				8755144C1B348A6C003C7FFE /* WorkoutLogsDetailVC.m in Sources */,
 				87CFD66E1B353CCC00AB0841 /* BodyPart.m in Sources */,
+				87D03C8B1B3869A000AD0CC2 /* AddExerciseDataSource.m in Sources */,
 				8740B89E1B0EDC9300D60630 /* ModelController.m in Sources */,
 				87CFD66B1B353CCC00AB0841 /* Rep.m in Sources */,
 				8740B8921B0E78B000D60630 /* ProfilleViewController.m in Sources */,

@@ -90,7 +90,6 @@ dispatch_once(&onceToken, ^{
     
 }
 
-
 #pragma mark - delete session
 
 - (void)deleteSession:(WorkoutSession *)session {
@@ -100,18 +99,25 @@ dispatch_once(&onceToken, ^{
 
 }
 
-- (void)addExerciseWithName:(NSString *)name withDescription:(NSString *)description withBodyPartstTaget:(NSOrderedSet *)bodyParts andWorkoutSession:(WorkoutSession *)session {
+- (void)addExerciseWithName:(NSString *)name withDescription:(NSString *)description withBodyPartstTaget:(NSArray *)bodyParts andWorkoutSession:(WorkoutSession *)session {
     
     Exercise *newExercise = [NSEntityDescription insertNewObjectForEntityForName:@"Exercise" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     newExercise.exerciseName = name;
     newExercise.exerciseDescription = description;
     newExercise.workoutSession = session;
     
-    for (BodyPart *localBodyPart in bodyParts) {
-        localBodyPart.exercise = newExercise;
-    }
+    newExercise.bodyParts = [[NSOrderedSet alloc] initWithArray:bodyParts];
+    
     [self saveToCoreData];
 
+}
+
+-(BodyPart *)createBodyPart:(NSString *)bodyPartName
+{
+    BodyPart *bodyPart = [NSEntityDescription insertNewObjectForEntityForName:@"BodyPart" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
+    bodyPart.bodyPartTargeted = bodyPartName;
+    
+    return bodyPart;
 }
 
 

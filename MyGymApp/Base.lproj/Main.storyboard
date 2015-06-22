@@ -183,6 +183,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8uK-xz-Osx" id="V3I-Ei-8m9"/>
+                                    <outlet property="delegate" destination="8uK-xz-Osx" id="G4J-tK-RZO"/>
+                                </connections>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="exercise description" translatesAutoresizingMaskIntoConstraints="NO" id="gcq-xh-ZsL">
                                 <rect key="frame" x="21" y="206" width="540" height="89"/>
@@ -250,6 +254,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arg-0Z-bfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="8uK-xz-Osx" customClass="AddExerciseDataSource"/>
             </objects>
             <point key="canvasLocation" x="5351" y="-352"/>
         </scene>
