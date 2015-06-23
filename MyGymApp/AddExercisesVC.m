@@ -9,13 +9,16 @@
 #import "AddExercisesVC.h"
 #import "ModelController.h"
 #import "BodyPart.h"
+#import "RepsViewController.h"
+#import "AddExerciseDataSource.h"
 
 
-@interface AddExercisesVC () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface AddExercisesVC () <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate>
 @property (nonatomic, strong) NSMutableArray *bodyParts;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSArray *bodyPartsArray;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
 
 
 @end
@@ -26,6 +29,9 @@
     [super viewDidLoad];
     self.bodyPartTextField.inputView = self.pickerView;
     self.bodyPart2TextField.inputView = self.pickerView;
+    
+    AddExerciseDataSource *dataSource = self.tableView.dataSource;
+    [dataSource updateWithSession:self.session];
     
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.delegate = self;
@@ -52,22 +58,24 @@
                             ,@"Hamstrings (biceps femoris)"
                             ,@"Calves (gastrocnemius)"
                             ];
+    self.bodyPartTextField.text = self.bodyPartsArray[0];
+    self.bodyPart2TextField.text = self.bodyPartsArray[1];
+    
      UITapGestureRecognizer *tapOutsideTextfields = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOutsideTextField:)];
     tapOutsideTextfields.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapOutsideTextfields];
-    
+ 
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-- (IBAction)backButtonTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-
-}
 
 - (IBAction)saveButtonTapped:(id)sender {
-    [self resignFirstResponder];
+   
+    [self.navigationController resignFirstResponder];
+    
     if ([self.exerciseNameTextField.text isEqual:@""]) {
         UIAlertController *requiredField = [UIAlertController alertControllerWithTitle:@"Exercise name required" message:@"Please enter exercises name before saving" preferredStyle:UIAlertControllerStyleActionSheet];
         [requiredField addAction:[UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -87,8 +95,8 @@
     
 //    NSOrderedSet *orderedBodyParts = [NSOrderedSet orderedSetWithArray:self.bodyParts];
     self.exerciseNameTextField.text = @"";
-    self.bodyPartTextField.text = @"";
-    self.bodyPart2TextField.text = @"";
+        self.bodyPartTextField.text = self.bodyPartsArray[0];
+        self.bodyPart2TextField.text = self.bodyPartsArray[1];
     self.exerciseDescriptionTextField.text = @"";
     }
     [self.tableView reloadData];
@@ -110,6 +118,7 @@
     
     return self.bodyPartsArray[row];
 }
+
 - (void)handleTapOutsideTextField:(UITapGestureRecognizer *)tap {
     
     [self.view endEditing:YES];
@@ -125,7 +134,23 @@
     
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"toExerciseDetail"]) {
+        RepsViewController *reps = [[RepsViewController alloc] init];
+        reps = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Exercise *exercise = self.session.exercises[indexPath.row];
+        reps.navigationItem.title = exercise.exerciseName;
+        reps.exercise = exercise;
+        
+    }
+}
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 
 

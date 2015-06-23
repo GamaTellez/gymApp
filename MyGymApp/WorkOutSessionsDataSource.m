@@ -11,7 +11,7 @@
 #import "ModelController.h"
 #import "AddExercisesVC.h"
 
-static NSString *cellID = @"cellID";
+static NSString *cellID = @"sessionCell";
 
 @implementation WorkOutSessionsDataSource
 
@@ -53,7 +53,10 @@ static NSString *cellID = @"cellID";
     }
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 
 @end

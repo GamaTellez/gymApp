@@ -16,6 +16,7 @@
 
 //@property (nonatomic, strong) NSArray *user;
 @property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSArray *exerciseArrayForWorkoutSession;
 
 @end
 
@@ -40,6 +41,9 @@ dispatch_once(&onceToken, ^{
     
 }
 
+
+
+
 - (NSArray *) exercisesArray {
     
     return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Exercise"] error:nil];
@@ -50,7 +54,6 @@ dispatch_once(&onceToken, ^{
     
     return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"] error:nil];
 }
-
 
 #pragma mark - Create User Method
 
@@ -90,6 +93,12 @@ dispatch_once(&onceToken, ^{
     
 }
 
+//- (NSArray *)exerciseArrayForWorkoutSession {
+//    
+//    return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"] error:nil];
+//    
+//}
+
 #pragma mark - delete session
 
 - (void)deleteSession:(WorkoutSession *)session {
@@ -112,12 +121,6 @@ dispatch_once(&onceToken, ^{
 
 }
 
-- (void)deleteExercise:(Exercise *)exercise {
-    
-    [exercise.managedObjectContext deleteObject:exercise];
-    [self saveToCoreData];
-    
-}
 -(BodyPart *)createBodyPart:(NSString *)bodyPartName
 {
     BodyPart *bodyPart = [NSEntityDescription insertNewObjectForEntityForName:@"BodyPart" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
@@ -125,6 +128,14 @@ dispatch_once(&onceToken, ^{
     
     return bodyPart;
 }
+
+- (void)deleteExercise:(Exercise *)exercise {
+    
+    [exercise.managedObjectContext deleteObject:exercise];
+    [self saveToCoreData];
+    
+}
+
 
 
 //- (WorkOutLogs *)createWorkOutLohWithBodyPartTargeted:(NSString *)bodyPartTargeted exerciseName:(NSString *)exerciseName weightUsed:(NSNumber *)weightUsed numOfReps:(NSNumber *)numOfReps andUser:(User *)user {

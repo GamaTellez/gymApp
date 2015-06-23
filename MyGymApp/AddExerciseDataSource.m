@@ -8,25 +8,42 @@
 
 #import "AddExerciseDataSource.h"
 #import "ModelController.h"
+#import "AddExercisesVC.h"
+
+
+
+@interface AddExerciseDataSource ()
+@property (nonatomic, strong) WorkoutSession *workoutsession;
+@end
 
 @implementation AddExerciseDataSource
 
 
+-(void)updateWithSession:(WorkoutSession *)session
+{
+    self.workoutsession = session;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
     
-    return [ModelController sharedInstance].exercisesArray.count;
+  
+    
+    return self.workoutsession.exercises.count;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"exerciseCell"];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cellID"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"exerciseCell"];
     }
     
-    Exercise *newExercise = [ModelController sharedInstance].exercisesArray[indexPath.row];
+    
+    
+    Exercise *newExercise = self.workoutsession.exercises[indexPath.row];
     cell.textLabel.text = newExercise.exerciseName;
     
     if (newExercise.bodyParts.count > 0) {

@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import  "WorkoutSession.h"
 
+@interface AddExerciseDataSource : NSObject <UITableViewDataSource>
 
-@interface AddExerciseDataSource : NSObject <UITableViewDataSource, UITableViewDelegate>
+-(void)updateWithSession:(WorkoutSession *)session;
 
 @end

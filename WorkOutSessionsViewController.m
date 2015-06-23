@@ -29,9 +29,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)backButtonTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 - (IBAction)addWorkOutSessionButtonTapped:(id)sender {
     
     UIAlertController *addSession = [UIAlertController alertControllerWithTitle:@"Add session Name" message:@"Please enter info" preferredStyle:UIAlertControllerStyleAlert];
@@ -39,8 +37,7 @@
     [addSession addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"enter session Name";
         
-        //registering
-        
+        //listening to changes in text view
         [textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         textField.delegate = self;
         }];
@@ -58,7 +55,7 @@
      [self presentViewController:addSession animated:YES completion:nil];
    
 }
-
+#pragma mark - method to disable save action if no exercise name
 //method to enable or disable save button to
 -(void)textFieldDidChange :(UITextField *)theTextField{
     if ([theTextField.text  isEqual: @""]) {
@@ -68,26 +65,25 @@
     self.saveAction.enabled = YES;
     }
 }
-
+#pragma mark - setting up next view with workoutsession
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toSessionDetail"]) {
-        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-        AddExercisesVC *vc = (AddExercisesVC *)navController.viewControllers[0];
+        //UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+       // AddExercisesVC *newVc = (AddExercisesVC *)navController.viewControllers[0];
+        AddExercisesVC *newVc = [[AddExercisesVC alloc] init];
+        newVc = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         WorkoutSession *session = [ModelController sharedInstance].workoutSessionsArray[indexPath.row];
-        vc.navigationItem.title = session.sessionName;
-        vc.session = session;
+        newVc.navigationItem.title = session.sessionName;
+        newVc.session = session;
     }
 }
-
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     [self.tableView reloadData];
     
 }
-
-
 
 
 

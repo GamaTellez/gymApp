@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Gamaliel Tellez. All rights reserved.
 //
 
-#import "WorkoutLogsDetailVC.h"
+#import "RepsViewController.h"
 
-@interface WorkoutLogsDetailVC ()
+@interface RepsViewController ()
 
 @end
 
-@implementation WorkoutLogsDetailVC
+@implementation RepsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
