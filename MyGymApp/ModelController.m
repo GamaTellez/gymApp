@@ -32,6 +32,9 @@ dispatch_once(&onceToken, ^{
     return sharedInstance;
 }
 
+
+#pragma mark - Create User Method
+
 -(User *)user
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
@@ -41,21 +44,6 @@ dispatch_once(&onceToken, ^{
     
 }
 
-
-
-
-- (NSArray *) exercisesArray {
-    
-    return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Exercise"] error:nil];
-}
-
-
-- (NSArray *)workoutSessionsArray {
-    
-    return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"] error:nil];
-}
-
-#pragma mark - Create User Method
 
 - (User *)createUserWithName:(NSString *)name birthDate:(NSString *)birthDate height:(NSNumber *)height weight:(NSNumber *)weight andPicture:(NSData *)userPicture gender:(NSString *)gender {
     
@@ -78,7 +66,7 @@ dispatch_once(&onceToken, ^{
     
 }
 
-#pragma mark - create workOutsession
+#pragma mark - workoutsession methods
 
 - (void)createWorkoutSessionWithName:(NSString *)name withUser:(User *)user {
     
@@ -93,13 +81,11 @@ dispatch_once(&onceToken, ^{
     
 }
 
-//- (NSArray *)exerciseArrayForWorkoutSession {
-//    
-//    return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"] error:nil];
-//    
-//}
+- (NSArray *)workoutSessionsArray {
+    
+    return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"] error:nil];
+}
 
-#pragma mark - delete session
 
 - (void)deleteSession:(WorkoutSession *)session {
     
@@ -107,6 +93,9 @@ dispatch_once(&onceToken, ^{
     [self saveToCoreData];
 
 }
+
+
+#pragma mark- exercises methods
 
 - (void)addExerciseWithName:(NSString *)name withDescription:(NSString *)description withBodyPartstTaget:(NSArray *)bodyParts andWorkoutSession:(WorkoutSession *)session {
     
@@ -118,8 +107,17 @@ dispatch_once(&onceToken, ^{
     newExercise.bodyParts = [[NSOrderedSet alloc] initWithArray:bodyParts];
     
     [self saveToCoreData];
-
 }
+
+- (void)deleteExercise:(Exercise *)exercise{
+    
+    [exercise.managedObjectContext deleteObject:exercise];
+    [self saveToCoreData];
+    
+}
+
+
+#pragma mark - bodyparts
 
 -(BodyPart *)createBodyPart:(NSString *)bodyPartName
 {
@@ -129,26 +127,6 @@ dispatch_once(&onceToken, ^{
     return bodyPart;
 }
 
-- (void)deleteExercise:(Exercise *)exercise {
-    
-    [exercise.managedObjectContext deleteObject:exercise];
-    [self saveToCoreData];
-    
-}
-
-
-
-//- (WorkOutLogs *)createWorkOutLohWithBodyPartTargeted:(NSString *)bodyPartTargeted exerciseName:(NSString *)exerciseName weightUsed:(NSNumber *)weightUsed numOfReps:(NSNumber *)numOfReps andUser:(User *)user {
-//    
-//    WorkOutLogs *newWorkOutLog = [NSEntityDescription insertNewObjectForEntityForName:workoutLogsClass inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
-//    newWorkOutLog.bodyPartTargeted = bodyPartTargeted;
-//    newWorkOutLog.exerciseName = exerciseName;
-//    newWorkOutLog.weightUsed = weightUsed;
-//    newWorkOutLog.numOfreps = numOfReps;
-//
-//    [self saveToCoreData];
-//    return newWorkOutLog;
-//}
 
 - (void)saveToCoreData {
     [[Stack sharedInstance].managedObjectContext save:nil];

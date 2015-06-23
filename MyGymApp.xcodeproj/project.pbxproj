@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		870FDEBA1B2BC833009F48A7 /* CustomCellForWorkoutSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 870FDEB91B2BC833009F48A7 /* CustomCellForWorkoutSession.m */; };
+		87376AD21B39FEB200B45CA7 /* RepsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87376AD11B39FEB200B45CA7 /* RepsDataSource.m */; };
+		87376AD51B39FFD300B45CA7 /* RepsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87376AD41B39FFD300B45CA7 /* RepsCustomCell.m */; };
 		8740B86D1B0E759900D60630 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8740B86C1B0E759900D60630 /* main.m */; };
 		8740B8701B0E759900D60630 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8740B86F1B0E759900D60630 /* AppDelegate.m */; };
 		8740B8731B0E759900D60630 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8740B8721B0E759900D60630 /* MainViewController.m */; };
@@ -45,6 +47,10 @@
 /* Begin PBXFileReference section */
 		870FDEB81B2BC833009F48A7 /* CustomCellForWorkoutSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCellForWorkoutSession.h; path = ../CustomCellForWorkoutSession.h; sourceTree = "<group>"; };
 		870FDEB91B2BC833009F48A7 /* CustomCellForWorkoutSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCellForWorkoutSession.m; path = ../CustomCellForWorkoutSession.m; sourceTree = "<group>"; };
+		87376AD01B39FEB200B45CA7 /* RepsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsDataSource.h; sourceTree = "<group>"; };
+		87376AD11B39FEB200B45CA7 /* RepsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsDataSource.m; sourceTree = "<group>"; };
+		87376AD31B39FFD300B45CA7 /* RepsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsCustomCell.h; sourceTree = "<group>"; };
+		87376AD41B39FFD300B45CA7 /* RepsCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsCustomCell.m; sourceTree = "<group>"; };
 		8740B8671B0E759900D60630 /* MyGymApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGymApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8740B86B1B0E759900D60630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8740B86C1B0E759900D60630 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -226,6 +232,10 @@
 			children = (
 				8755144A1B348A6C003C7FFE /* RepsViewController.h */,
 				8755144B1B348A6C003C7FFE /* RepsViewController.m */,
+				87376AD01B39FEB200B45CA7 /* RepsDataSource.h */,
+				87376AD11B39FEB200B45CA7 /* RepsDataSource.m */,
+				87376AD31B39FFD300B45CA7 /* RepsCustomCell.h */,
+				87376AD41B39FFD300B45CA7 /* RepsCustomCell.m */,
 			);
 			name = WorkoutLogsDetailVC;
 			sourceTree = "<group>";
@@ -349,8 +359,10 @@
 				87CFC1A81B1D4EDA004DEC16 /* WorkOutSessionsViewController.m in Sources */,
 				8740B89B1B0EDBDC00D60630 /* Stack.m in Sources */,
 				8740B8701B0E759900D60630 /* AppDelegate.m in Sources */,
+				87376AD21B39FEB200B45CA7 /* RepsDataSource.m in Sources */,
 				87CFD66C1B353CCC00AB0841 /* WorkoutSession.m in Sources */,
 				87CFD66F1B353CCC00AB0841 /* Exercise.m in Sources */,
+				87376AD51B39FFD300B45CA7 /* RepsCustomCell.m in Sources */,
 				87CFD66D1B353CCC00AB0841 /* User.m in Sources */,
 				8740B8951B0ED8D100D60630 /* Model.xcdatamodeld in Sources */,
 				870FDEBA1B2BC833009F48A7 /* CustomCellForWorkoutSession.m in Sources */,

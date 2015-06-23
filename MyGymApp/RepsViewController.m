@@ -7,8 +7,10 @@
 //
 
 #import "RepsViewController.h"
+#import "RepsDataSource.h"
 
 @interface RepsViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,6 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    RepsDataSource *dataSource = self.tableView.dataSource;
+    [dataSource updateWithExercise:self.exercise];
+    
     // Do any additional setup after loading the view.
 }
 

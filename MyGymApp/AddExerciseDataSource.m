@@ -25,9 +25,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    
-  
     
     return self.workoutsession.exercises.count;
     
@@ -59,8 +56,8 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        Exercise *exercise = [ModelController sharedInstance].exercisesArray[indexPath.row];
-        [[ModelController sharedInstance] deleteExercise:exercise];
+        Exercise *newExercise = self.workoutsession.exercises[indexPath.row];
+        [[ModelController sharedInstance] deleteExercise:newExercise];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
