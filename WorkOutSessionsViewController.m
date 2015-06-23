@@ -12,10 +12,10 @@
 
 
 
-@interface WorkOutSessionsViewController () 
+@interface WorkOutSessionsViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong, nonatomic) UIAlertAction *saveAction;
 @end
 
 @implementation WorkOutSessionsViewController
@@ -35,20 +35,38 @@
 - (IBAction)addWorkOutSessionButtonTapped:(id)sender {
     
     UIAlertController *addSession = [UIAlertController alertControllerWithTitle:@"Add session Name" message:@"Please enter info" preferredStyle:UIAlertControllerStyleAlert];
+    
     [addSession addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"enter session Name";
-    }];
+        
+        //registering
+        
+        [textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        textField.delegate = self;
+        }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        }];
     
-    [addSession addAction:[UIAlertAction actionWithTitle:@"Save session" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+   self.saveAction = [UIAlertAction actionWithTitle:@"Save session" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [[ModelController sharedInstance] createWorkoutSessionWithName:((UITextField *)addSession.textFields[0]).text withUser:[ModelController sharedInstance].user];
         [self.tableView reloadData];
-    }]];
-    [addSession addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        
-        
-    }]];
-     
-    [self presentViewController:addSession animated:YES completion:nil];
+       
+    }];
+    self.saveAction.enabled = NO;
+    [addSession addAction:cancelAction];
+    [addSession addAction:self.saveAction];
+     [self presentViewController:addSession animated:YES completion:nil];
+   
+}
+
+//method to enable or disable save button to
+-(void)textFieldDidChange :(UITextField *)theTextField{
+    if ([theTextField.text  isEqual: @""]) {
+        self.saveAction.enabled = NO;
+    } else if ( theTextField.text.length > 0){
+    //NSLog( @"text changed: %@", theTextField.text);
+    self.saveAction.enabled = YES;
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

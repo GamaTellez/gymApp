@@ -112,6 +112,12 @@ dispatch_once(&onceToken, ^{
 
 }
 
+- (void)deleteExercise:(Exercise *)exercise {
+    
+    [exercise.managedObjectContext deleteObject:exercise];
+    [self saveToCoreData];
+    
+}
 -(BodyPart *)createBodyPart:(NSString *)bodyPartName
 {
     BodyPart *bodyPart = [NSEntityDescription insertNewObjectForEntityForName:@"BodyPart" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];

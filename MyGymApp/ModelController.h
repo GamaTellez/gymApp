@@ -29,6 +29,7 @@
 
 - (void)deleteSession:(WorkoutSession *)session;
 
+- (void)deleteExercise:(Exercise *)exercise;
 
 -(BodyPart *)createBodyPart:(NSString *)bodyPartName;
 

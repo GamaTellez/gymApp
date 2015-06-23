@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *bodyParts;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSArray *bodyPartsArray;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 
 @end
@@ -60,22 +61,37 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+- (IBAction)backButtonTapped:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 
+}
 
 - (IBAction)saveButtonTapped:(id)sender {
+    [self resignFirstResponder];
+    if ([self.exerciseNameTextField.text isEqual:@""]) {
+        UIAlertController *requiredField = [UIAlertController alertControllerWithTitle:@"Exercise name required" message:@"Please enter exercises name before saving" preferredStyle:UIAlertControllerStyleActionSheet];
+        [requiredField addAction:[UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+        }]];
+        [self.navigationController presentViewController:requiredField animated:YES completion:nil];
+    } else {
+    
     self.bodyParts = [[NSMutableArray alloc] init];
     
     BodyPart * bodyPartOne = [[ModelController sharedInstance] createBodyPart:self.bodyPartTextField.text];
     BodyPart * bodyPartTwo = [[ModelController sharedInstance] createBodyPart:self.bodyPart2TextField.text];
-    
     
     NSArray *arrayOfBodyParts = @[bodyPartOne, bodyPartTwo];
     
     [[ModelController sharedInstance] addExerciseWithName:self.exerciseNameTextField.text withDescription:self.exerciseDescriptionTextField.text withBodyPartstTaget:arrayOfBodyParts andWorkoutSession:self.session];
     
 //    NSOrderedSet *orderedBodyParts = [NSOrderedSet orderedSetWithArray:self.bodyParts];
-
-
+    self.exerciseNameTextField.text = @"";
+    self.bodyPartTextField.text = @"";
+    self.bodyPart2TextField.text = @"";
+    self.exerciseDescriptionTextField.text = @"";
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - picker view protocol methods
@@ -108,6 +124,11 @@
     }
     
 }
+
+
+
+
+
 
 
 @end
