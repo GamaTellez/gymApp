@@ -54,13 +54,15 @@
     {
         Rep *rep = self.exercise.reps[indexPath.row];
         [[ModelController sharedInstance] deleteRep:rep];
-        //delete rep method from model controller goes here
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 @end
 

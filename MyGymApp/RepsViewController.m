@@ -13,11 +13,6 @@
 @interface RepsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
-
-
-
-
-
 @end
 
 @implementation RepsViewController
@@ -30,6 +25,8 @@
     // Do any additional setup after loading the view.
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -39,9 +36,7 @@
    
     [[ModelController sharedInstance] addRepToExerciseWithNumOfSets:[NSNumber numberWithDouble:[self.numOfSetsTextField.text doubleValue]] withReps:[NSNumber numberWithDouble:[self.numOfRepstextField.text doubleValue]] andWeight:[NSNumber numberWithDouble:[self.weightTextField.text doubleValue]] inExercise:self.exercise];
     [self.tableView reloadData];
-
 }
-
 
 /*
 #pragma mark - Navigation
