@@ -137,6 +137,11 @@
     }];
     
 }
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -171,11 +176,6 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
-}
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 
