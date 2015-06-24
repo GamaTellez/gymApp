@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (strong, nonatomic) UIPickerView *pickerView;
+@property (strong, nonatomic) IBOutlet UIButton *buttonProfilePic;
 
 
 @property (nonatomic, retain) NSArray *genderArray;
@@ -54,12 +55,7 @@
     self.userPictureImageView.image = [UIImage imageWithData:[ModelController sharedInstance].user.userImage];
     self.genderTextField.text = [ModelController sharedInstance].user.gender;
     
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-    UIAlertView  *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No camera Available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-        self.takePhotoButton.enabled = NO;
-    }
-    
+ 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -86,6 +82,61 @@
     self.inchesForHeight = [[NSArray alloc] initWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", nil];
     }
 
+
+
+- (IBAction)buttonProfilePicTapped:(id)sender {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Select Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+           
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            
+            [self presentViewController:picker animated:YES completion:nil];
+        }]];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil ]];
+
+        
+    } else {
+       [alertController addAction:[UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+   
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+           
+           
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Select Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil ]];
+  
+    }
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        UIImage *image = [[UIImage alloc]init];
+        image = info[UIImagePickerControllerEditedImage];
+        self.userPictureImageView.image = image;
+    }];
+    
+}
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -121,44 +172,52 @@
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
-
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:nil];
-    UIImage *imagePicked = info[UIImagePickerControllerEditedImage];
-    self.userPictureImageView.image = imagePicked;
-}
-
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    self.saveButton.enabled = NO;
-}
-
-
-- (IBAction)takePhotoButtonTapped:(id)sender {
-    self.saveButton.enabled = YES;
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    
-    [self presentViewController:picker animated:YES completion:NULL];
-}
-
-
-- (IBAction)selectPhotoFromLibraryButtonTapped:(id)sender {
-    self.saveButton.enabled = YES;
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    [self presentViewController:picker animated:YES completion:NULL];
-    
     
 }
+
+
+
+
+//-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//    
+//    [picker dismissViewControllerAnimated:YES completion:nil];
+//    UIImage *imagePicked = info[UIImagePickerControllerEditedImage];
+//    self.userPictureImageView.image = imagePicked;
+//}
+
+//-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+//    
+//    
+//    [self dismissViewControllerAnimated:YES completion:NULL];
+//    self.saveButton.enabled = NO;
+//}
+//
+//
+//- (IBAction)takePhotoButtonTapped:(id)sender {
+//    self.saveButton.enabled = YES;
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.delegate = self;
+//    picker.allowsEditing = YES;
+//    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    
+//    [self presentViewController:picker animated:YES completion:NULL];
+//}
+//
+//
+//- (IBAction)selectPhotoFromLibraryButtonTapped:(id)sender {
+//    self.saveButton.enabled = YES;
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.delegate = self;
+//    picker.allowsEditing = YES;
+//    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    
+//    [self presentViewController:picker animated:YES completion:NULL];
+//    
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
