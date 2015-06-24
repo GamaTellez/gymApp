@@ -222,12 +222,12 @@
 				87D171A21B30C86C00D3995D /* AddExercisesVC.m */,
 				87D03C891B3869A000AD0CC2 /* AddExerciseDataSource.h */,
 				87D03C8A1B3869A000AD0CC2 /* AddExerciseDataSource.m */,
-				8755144D1B348A7A003C7FFE /* WorkoutLogsDetailVC */,
+				8755144D1B348A7A003C7FFE /* RepsVC */,
 			);
 			name = AddExercisesVC;
 			sourceTree = "<group>";
 		};
-		8755144D1B348A7A003C7FFE /* WorkoutLogsDetailVC */ = {
+		8755144D1B348A7A003C7FFE /* RepsVC */ = {
 			isa = PBXGroup;
 			children = (
 				8755144A1B348A6C003C7FFE /* RepsViewController.h */,
@@ -237,7 +237,7 @@
 				87376AD31B39FFD300B45CA7 /* RepsCustomCell.h */,
 				87376AD41B39FFD300B45CA7 /* RepsCustomCell.m */,
 			);
-			name = WorkoutLogsDetailVC;
+			name = RepsVC;
 			sourceTree = "<group>";
 		};
 		87CFC1A51B1D4E87004DEC16 /* WorkSessionsVC */ = {

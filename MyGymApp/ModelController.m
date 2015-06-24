@@ -10,6 +10,7 @@
 #import "Stack.h"
 #import "User.h"
 #import "WorkoutSession.h"
+#import "Rep.h"
 
 @interface ModelController ()
 
@@ -117,6 +118,31 @@ dispatch_once(&onceToken, ^{
 }
 
 
+
+- (void)addRepToExerciseWithNumOfSets:(NSNumber *)sets withReps:(NSNumber *)reps andWeight:(NSNumber *)weight inExercise:(Exercise *)exercise {
+    
+    Rep *newRep = [NSEntityDescription insertNewObjectForEntityForName:@"Rep" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
+    newRep.numOfSets = sets;
+    newRep.numOfReps = reps;
+    newRep.weights = weight;
+    newRep.exercise = exercise;
+    
+    [self saveToCoreData];
+}
+
+
+
+
+#pragma mark - Reps
+
+- (void)deleteRep:(Rep *)rep {
+    
+    [rep.managedObjectContext deleteObject:rep];
+    [self saveToCoreData];
+    
+}
+
+
 #pragma mark - bodyparts
 
 -(BodyPart *)createBodyPart:(NSString *)bodyPartName
@@ -128,10 +154,9 @@ dispatch_once(&onceToken, ^{
 }
 
 
+
+
 - (void)saveToCoreData {
     [[Stack sharedInstance].managedObjectContext save:nil];
 }
-
-
-
 @end

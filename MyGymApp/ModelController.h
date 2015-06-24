@@ -33,6 +33,11 @@
 
 -(BodyPart *)createBodyPart:(NSString *)bodyPartName;
 
+- (void)addRepToExerciseWithNumOfSets:(NSNumber *)sets withReps:(NSNumber *)reps andWeight:(NSNumber *)weight inExercise:(Exercise *)exercise;
+
+- (void)deleteRep:(Rep *)rep;
+
+
 @end
 
 

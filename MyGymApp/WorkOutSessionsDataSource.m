@@ -35,7 +35,7 @@ static NSString *cellID = @"sessionCell";
                                                           dateStyle:NSDateFormatterFullStyle
                                                           timeStyle:NSDateFormatterShortStyle];
     cell.sessionDateLabel.text = dateString;
-    cell.sessionLengthLabel.text = @"fdfdfdffd";
+   // cell.sessionLengthLabel.text = @"fdfdfdffd";
     return cell;
 }
 

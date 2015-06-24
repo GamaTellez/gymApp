@@ -342,6 +342,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="rP7-E7-YcT" id="d4l-s3-mDD"/>
+                                    <outlet property="delegate" destination="rP7-E7-YcT" id="yWz-T9-HyW"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lO8-UJ-XBZ">
@@ -349,6 +350,9 @@
                                 <state key="normal" title="Add Set">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addSetButtonTapped:" destination="waP-jm-3B6" eventType="touchUpInside" id="CEd-Kv-jsS"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
