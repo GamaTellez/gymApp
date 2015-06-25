@@ -17,12 +17,8 @@ static NSString *cellID = @"sessionCell";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    return [ModelController sharedInstance].workoutSessionsArray.count;
     
-    if ([ModelController sharedInstance].workoutSessionsArray.count < 7) {
-        return [ModelController sharedInstance].workoutSessionsArray.count;
-    } else {
-        return 7;
-    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -32,9 +28,6 @@ static NSString *cellID = @"sessionCell";
     if (!cell) {
         cell = [[CustomCellForWorkoutSession alloc] init];
     }
-    //NSArray* reversedArray = [[[ModelController sharedInstance].workoutSessionsArray reverseObjectEnumerator] allObjects];
-    
-    //WorkoutSession *workoutSession = reversedArray[indexPath.row];
     
     WorkoutSession *workoutSession = [ModelController sharedInstance].workoutSessionsArray[indexPath.row];
     cell.sessionNameLabel.text = workoutSession.sessionName;

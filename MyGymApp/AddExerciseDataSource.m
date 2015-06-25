@@ -50,7 +50,7 @@ static NSString *exerciseCell = @"exerciseCell";
         BodyPart * bodyPartOne = newExercise.bodyParts[0];
         BodyPart * bodyPartTwo = newExercise.bodyParts[1];
 
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@",bodyPartOne.bodyPartTargeted,bodyPartTwo.bodyPartTargeted];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@. %@",bodyPartOne.bodyPartTargeted,bodyPartTwo.bodyPartTargeted];
     }
     
     return cell;

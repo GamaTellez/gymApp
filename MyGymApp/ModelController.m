@@ -17,7 +17,7 @@
 
 //@property (nonatomic, strong) NSArray *user;
 @property (nonatomic, strong) User *user;
-@property (nonatomic, strong) NSArray *exerciseArrayForWorkoutSession;
+//@property (nonatomic, strong) NSArray *exerciseArrayForWorkoutSession;
 
 @end
 
@@ -84,12 +84,24 @@ dispatch_once(&onceToken, ^{
 
 - (NSArray *)workoutSessionsArray {
     
+    NSFetchRequest *recentSessionsRequest = [NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"];
+    recentSessionsRequest.fetchLimit = 20;
+    NSArray *currentSessions = [[Stack sharedInstance].managedObjectContext executeFetchRequest:recentSessionsRequest error:nil];
     
-    //    NSArray* reversedArray = [[[[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"] error:nil] reverseObjectEnumerator] allObjects];
-//   
-//    return reversedArray;
-   return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"] error:nil];
+    NSSortDescriptor *sortDescriptorByDate = [[NSSortDescriptor alloc] initWithKey:@"sessionDate" ascending:NO];
+    
+    NSArray *descriptorsArray = [NSArray arrayWithObjects:sortDescriptorByDate, nil];
+    NSArray *sortedSessionsByDate = [currentSessions sortedArrayUsingDescriptors:descriptorsArray];
+    
+    return sortedSessionsByDate;
 }
+
+
+
+
+
+
+
 
 
 - (void)deleteSession:(WorkoutSession *)session {

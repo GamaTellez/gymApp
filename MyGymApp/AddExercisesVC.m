@@ -28,6 +28,7 @@
     [super viewDidLoad];
     self.bodyPartTextField.inputView = self.pickerView;
     self.bodyPart2TextField.inputView = self.pickerView;
+
     
     AddExerciseDataSource *dataSource = self.tableView.dataSource;
     [dataSource updateWithSession:self.session];
@@ -89,8 +90,8 @@
    
     [self.navigationController resignFirstResponder];
     
-    if ([self.exerciseNameTextField.text isEqual:@""]) {
-        UIAlertController *requiredField = [UIAlertController alertControllerWithTitle:@"Exercise name required" message:@"Please enter exercises name before saving" preferredStyle:UIAlertControllerStyleActionSheet];
+    if ([self.exerciseNameTextField.text isEqual:@""] || [self.bodyPartTextField.text isEqual:@""]) {
+        UIAlertController *requiredField = [UIAlertController alertControllerWithTitle:@"Missing required fields" message:@"Please fill all fields" preferredStyle:UIAlertControllerStyleActionSheet];
         [requiredField addAction:[UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             
         }]];
@@ -109,6 +110,8 @@
 //    NSOrderedSet *orderedBodyParts = [NSOrderedSet orderedSetWithArray:self.bodyParts];
     self.exerciseNameTextField.text = @"";
     self.exerciseDescriptionTextField.text = @"";
+    self.bodyPartTextField.text = @"";
+    self.bodyPart2TextField.text = @"";
     }
     [self.tableView reloadData];
 }

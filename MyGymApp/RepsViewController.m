@@ -34,12 +34,23 @@
 
 - (IBAction)addSetButtonTapped:(id)sender {
    
+    if ([self.numOfRepstextField.text  isEqual: @""] || [self.numOfSetsTextField.text isEqual:@"" ]|| [self.weightTextField.text isEqual:@""]) {
+        
+        UIAlertController *emptyFieldAlert = [UIAlertController alertControllerWithTitle:@"Missing Fields" message:@"All fields must be completed" preferredStyle:UIAlertControllerStyleActionSheet];
+        [emptyFieldAlert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+        }]];
+         [self.navigationController presentViewController:emptyFieldAlert animated:YES completion:nil];
+         } else {
+    
+    
     [[ModelController sharedInstance] addRepToExerciseWithNumOfSets:[NSNumber numberWithDouble:[self.numOfSetsTextField.text doubleValue]] withReps:[NSNumber numberWithDouble:[self.numOfRepstextField.text doubleValue]] andWeight:[NSNumber numberWithDouble:[self.weightTextField.text doubleValue]] inExercise:self.exercise];
     [self.tableView reloadData];
     
     self.numOfRepstextField.text = @"";
     self.numOfSetsTextField.text = @"";
     self.weightTextField.text = @"";
+         }
 }
 
 /*
