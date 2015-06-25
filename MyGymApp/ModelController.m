@@ -42,7 +42,6 @@ dispatch_once(&onceToken, ^{
     NSArray *users = [[Stack sharedInstance].managedObjectContext executeFetchRequest:request error:nil];
     
     return [users lastObject];
-    
 }
 
 
@@ -82,9 +81,14 @@ dispatch_once(&onceToken, ^{
     
 }
 
+
 - (NSArray *)workoutSessionsArray {
     
-    return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"] error:nil];
+    
+    //    NSArray* reversedArray = [[[[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"] error:nil] reverseObjectEnumerator] allObjects];
+//   
+//    return reversedArray;
+   return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"] error:nil];
 }
 
 

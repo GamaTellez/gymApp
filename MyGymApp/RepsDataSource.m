@@ -39,7 +39,7 @@
         cell = [[RepsCustomCell alloc] init];
     }
     Rep *newRep = self.exercise.reps[indexPath.row];
-    cell.repsLabel.text = [NSString stringWithFormat:@"%f", [newRep.numOfReps doubleValue]];
+    cell.repsLabel.text = [newRep.numOfReps stringValue];
     cell.setsLabel.text = [newRep.numOfSets stringValue];
     cell.weightLabel.text = [newRep.weights stringValue];
     

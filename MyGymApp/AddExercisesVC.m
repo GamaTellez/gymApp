@@ -13,12 +13,11 @@
 #import "AddExerciseDataSource.h"
 
 
-@interface AddExercisesVC () <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate>
+@interface AddExercisesVC () <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) NSMutableArray *bodyParts;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSArray *bodyPartsArray;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
 
 
 @end
@@ -38,6 +37,8 @@
     self.pickerView.dataSource = self;
     self.bodyPartTextField.inputView = self.pickerView;
     self.bodyPart2TextField.inputView = self.pickerView;
+    self.bodyPart2TextField.delegate = self;
+    self.bodyPartTextField.delegate = self;
     
     self.bodyPartsArray = [[NSArray alloc] init];
     self.bodyPartsArray = @[@"Traps (trapezius)"
@@ -49,17 +50,15 @@
                             ,@"Quads (quadriceps)"
                             ,@"Calves (gastrocnemius)"
                             ,@"Traps (trapezius)"
-                            ,@"Lats (latissimus dorsi)"
                             ,@"Triceps (triceps brachii)"
-                            ,@"Middle Back (rhomboids)"
+                            ,@"Upper Back"
                             ,@"Lower Back"
                             ,@"Glutes (gluteus maximus and medius)"
                             ,@"Quads (quadriceps)"
                             ,@"Hamstrings (biceps femoris)"
                             ,@"Calves (gastrocnemius)"
                             ];
-    self.bodyPartTextField.text = self.bodyPartsArray[0];
-    self.bodyPart2TextField.text = self.bodyPartsArray[1];
+    
     
      UITapGestureRecognizer *tapOutsideTextfields = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOutsideTextField:)];
     tapOutsideTextfields.cancelsTouchesInView = NO;
@@ -67,6 +66,20 @@
  
 
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    
+    
+    if (textField ==  self.bodyPartTextField)  {
+        self.bodyPartTextField.text = self.bodyPartsArray[0];
+    } else if (textField == self.bodyPart2TextField) {
+        self.bodyPart2TextField.text = self.bodyPartsArray[1];
+    }
+}
+//
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//    return NO;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -84,7 +97,7 @@
         [self.navigationController presentViewController:requiredField animated:YES completion:nil];
     } else {
     
-    self.bodyParts = [[NSMutableArray alloc] init];
+    //self.bodyParts = [[NSMutableArray alloc] init];
     
     BodyPart * bodyPartOne = [[ModelController sharedInstance] createBodyPart:self.bodyPartTextField.text];
     BodyPart * bodyPartTwo = [[ModelController sharedInstance] createBodyPart:self.bodyPart2TextField.text];
@@ -95,8 +108,6 @@
     
 //    NSOrderedSet *orderedBodyParts = [NSOrderedSet orderedSetWithArray:self.bodyParts];
     self.exerciseNameTextField.text = @"";
-        self.bodyPartTextField.text = self.bodyPartsArray[0];
-        self.bodyPart2TextField.text = self.bodyPartsArray[1];
     self.exerciseDescriptionTextField.text = @"";
     }
     [self.tableView reloadData];

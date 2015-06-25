@@ -223,8 +223,6 @@
     [super didReceiveMemoryWarning];
 
 }
-
-
 #pragma mark - save/createUser
 
 - (IBAction)saveButtonTapped:(id)sender {
@@ -281,6 +279,9 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     [self.pickerView reloadAllComponents];
+    if (textField == self.genderTextField) {
+        self.genderTextField.text = self.genderArray[0];
+    }
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {

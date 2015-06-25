@@ -9,6 +9,7 @@
 #import "WorkOutSessionsViewController.h"
 #import "ModelController.h"
 #import "AddExercisesVC.h"
+#import "User.h"
 
 
 
@@ -16,6 +17,8 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIAlertAction *saveAction;
+
+
 @end
 
 @implementation WorkOutSessionsViewController
@@ -23,9 +26,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"Current Week Workouts";
 }
 
 - (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -40,6 +45,8 @@
         //listening to changes in text view
         [textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         textField.delegate = self;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+        
         }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         }];

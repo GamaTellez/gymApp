@@ -10,7 +10,7 @@
 #import "ModelController.h"
 #import "AddExercisesVC.h"
 
-
+static NSString *exerciseCell = @"exerciseCell";
 
 @interface AddExerciseDataSource ()
 @property (nonatomic, strong) WorkoutSession *workoutsession;
@@ -32,21 +32,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"exerciseCell"];
+ 
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:exerciseCell];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"exerciseCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:exerciseCell];
     }
     
+//    
+//    NSArray* reversedArray = [[self.workoutsession.exercises reverseObjectEnumerator] allObjects];
+//    Exercise *newExercise = reversedArray[indexPath.row];
     
-    
-    Exercise *newExercise = self.workoutsession.exercises[indexPath.row];
+   Exercise *newExercise = self.workoutsession.exercises[indexPath.row];
     cell.textLabel.text = newExercise.exerciseName;
     
     if (newExercise.bodyParts.count > 0) {
         BodyPart * bodyPartOne = newExercise.bodyParts[0];
         BodyPart * bodyPartTwo = newExercise.bodyParts[1];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@",bodyPartOne.bodyPartTargeted, bodyPartTwo.bodyPartTargeted];
+
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@",bodyPartOne.bodyPartTargeted,bodyPartTwo.bodyPartTargeted];
     }
     
     return cell;
@@ -62,4 +66,7 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
+
+
+
 @end
