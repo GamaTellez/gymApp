@@ -2,7 +2,7 @@
 //  WorkoutSession.h
 //  
 //
-//  Created by Gamaliel Tellez on 6/20/15.
+//  Created by Gamaliel Tellez on 6/25/15.
 //
 //
 
@@ -18,8 +18,8 @@
 @property (nonatomic, retain) NSString * sessionName;
 @property (nonatomic, retain) NSDate * sessionStartTime;
 @property (nonatomic, retain) NSDate * timeLength;
-@property (nonatomic, retain) User *user;
 @property (nonatomic, retain) NSOrderedSet *exercises;
+@property (nonatomic, retain) User *user;
 @end
 
 @interface WorkoutSession (CoreDataGeneratedAccessors)

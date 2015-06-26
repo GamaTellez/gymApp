@@ -2,7 +2,7 @@
 //  Exercise.h
 //  
 //
-//  Created by Gamaliel Tellez on 6/20/15.
+//  Created by Gamaliel Tellez on 6/25/15.
 //
 //
 
@@ -13,11 +13,11 @@
 
 @interface Exercise : NSManagedObject
 
-@property (nonatomic, retain) NSString * exerciseName;
 @property (nonatomic, retain) NSString * exerciseDescription;
+@property (nonatomic, retain) NSString * exerciseName;
 @property (nonatomic, retain) NSOrderedSet *bodyParts;
-@property (nonatomic, retain) WorkoutSession *workoutSession;
 @property (nonatomic, retain) NSOrderedSet *reps;
+@property (nonatomic, retain) WorkoutSession *workoutSession;
 @end
 
 @interface Exercise (CoreDataGeneratedAccessors)

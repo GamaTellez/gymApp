@@ -50,15 +50,11 @@
                             ,@"Abs (rectus abdominis)"
                             ,@"Quads (quadriceps)"
                             ,@"Calves (gastrocnemius)"
-                            ,@"Traps (trapezius)"
                             ,@"Triceps (triceps brachii)"
                             ,@"Upper Back"
                             ,@"Lower Back"
                             ,@"Glutes (gluteus maximus and medius)"
-                            ,@"Quads (quadriceps)"
-                            ,@"Hamstrings (biceps femoris)"
-                            ,@"Calves (gastrocnemius)"
-                            ];
+                            ,@"Hamstrings (biceps femoris)"];
     
     
      UITapGestureRecognizer *tapOutsideTextfields = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOutsideTextField:)];
@@ -165,9 +161,6 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
-
-
 
 
 @end

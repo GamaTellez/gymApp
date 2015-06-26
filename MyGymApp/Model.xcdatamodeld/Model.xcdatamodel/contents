@@ -33,14 +33,14 @@
         <attribute name="sessionName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sessionStartTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="timeLength" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Exercise" inverseName="workoutSession" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Exercise" inverseName="workoutSession" inverseEntity="Exercise" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="workoutsessions" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
+        <element name="BodyPart" positionX="-45" positionY="99" width="128" height="75"/>
+        <element name="Exercise" positionX="-54" positionY="90" width="128" height="120"/>
+        <element name="Rep" positionX="-54" positionY="81" width="128" height="120"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="150"/>
         <element name="WorkoutSession" positionX="-54" positionY="54" width="128" height="150"/>
-        <element name="Rep" positionX="-54" positionY="81" width="128" height="120"/>
-        <element name="Exercise" positionX="-54" positionY="90" width="128" height="120"/>
-        <element name="BodyPart" positionX="-45" positionY="99" width="128" height="75"/>
     </elements>
 </model>

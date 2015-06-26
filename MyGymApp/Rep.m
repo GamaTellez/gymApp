@@ -2,7 +2,7 @@
 //  Rep.m
 //  
 //
-//  Created by Gamaliel Tellez on 6/20/15.
+//  Created by Gamaliel Tellez on 6/25/15.
 //
 //
 
@@ -14,8 +14,8 @@
 
 @dynamic numOfReps;
 @dynamic numOfSets;
-@dynamic weights;
 @dynamic restTime;
+@dynamic weights;
 @dynamic exercise;
 
 @end

@@ -11,6 +11,7 @@
 #import "User.h"
 #import "WorkoutSession.h"
 #import "Rep.h"
+#import "Exercise.h"
 
 @interface ModelController ()
 
@@ -78,14 +79,12 @@ dispatch_once(&onceToken, ^{
     newWorkOutSession.sessionStartTime = [endDate dateByAddingTimeInterval:24.0f * 60.0f * 60.0f - 1.0f];
 
     [self saveToCoreData];
-    
 }
 
-
 - (NSArray *)workoutSessionsArray {
-    
+    //filtering for most recent one on top of tableview
     NSFetchRequest *recentSessionsRequest = [NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"];
-    recentSessionsRequest.fetchLimit = 20;
+    //recentSessionsRequest.fetchLimit = 20;
     NSArray *currentSessions = [[Stack sharedInstance].managedObjectContext executeFetchRequest:recentSessionsRequest error:nil];
     
     NSSortDescriptor *sortDescriptorByDate = [[NSSortDescriptor alloc] initWithKey:@"sessionDate" ascending:NO];
@@ -95,14 +94,6 @@ dispatch_once(&onceToken, ^{
     
     return sortedSessionsByDate;
 }
-
-
-
-
-
-
-
-
 
 - (void)deleteSession:(WorkoutSession *)session {
     
@@ -133,8 +124,6 @@ dispatch_once(&onceToken, ^{
     
 }
 
-
-
 - (void)addRepToExerciseWithNumOfSets:(NSNumber *)sets withReps:(NSNumber *)reps andWeight:(NSNumber *)weight inExercise:(Exercise *)exercise {
     
     Rep *newRep = [NSEntityDescription insertNewObjectForEntityForName:@"Rep" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
@@ -145,10 +134,6 @@ dispatch_once(&onceToken, ^{
     
     [self saveToCoreData];
 }
-
-
-
-
 #pragma mark - Reps
 
 - (void)deleteRep:(Rep *)rep {
@@ -170,7 +155,89 @@ dispatch_once(&onceToken, ^{
 }
 
 
+- (void)numberOfTimesBodyPartWasWorkedOut {
+    
+    NSFetchRequest *exerciseForBodyPartsFetch = [NSFetchRequest fetchRequestWithEntityName:@"Exercise"];
+    NSArray *allExercisesArray = [[Stack sharedInstance].managedObjectContext executeFetchRequest:exerciseForBodyPartsFetch error:nil];
+    
+    int *trapsCounter = 0;
+    int *shouldersp = 0;
+    int *chest = 0;
+    int *biceps = 0;
+    int *forearm = 0;
+    int *abs = 0;
+    int *quads = 0;
+    int *calves = 0;
+    int *triceps = 0;
+    int *upperBack = 0;
+    int *lowerBack = 0;
+    int *glutes = 0;
+    int *hamstrings = 0;
+    
+    for (Exercise *exercise in allExercisesArray) {
+     
+        for (BodyPart *bodyPart in exercise.bodyParts) {
+            
+           
+                if ([bodyPart.bodyPartTargeted isEqual:@"Traps (trapezius)"])
+                    trapsCounter ++;
+               
+                if ([bodyPart.bodyPartTargeted isEqual:@"Shoulders (deltoids)"])
+                    shouldersp ++;
+                
+                
+                if ([bodyPart.bodyPartTargeted isEqual:@"Chest (pectoralis)"])
+                    chest ++;
+               
+                if ([bodyPart.bodyPartTargeted isEqual:@"Biceps (biceps brachii)"])
+                    biceps ++;
+              
+                if ([bodyPart.bodyPartTargeted isEqual:@"Forearm (brachioradialis)"])
+                    forearm ++;
 
+                if ([bodyPart.bodyPartTargeted isEqual:@"Abs (rectus abdominis)"])
+                    abs ++;
+                
+                if ([bodyPart.bodyPartTargeted isEqual:@"Quads (quadriceps)"])
+                    quads ++;
+                
+                if ([bodyPart.bodyPartTargeted isEqual:@"Calves (gastrocnemius)"])
+                    calves ++;
+                
+                if ([bodyPart.bodyPartTargeted isEqual:@"Triceps (triceps brachii)"])
+                    triceps ++;
+                
+                if ([bodyPart.bodyPartTargeted isEqual:@"Upper Back"])
+                    upperBack ++;
+                
+                if ([bodyPart.bodyPartTargeted isEqual:@"Lower Back"])
+                    lowerBack ++;
+               
+                if ([bodyPart.bodyPartTargeted isEqual:@"Glutes (gluteus maximus and medius)"])
+                    glutes ++;
+               
+                if ([bodyPart.bodyPartTargeted isEqual:@"Hamstrings (biceps femoris)"])
+                    hamstrings ++;
+                
+            }
+    }
+
+    NSLog(@"%zd",hamstrings);
+    NSLog(@"%zd",glutes);
+    NSLog(@"%zd",lowerBack);
+    NSLog(@"%zd",upperBack);
+    NSLog(@"%zd",calves);
+    NSLog(@"%zd",quads);
+    NSLog(@"%zd",abs);
+    NSLog(@"%zd",forearm);
+    NSLog(@"%zd",chest);
+    NSLog(@"%zd",biceps);
+    NSLog(@"%zd",triceps);
+    NSLog(@"%zd",shouldersp);
+    NSLog(@"%zd",trapsCounter);
+}
+
+#pragma mark -save to coredaata
 
 - (void)saveToCoreData {
     [[Stack sharedInstance].managedObjectContext save:nil];

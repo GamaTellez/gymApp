@@ -39,6 +39,8 @@
 
 - (void)deleteRep:(Rep *)rep;
 
+- (void)numberOfTimesBodyPartWasWorkedOut;
+
 
 @end
 

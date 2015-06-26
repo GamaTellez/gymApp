@@ -2,7 +2,7 @@
 //  WorkoutSession.m
 //  
 //
-//  Created by Gamaliel Tellez on 6/20/15.
+//  Created by Gamaliel Tellez on 6/25/15.
 //
 //
 
@@ -18,7 +18,7 @@
 @dynamic sessionName;
 @dynamic sessionStartTime;
 @dynamic timeLength;
-@dynamic user;
 @dynamic exercises;
+@dynamic user;
 
 @end

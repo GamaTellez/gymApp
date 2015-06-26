@@ -2,7 +2,7 @@
 //  Exercise.m
 //  
 //
-//  Created by Gamaliel Tellez on 6/20/15.
+//  Created by Gamaliel Tellez on 6/25/15.
 //
 //
 
@@ -14,10 +14,10 @@
 
 @implementation Exercise
 
-@dynamic exerciseName;
 @dynamic exerciseDescription;
+@dynamic exerciseName;
 @dynamic bodyParts;
-@dynamic workoutSession;
 @dynamic reps;
+@dynamic workoutSession;
 
 @end
