@@ -43,7 +43,6 @@
          [self.navigationController presentViewController:emptyFieldAlert animated:YES completion:nil];
          } else {
     
-    
     [[ModelController sharedInstance] addRepToExerciseWithNumOfSets:[NSNumber numberWithDouble:[self.numOfSetsTextField.text doubleValue]] withReps:[NSNumber numberWithDouble:[self.numOfRepstextField.text doubleValue]] andWeight:[NSNumber numberWithDouble:[self.weightTextField.text doubleValue]] inExercise:self.exercise];
     [self.tableView reloadData];
     

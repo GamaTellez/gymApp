@@ -160,81 +160,68 @@ dispatch_once(&onceToken, ^{
     NSFetchRequest *exerciseForBodyPartsFetch = [NSFetchRequest fetchRequestWithEntityName:@"Exercise"];
     NSArray *allExercisesArray = [[Stack sharedInstance].managedObjectContext executeFetchRequest:exerciseForBodyPartsFetch error:nil];
     
-    int *trapsCounter = 0;
-    int *shouldersp = 0;
-    int *chest = 0;
-    int *biceps = 0;
-    int *forearm = 0;
-    int *abs = 0;
-    int *quads = 0;
-    int *calves = 0;
-    int *triceps = 0;
-    int *upperBack = 0;
-    int *lowerBack = 0;
-    int *glutes = 0;
-    int *hamstrings = 0;
+    int trapsCounter = 0;
+    int shouldersp = 0;
+    int chest = 0;
+    int biceps = 0;
+    int forearm = 0;
+    int abs = 0;
+    int quads = 0;
+    int calves = 0;
+    int triceps = 0;
+    int upperBack = 0;
+    int lowerBack = 0;
+    int glutes = 0;
+    int hamstrings = 0;
     
+//    __block NSArray *bodyPartsArray;
+//    for (Exercise *exercise in allExercisesArray) {
+//        bodyPartsArray = [[NSArray alloc] initWithArray:[exercise.bodyParts array]];
+//    }
     for (Exercise *exercise in allExercisesArray) {
-     
+    
         for (BodyPart *bodyPart in exercise.bodyParts) {
-            
-           
-                if ([bodyPart.bodyPartTargeted isEqual:@"Traps (trapezius)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Traps"])
                     trapsCounter ++;
-               
-                if ([bodyPart.bodyPartTargeted isEqual:@"Shoulders (deltoids)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Shoulders"])
                     shouldersp ++;
-                
-                
-                if ([bodyPart.bodyPartTargeted isEqual:@"Chest (pectoralis)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Chest"])
                     chest ++;
-               
-                if ([bodyPart.bodyPartTargeted isEqual:@"Biceps (biceps brachii)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Biceps"])
                     biceps ++;
-              
-                if ([bodyPart.bodyPartTargeted isEqual:@"Forearm (brachioradialis)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Forearm"])
                     forearm ++;
-
-                if ([bodyPart.bodyPartTargeted isEqual:@"Abs (rectus abdominis)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Abs"])
                     abs ++;
-                
-                if ([bodyPart.bodyPartTargeted isEqual:@"Quads (quadriceps)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Quads"])
                     quads ++;
-                
-                if ([bodyPart.bodyPartTargeted isEqual:@"Calves (gastrocnemius)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Calves"])
                     calves ++;
-                
-                if ([bodyPart.bodyPartTargeted isEqual:@"Triceps (triceps brachii)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Triceps"])
                     triceps ++;
-                
                 if ([bodyPart.bodyPartTargeted isEqual:@"Upper Back"])
                     upperBack ++;
-                
                 if ([bodyPart.bodyPartTargeted isEqual:@"Lower Back"])
                     lowerBack ++;
-               
-                if ([bodyPart.bodyPartTargeted isEqual:@"Glutes (gluteus maximus and medius)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Glutes"])
                     glutes ++;
-               
-                if ([bodyPart.bodyPartTargeted isEqual:@"Hamstrings (biceps femoris)"])
+                if ([bodyPart.bodyPartTargeted isEqual:@"Hamstrings"])
                     hamstrings ++;
-                
             }
     }
-
-    NSLog(@"%zd",hamstrings);
-    NSLog(@"%zd",glutes);
-    NSLog(@"%zd",lowerBack);
-    NSLog(@"%zd",upperBack);
-    NSLog(@"%zd",calves);
-    NSLog(@"%zd",quads);
-    NSLog(@"%zd",abs);
-    NSLog(@"%zd",forearm);
-    NSLog(@"%zd",chest);
-    NSLog(@"%zd",biceps);
-    NSLog(@"%zd",triceps);
-    NSLog(@"%zd",shouldersp);
-    NSLog(@"%zd",trapsCounter);
+    NSLog(@" hamstrings %zd",hamstrings);
+    NSLog(@" glutes %zd",glutes);
+    NSLog(@" lowerBack %zd",lowerBack);
+    NSLog(@"upperBack %zd",upperBack);
+    NSLog(@"calves %zd",calves);
+    NSLog(@"quads %zd",quads);
+    NSLog(@"abs %zd",abs);
+    NSLog(@"forearm %zd",forearm);
+    NSLog(@"chest %zd",chest);
+    NSLog(@"biceps %zd",biceps);
+    NSLog(@"triceps %zd",triceps);
+    NSLog(@"shouldersp %zd",shouldersp);
+    NSLog(@"trapsCounter %zd",trapsCounter);
 }
 
 #pragma mark -save to coredaata

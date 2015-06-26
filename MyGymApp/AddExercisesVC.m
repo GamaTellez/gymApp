@@ -42,19 +42,19 @@
     self.bodyPartTextField.delegate = self;
     
     self.bodyPartsArray = [[NSArray alloc] init];
-    self.bodyPartsArray = @[@"Traps (trapezius)"
-                            ,@"Shoulders (deltoids)"
-                            ,@"Chest (pectoralis)"
-                            ,@"Biceps (biceps brachii)"
-                            ,@"Forearm (brachioradialis)"
-                            ,@"Abs (rectus abdominis)"
-                            ,@"Quads (quadriceps)"
-                            ,@"Calves (gastrocnemius)"
-                            ,@"Triceps (triceps brachii)"
+    self.bodyPartsArray = @[@"Traps"
+                            ,@"Shoulders"
+                            ,@"Chest"
+                            ,@"Biceps"
+                            ,@"Forearm"
+                            ,@"Abs"
+                            ,@"Quads"
+                            ,@"Calves"
+                            ,@"Triceps"
                             ,@"Upper Back"
                             ,@"Lower Back"
-                            ,@"Glutes (gluteus maximus and medius)"
-                            ,@"Hamstrings (biceps femoris)"];
+                            ,@"Glutes"
+                            ,@"Hamstrings"];
     
     
      UITapGestureRecognizer *tapOutsideTextfields = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOutsideTextField:)];
@@ -84,6 +84,7 @@
 
 - (IBAction)saveButtonTapped:(id)sender {
    
+    
     [self.navigationController resignFirstResponder];
     
     if ([self.exerciseNameTextField.text isEqual:@""] || [self.bodyPartTextField.text isEqual:@""]) {
