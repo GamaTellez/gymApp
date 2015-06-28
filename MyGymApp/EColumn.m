@@ -91,7 +91,6 @@
     
 }
 
-
 #pragma -mark- detect Geusture
 
 - (void) taped:(UITapGestureRecognizer *)tapGesture

@@ -14,17 +14,20 @@
 #include <stdlib.h>
 #import "ModelController.h"
 
+static NSString *unit = @"";
+
 @interface BarGraphVC ()
 
 @property (strong, nonatomic) EColumnChart *eColumnChart;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 
-@property (nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) NSMutableArray *data;
 @property (nonatomic, strong) EFloatBox *eFloatBox;
 
 @property (nonatomic, strong) EColumn *eColumnSelected;
 @property (nonatomic, strong) UIColor *tempColor;
 
+@property (nonatomic, strong) NSArray *valueForBodyPartInGraph;
 
 
 @end
@@ -46,20 +49,32 @@
     [super viewDidLoad];
     
     
-    NSMutableArray *temp = [NSMutableArray array];
-    for (int i = 0; i < 50; i++)
-    {
-        int value = arc4random() % 100;
-        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:value index:i unit:@"kWh"];
-        [temp addObject:eColumnDataModel];
-    }
-    _data = [NSArray arrayWithArray:temp];
+//    NSMutableArray *temp = [NSMutableArray array];
+//    for (int i = 0; i < 50; i++)
+//    {
+//        int value = arc4random() % 100;
+//        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:value index:i unit:@"kWh"];
+//        [temp addObject:eColumnDataModel];
+//    }
+//    _data = [NSArray arrayWithArray:temp];
     
-    
-    
+    self.valueForBodyPartInGraph = [[NSArray alloc] init];
+    self.valueForBodyPartInGraph = [[ModelController sharedInstance] numberOfTimesBodyPartWasWorkedOut];
+    NSInteger index = 0;
+    self.data = [[NSMutableArray alloc] init];
 //why can i acces the array as a property when it is a method that returns and array in my model controller???
-  // self.data = [[NSArray alloc] initWithArray:[ModelController sharedInstance].numberOfTimesBodyPartWasWorkedOut];
-    
+   
+    for (NSString *bodyPartString in [[ModelController sharedInstance] bodyPartsArray]) {
+        
+        int value = [self.valueForBodyPartInGraph[index] intValue];
+        NSLog(@"%@", self.valueForBodyPartInGraph[index]);
+        //NSLog(@"%d",value);
+        EColumnDataModel *newEcolumnDataModel = [[EColumnDataModel alloc] initWithLabel:bodyPartString value:value index:index unit:@"hello"];
+        index++;
+        //NSLog(@"%@", newEcolumnDataModel.label);
+       // NSLog(@"%f", newEcolumnDataModel.value);
+        [self.data addObject:newEcolumnDataModel];
+    }
     
     self.eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
     //[_eColumnChart setNormalColumnColor:[UIColor purpleColor]];
@@ -84,83 +99,83 @@
     // Dispose of any resources that can be recreated.
 }
 
-//#pragma -mark- Actions
-//- (IBAction)highlightMaxAndMinChanged:(id)sender
-//{
-//    UISwitch *mySwith = (UISwitch *)sender;
-//    if ([mySwith isOn])
-//    {
-//        [self.eColumnChart setShowHighAndLowColumnWithColor:YES];
-//    }
-//    else
-//    {
-//        [self.eColumnChart setShowHighAndLowColumnWithColor:NO];
-//    }
-//}
-//
-//- (IBAction)eventHandleChanged:(id)sender
-//{
-//    UISwitch *mySwith = (UISwitch *)sender;
-//    if ([mySwith isOn])
-//    {
-//        [_eColumnChart setDelegate:self];
-//    }
-//    else
-//    {
-//        [_eColumnChart setDelegate:nil];
-//    }
-//}
+#pragma -mark- Actions
+- (IBAction)highlightMaxAndMinChanged:(id)sender
+{
+    UISwitch *mySwith = (UISwitch *)sender;
+    if ([mySwith isOn])
+    {
+        [self.eColumnChart setShowHighAndLowColumnWithColor:YES];
+    }
+    else
+    {
+        [self.eColumnChart setShowHighAndLowColumnWithColor:NO];
+    }
+}
 
-//- (IBAction)shouldOnlyShowInteger:(id)sender
-//{
-//    UISwitch *mySwith = (UISwitch *)sender;
-//    if ([mySwith isOn])
-//    {
-//        [_eColumnChart removeFromSuperview];
-//        _eColumnChart = nil;
-//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-//        [_eColumnChart setColumnsIndexStartFromLeft:YES];
-//        [_eColumnChart setShowHorizontalLabelsWithInteger:YES];
-//        [_eColumnChart setDelegate:self];
-//        [_eColumnChart setDataSource:self];
-//        [self.view addSubview:_eColumnChart];
-//    }
-//    else
-//    {
-//        [_eColumnChart removeFromSuperview];
-//        _eColumnChart = nil;
-//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-//        [_eColumnChart setColumnsIndexStartFromLeft:YES];
-//        [_eColumnChart setDelegate:self];
-//        [_eColumnChart setDataSource:self];
-//        [self.view addSubview:_eColumnChart];
-//    }
-//}
+- (IBAction)eventHandleChanged:(id)sender
+{
+    UISwitch *mySwith = (UISwitch *)sender;
+    if ([mySwith isOn])
+    {
+        [_eColumnChart setDelegate:self];
+    }
+    else
+    {
+        [_eColumnChart setDelegate:nil];
+    }
+}
+
+- (IBAction)shouldOnlyShowInteger:(id)sender
+{
+    UISwitch *mySwith = (UISwitch *)sender;
+    if ([mySwith isOn])
+    {
+        [_eColumnChart removeFromSuperview];
+        _eColumnChart = nil;
+        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+        [_eColumnChart setColumnsIndexStartFromLeft:YES];
+        [_eColumnChart setShowHorizontalLabelsWithInteger:YES];
+        [_eColumnChart setDelegate:self];
+        [_eColumnChart setDataSource:self];
+        [self.view addSubview:_eColumnChart];
+    }
+    else
+    {
+        [_eColumnChart removeFromSuperview];
+        _eColumnChart = nil;
+        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+        [_eColumnChart setColumnsIndexStartFromLeft:YES];
+        [_eColumnChart setDelegate:self];
+        [_eColumnChart setDataSource:self];
+        [self.view addSubview:_eColumnChart];
+    }
+}
 
 
-//- (IBAction)chartDirectionChanged:(id)sender
-//{
-//    UISwitch *mySwith = (UISwitch *)sender;
-//    if ([mySwith isOn])
-//    {
-//        [_eColumnChart removeFromSuperview];
-//        _eColumnChart = nil;
-//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-//        [_eColumnChart setShowHorizontalLabelsWithInteger:YES];
-//        [_eColumnChart setDelegate:self];
-//        [_eColumnChart setDataSource:self];
-//        [self.view addSubview:_eColumnChart];
-//    }
-//    else
-//    {
-//        [_eColumnChart removeFromSuperview];
-//        _eColumnChart = nil;
-//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-//        [_eColumnChart setDelegate:self];
-//        [_eColumnChart setDataSource:self];
-//        [self.view addSubview:_eColumnChart];
-//    }
-//}
+- (IBAction)chartDirectionChanged:(id)sender
+{
+    UISwitch *mySwith = (UISwitch *)sender;
+    if ([mySwith isOn])
+    {
+        [_eColumnChart removeFromSuperview];
+        _eColumnChart = nil;
+        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+        [_eColumnChart setShowHorizontalLabelsWithInteger:YES];
+        [_eColumnChart setDelegate:self];
+        [_eColumnChart setDataSource:self];
+        [self.view addSubview:_eColumnChart];
+    }
+    else
+    {
+        [_eColumnChart removeFromSuperview];
+        _eColumnChart = nil;
+        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+        [_eColumnChart setDelegate:self];
+        [_eColumnChart setDataSource:self];
+        [self.view addSubview:_eColumnChart];
+    }
+}
 
 - (IBAction)leftButtonPressed:(id)sender
 {
@@ -184,15 +199,14 @@
 
 - (NSInteger)numberOfColumnsPresentedEveryTime:(EColumnChart *)eColumnChart
 {
-    return 7;
+    return 13;
 }
 
 - (EColumnDataModel *)highestValueEColumnChart:(EColumnChart *)eColumnChart
 {
     EColumnDataModel *maxDataModel = nil;
     float maxValue = -FLT_MIN;
-    
-    for (EColumnDataModel *dataModel in _data)
+    for (EColumnDataModel *dataModel in self.data)
         
     {
         if (dataModel.value > maxValue)
@@ -206,8 +220,8 @@
 
 - (EColumnDataModel *)eColumnChart:(EColumnChart *)eColumnChart valueForIndex:(NSInteger)index
 {
-    if (index >= [_data count] || index < 0) return nil;
-    return [_data objectAtIndex:index];
+    if (index >= [self.data count] || index < 0) return nil;
+    return [self.data objectAtIndex:index];
 }
 
 //- (UIColor *)colorForEColumn:(EColumn *)eColumn
@@ -229,15 +243,15 @@
 {
     NSLog(@"Index: %ld  Value: %f", (long)eColumn.eColumnDataModel.index, eColumn.eColumnDataModel.value);
     
-    if (_eColumnSelected)
+    if (self.eColumnSelected)
     {
-        _eColumnSelected.barColor = _tempColor;
+        self.eColumnSelected.barColor = self.tempColor;
     }
-    _eColumnSelected = eColumn;
-    _tempColor = eColumn.barColor;
+    self.eColumnSelected = eColumn;
+    self.tempColor = eColumn.barColor;
     eColumn.barColor = [UIColor blackColor];
     
-    _valueLabel.text = [NSString stringWithFormat:@"%.1f",eColumn.eColumnDataModel.value];
+    self.valueLabel.text = [NSString stringWithFormat:@"%.1f",eColumn.eColumnDataModel.value];
 }
 
 - (void)eColumnChart:(EColumnChart *)eColumnChart
@@ -249,24 +263,24 @@ fingerDidEnterColumn:(EColumn *)eColumn
     NSLog(@"Finger did enter %ld", (long)eColumn.eColumnDataModel.index);
     CGFloat eFloatBoxX = eColumn.frame.origin.x + eColumn.frame.size.width * 1.25;
     CGFloat eFloatBoxY = eColumn.frame.origin.y + eColumn.frame.size.height * (1-eColumn.grade);
-    if (_eFloatBox)
+    if (self.eFloatBox)
     {
-        [_eFloatBox removeFromSuperview];
-        _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
-        [_eFloatBox setValue:eColumn.eColumnDataModel.value];
-        [eColumnChart addSubview:_eFloatBox];
+        [self.eFloatBox removeFromSuperview];
+        self.eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, self.eFloatBox.frame.size.width, self.eFloatBox.frame.size.height);
+        [self.eFloatBox setValue:eColumn.eColumnDataModel.value];
+        [eColumnChart addSubview:self.eFloatBox];
     }
     else
     {
-        _eFloatBox = [[EFloatBox alloc] initWithPosition:CGPointMake(eFloatBoxX, eFloatBoxY) value:eColumn.eColumnDataModel.value unit:@"kWh" title:@"Title"];
-        _eFloatBox.alpha = 0.0;
-        [eColumnChart addSubview:_eFloatBox];
+        self.eFloatBox = [[EFloatBox alloc] initWithPosition:CGPointMake(eFloatBoxX, eFloatBoxY) value:eColumn.eColumnDataModel.value unit:@"kWh" title:@"Title"];
+        self.eFloatBox.alpha = 0.0;
+        [eColumnChart addSubview:self.eFloatBox];
         
     }
     eFloatBoxY -= (_eFloatBox.frame.size.height + eColumn.frame.size.width * 0.25);
-    _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
+    _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, self.eFloatBox.frame.size.width, self.eFloatBox.frame.size.height);
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-        _eFloatBox.alpha = 1.0;
+        self.eFloatBox.alpha = 1.0;
         
     } completion:^(BOOL finished) {
     }];
@@ -282,14 +296,14 @@ fingerDidLeaveColumn:(EColumn *)eColumn
 
 - (void)fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart
 {
-    if (_eFloatBox)
+    if (self.eFloatBox)
     {
         [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-            _eFloatBox.alpha = 0.0;
-            _eFloatBox.frame = CGRectMake(_eFloatBox.frame.origin.x, _eFloatBox.frame.origin.y + _eFloatBox.frame.size.height, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
+            self.eFloatBox.alpha = 0.0;
+            self.eFloatBox.frame = CGRectMake(self.eFloatBox.frame.origin.x, self.eFloatBox.frame.origin.y + self.eFloatBox.frame.size.height, self.eFloatBox.frame.size.width, self.eFloatBox.frame.size.height);
         } completion:^(BOOL finished) {
-            [_eFloatBox removeFromSuperview];
-            _eFloatBox = nil;
+            [self.eFloatBox removeFromSuperview];
+            self.eFloatBox = nil;
         }];
         
     }

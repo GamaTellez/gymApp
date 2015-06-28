@@ -13,6 +13,7 @@
 #import "Rep.h"
 #import "Exercise.h"
 
+
 @interface ModelController ()
 
 
@@ -28,7 +29,6 @@
 static dispatch_once_t onceToken;
 dispatch_once(&onceToken, ^{
     sharedInstance = [[ModelController alloc] init];
-//    sharedInstance.workOutLogsArray = [[NSArray alloc] init];
 
 });
     return sharedInstance;
@@ -146,6 +146,18 @@ dispatch_once(&onceToken, ^{
 
 #pragma mark - bodyparts
 
+-(NSArray *)bodyPartsArray {
+    
+    return  @[@"Traps",@"Shoulders" ,@"Chest",@"Biceps" ,@"Forearm" ,@"Abs" ,@"Quads" ,@"Calves",@"Triceps",@"Upper Back",@"Lower Back",@"Glutes" ,@"Hamstrings"];
+}
+
+
+- (NSArray *)bodyParts {
+    
+    return [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"BodyPart"] error:nil];
+}
+
+
 -(BodyPart *)createBodyPart:(NSString *)bodyPartName
 {
     BodyPart *bodyPart = [NSEntityDescription insertNewObjectForEntityForName:@"BodyPart" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
@@ -161,7 +173,7 @@ dispatch_once(&onceToken, ^{
     NSArray *allExercisesArray = [[Stack sharedInstance].managedObjectContext executeFetchRequest:exerciseForBodyPartsFetch error:nil];
     NSMutableArray *bodyPartsData = [[NSMutableArray alloc] init];
     
-    int trapsCounter = 0;
+    int traps = 0;
     int shouldersp = 0;
     int chest = 0;
     int biceps = 0;
@@ -183,7 +195,7 @@ dispatch_once(&onceToken, ^{
     
         for (BodyPart *bodyPart in exercise.bodyParts) {
                 if ([bodyPart.bodyPartTargeted isEqual:@"Traps"])
-                    trapsCounter ++;
+                    traps ++;
                 if ([bodyPart.bodyPartTargeted isEqual:@"Shoulders"])
                     shouldersp ++;
                 if ([bodyPart.bodyPartTargeted isEqual:@"Chest"])
@@ -210,19 +222,20 @@ dispatch_once(&onceToken, ^{
                     hamstrings ++;
             }
     }
-//    NSLog(@" hamstrings %zd",hamstrings);
-//    NSLog(@" glutes %zd",glutes);
-//    NSLog(@" lowerBack %zd",lowerBack);
-//    NSLog(@"upperBack %zd",upperBack);
-//    NSLog(@"calves %zd",calves);
-//    NSLog(@"quads %zd",quads);
-//    NSLog(@"abs %zd",abs);
-//    NSLog(@"forearm %zd",forearm);
-//    NSLog(@"chest %zd",chest);
-//    NSLog(@"biceps %zd",biceps);
-//    NSLog(@"triceps %zd",triceps);
-//    NSLog(@"shouldersp %zd",shouldersp);
-//    NSLog(@"trapsCounter %zd",trapsCounter);
+    NSLog(@" hamstrings %zd",hamstrings);
+    NSLog(@" glutes %zd",glutes);
+    NSLog(@" lowerBack %zd",lowerBack);
+    NSLog(@"upperBack %zd",upperBack);
+    NSLog(@"calves %zd",calves);
+    NSLog(@"quads %zd",quads);
+    NSLog(@"abs %zd",abs);
+    NSLog(@"forearm %zd",forearm);
+    NSLog(@"chest %zd",chest);
+    NSLog(@"biceps %zd",biceps);
+    NSLog(@"triceps %zd",triceps);
+    NSLog(@"shouldersp %zd",shouldersp);
+    NSLog(@"trapsCounter %zd",traps);
+    
     [bodyPartsData addObject:[NSNumber numberWithInt:hamstrings]];
     [bodyPartsData addObject:[NSNumber numberWithInt:glutes]];
     [bodyPartsData addObject:[NSNumber numberWithInt:lowerBack]];
@@ -235,7 +248,7 @@ dispatch_once(&onceToken, ^{
     [bodyPartsData addObject:[NSNumber numberWithInt:biceps]];
     [bodyPartsData addObject:[NSNumber numberWithInt:triceps]];
     [bodyPartsData addObject:[NSNumber numberWithInt:shouldersp]];
-    [bodyPartsData addObject:[NSNumber numberWithInt:trapsCounter]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:traps]];
     
     return bodyPartsData;
 }

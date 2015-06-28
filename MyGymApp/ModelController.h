@@ -13,12 +13,16 @@
 #import "BodyPart.h"
 
 
+
+
+
 @interface ModelController : NSObject
 @property (nonatomic, strong, readonly) NSArray *exercisesArray;
 @property (nonatomic, strong) NSArray *workoutSessionsArray;
 //@property (nonatomic, strong, readonly) NSArray *user;
 @property (nonatomic, strong, readonly) User *user;
 @property (nonatomic, strong) NSArray *currentWeekSessions;
+
 
 + (ModelController *)sharedInstance;
 
@@ -39,6 +43,8 @@
 - (void)deleteRep:(Rep *)rep;
 
 - (NSArray *)numberOfTimesBodyPartWasWorkedOut;
+
+- (NSArray *)bodyPartsArray;
 
 
 @end

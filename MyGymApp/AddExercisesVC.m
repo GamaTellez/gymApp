@@ -42,20 +42,22 @@
     self.bodyPartTextField.delegate = self;
     
     self.bodyPartsArray = [[NSArray alloc] init];
-    self.bodyPartsArray = @[@"Traps"
-                            ,@"Shoulders"
-                            ,@"Chest"
-                            ,@"Biceps"
-                            ,@"Forearm"
-                            ,@"Abs"
-                            ,@"Quads"
-                            ,@"Calves"
-                            ,@"Triceps"
-                            ,@"Upper Back"
-                            ,@"Lower Back"
-                            ,@"Glutes"
-                            ,@"Hamstrings"];
+    self.bodyPartsArray = [[ModelController sharedInstance] bodyPartsArray];
+//    self.bodyPartsArray = @[@"Traps"
+//                            ,@"Shoulders"
+//                            ,@"Chest"
+//                            ,@"Biceps"
+//                            ,@"Forearm"
+//                            ,@"Abs"
+//                            ,@"Quads"
+//                            ,@"Calves"
+//                            ,@"Triceps"
+//                            ,@"Upper Back"
+//                            ,@"Lower Back"
+//                            ,@"Glutes"
+//                            ,@"Hamstrings"];
     
+ 
     
      UITapGestureRecognizer *tapOutsideTextfields = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOutsideTextField:)];
     tapOutsideTextfields.cancelsTouchesInView = NO;
