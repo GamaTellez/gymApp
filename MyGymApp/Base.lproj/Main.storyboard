@@ -137,10 +137,10 @@
             </objects>
             <point key="canvasLocation" x="4794" y="-347"/>
         </scene>
-        <!--View Controller-->
+        <!--Bar GraphVC-->
         <scene sceneID="5Ob-Bh-nL4">
             <objects>
-                <viewController id="gai-MD-PUd" sceneMemberID="viewController">
+                <viewController id="gai-MD-PUd" customClass="BarGraphVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iDB-tL-G7m"/>
                         <viewControllerLayoutGuide type="bottom" id="LeM-9a-99X"/>
@@ -333,7 +333,7 @@
                                 <rect key="frame" x="35" y="141" width="535" height="439"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="repsCellIdentifier" rowHeight="37" id="wLZ-x2-OJw" customClass="RepsCustomCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="repsCellIdentifier" rowHeight="37" id="wLZ-x2-OJw" customClass="RepsCustomCell">
                                         <rect key="frame" x="0.0" y="0.0" width="535" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wLZ-x2-OJw" id="lhm-6H-nAb">

@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		870FDEBA1B2BC833009F48A7 /* CustomCellForWorkoutSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 870FDEB91B2BC833009F48A7 /* CustomCellForWorkoutSession.m */; };
+		8731D45A1B40428A001F73EB /* BarGraphVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D4591B40428A001F73EB /* BarGraphVC.m */; };
+		8731D47C1B4045A5001F73EB /* EColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D46D1B4045A5001F73EB /* EColor.m */; };
+		8731D47D1B4045A5001F73EB /* EColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D46F1B4045A5001F73EB /* EColumn.m */; };
+		8731D47E1B4045A5001F73EB /* EColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D4711B4045A5001F73EB /* EColumnChart.m */; };
+		8731D47F1B4045A5001F73EB /* EColumnChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D4731B4045A5001F73EB /* EColumnChartLabel.m */; };
+		8731D4801B4045A5001F73EB /* EColumnDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D4751B4045A5001F73EB /* EColumnDataModel.m */; };
+		8731D4811B4045A5001F73EB /* EFloatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D4771B4045A5001F73EB /* EFloatBox.m */; };
+		8731D4821B4045A5001F73EB /* EViewSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D4791B4045A5001F73EB /* EViewSwitcher.m */; };
+		8731D4831B4045A5001F73EB /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D47B1B4045A5001F73EB /* UICountingLabel.m */; };
 		87376AD21B39FEB200B45CA7 /* RepsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87376AD11B39FEB200B45CA7 /* RepsDataSource.m */; };
 		87376AD51B39FFD300B45CA7 /* RepsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87376AD41B39FFD300B45CA7 /* RepsCustomCell.m */; };
 		8740B86D1B0E759900D60630 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8740B86C1B0E759900D60630 /* main.m */; };
@@ -47,6 +56,24 @@
 /* Begin PBXFileReference section */
 		870FDEB81B2BC833009F48A7 /* CustomCellForWorkoutSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCellForWorkoutSession.h; path = ../CustomCellForWorkoutSession.h; sourceTree = "<group>"; };
 		870FDEB91B2BC833009F48A7 /* CustomCellForWorkoutSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCellForWorkoutSession.m; path = ../CustomCellForWorkoutSession.m; sourceTree = "<group>"; };
+		8731D4581B40428A001F73EB /* BarGraphVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarGraphVC.h; sourceTree = "<group>"; };
+		8731D4591B40428A001F73EB /* BarGraphVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarGraphVC.m; sourceTree = "<group>"; };
+		8731D46C1B4045A5001F73EB /* EColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColor.h; sourceTree = "<group>"; };
+		8731D46D1B4045A5001F73EB /* EColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColor.m; sourceTree = "<group>"; };
+		8731D46E1B4045A5001F73EB /* EColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumn.h; sourceTree = "<group>"; };
+		8731D46F1B4045A5001F73EB /* EColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumn.m; sourceTree = "<group>"; };
+		8731D4701B4045A5001F73EB /* EColumnChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChart.h; sourceTree = "<group>"; };
+		8731D4711B4045A5001F73EB /* EColumnChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChart.m; sourceTree = "<group>"; };
+		8731D4721B4045A5001F73EB /* EColumnChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChartLabel.h; sourceTree = "<group>"; };
+		8731D4731B4045A5001F73EB /* EColumnChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChartLabel.m; sourceTree = "<group>"; };
+		8731D4741B4045A5001F73EB /* EColumnDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnDataModel.h; sourceTree = "<group>"; };
+		8731D4751B4045A5001F73EB /* EColumnDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnDataModel.m; sourceTree = "<group>"; };
+		8731D4761B4045A5001F73EB /* EFloatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFloatBox.h; sourceTree = "<group>"; };
+		8731D4771B4045A5001F73EB /* EFloatBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EFloatBox.m; sourceTree = "<group>"; };
+		8731D4781B4045A5001F73EB /* EViewSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EViewSwitcher.h; sourceTree = "<group>"; };
+		8731D4791B4045A5001F73EB /* EViewSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EViewSwitcher.m; sourceTree = "<group>"; };
+		8731D47A1B4045A5001F73EB /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		8731D47B1B4045A5001F73EB /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		87376AD01B39FEB200B45CA7 /* RepsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsDataSource.h; sourceTree = "<group>"; };
 		87376AD11B39FEB200B45CA7 /* RepsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsDataSource.m; sourceTree = "<group>"; };
 		87376AD31B39FFD300B45CA7 /* RepsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsCustomCell.h; sourceTree = "<group>"; };
@@ -113,6 +140,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8731D4841B4045E2001F73EB /* GraphBarVC */ = {
+			isa = PBXGroup;
+			children = (
+				8731D4581B40428A001F73EB /* BarGraphVC.h */,
+				8731D4591B40428A001F73EB /* BarGraphVC.m */,
+				8731D46C1B4045A5001F73EB /* EColor.h */,
+				8731D46D1B4045A5001F73EB /* EColor.m */,
+				8731D46E1B4045A5001F73EB /* EColumn.h */,
+				8731D46F1B4045A5001F73EB /* EColumn.m */,
+				8731D4701B4045A5001F73EB /* EColumnChart.h */,
+				8731D4711B4045A5001F73EB /* EColumnChart.m */,
+				8731D4721B4045A5001F73EB /* EColumnChartLabel.h */,
+				8731D4731B4045A5001F73EB /* EColumnChartLabel.m */,
+				8731D4741B4045A5001F73EB /* EColumnDataModel.h */,
+				8731D4751B4045A5001F73EB /* EColumnDataModel.m */,
+				8731D4761B4045A5001F73EB /* EFloatBox.h */,
+				8731D4771B4045A5001F73EB /* EFloatBox.m */,
+				8731D4781B4045A5001F73EB /* EViewSwitcher.h */,
+				8731D4791B4045A5001F73EB /* EViewSwitcher.m */,
+				8731D47A1B4045A5001F73EB /* UICountingLabel.h */,
+				8731D47B1B4045A5001F73EB /* UICountingLabel.m */,
+			);
+			name = GraphBarVC;
+			sourceTree = "<group>";
+		};
 		8740B85E1B0E759900D60630 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +193,7 @@
 				8740B8A51B1033CE00D60630 /* MainVC */,
 				8740B8A61B1033DD00D60630 /* ProfileVC */,
 				87CFC1A51B1D4E87004DEC16 /* WorkSessionsVC */,
+				8731D4841B4045E2001F73EB /* GraphBarVC */,
 				8740B8771B0E759900D60630 /* Images.xcassets */,
 				8740B8791B0E759900D60630 /* LaunchScreen.xib */,
 				8740B8A31B0FAB5400D60630 /* CoreData.framework */,
@@ -356,21 +409,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				87497ED31B3D0029004E5355 /* User.m in Sources */,
+				8731D4831B4045A5001F73EB /* UICountingLabel.m in Sources */,
 				8740B8731B0E759900D60630 /* MainViewController.m in Sources */,
 				87497ED21B3D0029004E5355 /* WorkoutSession.m in Sources */,
 				87CFC1A81B1D4EDA004DEC16 /* WorkOutSessionsViewController.m in Sources */,
 				8740B89B1B0EDBDC00D60630 /* Stack.m in Sources */,
 				8740B8701B0E759900D60630 /* AppDelegate.m in Sources */,
 				87376AD21B39FEB200B45CA7 /* RepsDataSource.m in Sources */,
+				8731D45A1B40428A001F73EB /* BarGraphVC.m in Sources */,
 				87497ED01B3D0029004E5355 /* Rep.m in Sources */,
 				87376AD51B39FFD300B45CA7 /* RepsCustomCell.m in Sources */,
+				8731D4811B4045A5001F73EB /* EFloatBox.m in Sources */,
 				8740B8951B0ED8D100D60630 /* Model.xcdatamodeld in Sources */,
+				8731D47F1B4045A5001F73EB /* EColumnChartLabel.m in Sources */,
 				870FDEBA1B2BC833009F48A7 /* CustomCellForWorkoutSession.m in Sources */,
+				8731D47D1B4045A5001F73EB /* EColumn.m in Sources */,
 				8740B86D1B0E759900D60630 /* main.m in Sources */,
+				8731D47E1B4045A5001F73EB /* EColumnChart.m in Sources */,
+				8731D47C1B4045A5001F73EB /* EColor.m in Sources */,
 				8755144C1B348A6C003C7FFE /* RepsViewController.m in Sources */,
 				87D03C8B1B3869A000AD0CC2 /* AddExerciseDataSource.m in Sources */,
+				8731D4801B4045A5001F73EB /* EColumnDataModel.m in Sources */,
 				8740B89E1B0EDC9300D60630 /* ModelController.m in Sources */,
 				8740B8921B0E78B000D60630 /* ProfilleViewController.m in Sources */,
+				8731D4821B4045A5001F73EB /* EViewSwitcher.m in Sources */,
 				87497ED11B3D0029004E5355 /* BodyPart.m in Sources */,
 				87497ECF1B3D0029004E5355 /* Exercise.m in Sources */,
 				87CFC1AB1B1D4F4B004DEC16 /* WorkOutSessionsDataSource.m in Sources */,

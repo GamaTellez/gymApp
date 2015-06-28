@@ -1,0 +1,3 @@
+[submodule "EChart"]
+	path = EChart
+	url = https://github.com/zhuhuihuihui/EChart.git
