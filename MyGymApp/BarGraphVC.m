@@ -12,6 +12,7 @@
 #import "EFloatBox.h"
 #import "EColor.h"
 #include <stdlib.h>
+#import "ModelController.h"
 
 @interface BarGraphVC ()
 
@@ -55,14 +56,21 @@
     _data = [NSArray arrayWithArray:temp];
     
     
-    _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+    
+//why can i acces the array as a property when it is a method that returns and array in my model controller???
+  // self.data = [[NSArray alloc] initWithArray:[ModelController sharedInstance].numberOfTimesBodyPartWasWorkedOut];
+    
+    
+    self.eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
     //[_eColumnChart setNormalColumnColor:[UIColor purpleColor]];
-    [_eColumnChart setColumnsIndexStartFromLeft:YES];
-    [_eColumnChart setDelegate:self];
-    [_eColumnChart setDataSource:self];
+    [self.eColumnChart setColumnsIndexStartFromLeft:YES];
+    [self.eColumnChart setDelegate:self];
+    [self.eColumnChart setDataSource:self];
+    
+    [self.eColumnChart setShowHighAndLowColumnWithColor:YES];
     
     
-    [self.view addSubview:_eColumnChart];
+    [self.view addSubview:self.eColumnChart];
     
 }
 
@@ -76,83 +84,83 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma -mark- Actions
-- (IBAction)highlightMaxAndMinChanged:(id)sender
-{
-    UISwitch *mySwith = (UISwitch *)sender;
-    if ([mySwith isOn])
-    {
-        [_eColumnChart setShowHighAndLowColumnWithColor:YES];
-    }
-    else
-    {
-        [_eColumnChart setShowHighAndLowColumnWithColor:NO];
-    }
-}
+//#pragma -mark- Actions
+//- (IBAction)highlightMaxAndMinChanged:(id)sender
+//{
+//    UISwitch *mySwith = (UISwitch *)sender;
+//    if ([mySwith isOn])
+//    {
+//        [self.eColumnChart setShowHighAndLowColumnWithColor:YES];
+//    }
+//    else
+//    {
+//        [self.eColumnChart setShowHighAndLowColumnWithColor:NO];
+//    }
+//}
+//
+//- (IBAction)eventHandleChanged:(id)sender
+//{
+//    UISwitch *mySwith = (UISwitch *)sender;
+//    if ([mySwith isOn])
+//    {
+//        [_eColumnChart setDelegate:self];
+//    }
+//    else
+//    {
+//        [_eColumnChart setDelegate:nil];
+//    }
+//}
 
-- (IBAction)eventHandleChanged:(id)sender
-{
-    UISwitch *mySwith = (UISwitch *)sender;
-    if ([mySwith isOn])
-    {
-        [_eColumnChart setDelegate:self];
-    }
-    else
-    {
-        [_eColumnChart setDelegate:nil];
-    }
-}
-
-- (IBAction)shouldOnlyShowInteger:(id)sender
-{
-    UISwitch *mySwith = (UISwitch *)sender;
-    if ([mySwith isOn])
-    {
-        [_eColumnChart removeFromSuperview];
-        _eColumnChart = nil;
-        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-        [_eColumnChart setColumnsIndexStartFromLeft:YES];
-        [_eColumnChart setShowHorizontalLabelsWithInteger:YES];
-        [_eColumnChart setDelegate:self];
-        [_eColumnChart setDataSource:self];
-        [self.view addSubview:_eColumnChart];
-    }
-    else
-    {
-        [_eColumnChart removeFromSuperview];
-        _eColumnChart = nil;
-        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-        [_eColumnChart setColumnsIndexStartFromLeft:YES];
-        [_eColumnChart setDelegate:self];
-        [_eColumnChart setDataSource:self];
-        [self.view addSubview:_eColumnChart];
-    }
-}
+//- (IBAction)shouldOnlyShowInteger:(id)sender
+//{
+//    UISwitch *mySwith = (UISwitch *)sender;
+//    if ([mySwith isOn])
+//    {
+//        [_eColumnChart removeFromSuperview];
+//        _eColumnChart = nil;
+//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+//        [_eColumnChart setColumnsIndexStartFromLeft:YES];
+//        [_eColumnChart setShowHorizontalLabelsWithInteger:YES];
+//        [_eColumnChart setDelegate:self];
+//        [_eColumnChart setDataSource:self];
+//        [self.view addSubview:_eColumnChart];
+//    }
+//    else
+//    {
+//        [_eColumnChart removeFromSuperview];
+//        _eColumnChart = nil;
+//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+//        [_eColumnChart setColumnsIndexStartFromLeft:YES];
+//        [_eColumnChart setDelegate:self];
+//        [_eColumnChart setDataSource:self];
+//        [self.view addSubview:_eColumnChart];
+//    }
+//}
 
 
-- (IBAction)chartDirectionChanged:(id)sender
-{
-    UISwitch *mySwith = (UISwitch *)sender;
-    if ([mySwith isOn])
-    {
-        [_eColumnChart removeFromSuperview];
-        _eColumnChart = nil;
-        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-        [_eColumnChart setShowHorizontalLabelsWithInteger:YES];
-        [_eColumnChart setDelegate:self];
-        [_eColumnChart setDataSource:self];
-        [self.view addSubview:_eColumnChart];
-    }
-    else
-    {
-        [_eColumnChart removeFromSuperview];
-        _eColumnChart = nil;
-        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-        [_eColumnChart setDelegate:self];
-        [_eColumnChart setDataSource:self];
-        [self.view addSubview:_eColumnChart];
-    }
-}
+//- (IBAction)chartDirectionChanged:(id)sender
+//{
+//    UISwitch *mySwith = (UISwitch *)sender;
+//    if ([mySwith isOn])
+//    {
+//        [_eColumnChart removeFromSuperview];
+//        _eColumnChart = nil;
+//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+//        [_eColumnChart setShowHorizontalLabelsWithInteger:YES];
+//        [_eColumnChart setDelegate:self];
+//        [_eColumnChart setDataSource:self];
+//        [self.view addSubview:_eColumnChart];
+//    }
+//    else
+//    {
+//        [_eColumnChart removeFromSuperview];
+//        _eColumnChart = nil;
+//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+//        [_eColumnChart setDelegate:self];
+//        [_eColumnChart setDataSource:self];
+//        [self.view addSubview:_eColumnChart];
+//    }
+//}
 
 - (IBAction)leftButtonPressed:(id)sender
 {
@@ -171,7 +179,7 @@
 
 - (NSInteger)numberOfColumnsInEColumnChart:(EColumnChart *)eColumnChart
 {
-    return [_data count];
+    return [self.data count];
 }
 
 - (NSInteger)numberOfColumnsPresentedEveryTime:(EColumnChart *)eColumnChart

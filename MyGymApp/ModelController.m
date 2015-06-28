@@ -155,10 +155,11 @@ dispatch_once(&onceToken, ^{
 }
 
 
-- (void)numberOfTimesBodyPartWasWorkedOut {
+- (NSArray *)numberOfTimesBodyPartWasWorkedOut {
     
     NSFetchRequest *exerciseForBodyPartsFetch = [NSFetchRequest fetchRequestWithEntityName:@"Exercise"];
     NSArray *allExercisesArray = [[Stack sharedInstance].managedObjectContext executeFetchRequest:exerciseForBodyPartsFetch error:nil];
+    NSMutableArray *bodyPartsData = [[NSMutableArray alloc] init];
     
     int trapsCounter = 0;
     int shouldersp = 0;
@@ -209,19 +210,34 @@ dispatch_once(&onceToken, ^{
                     hamstrings ++;
             }
     }
-    NSLog(@" hamstrings %zd",hamstrings);
-    NSLog(@" glutes %zd",glutes);
-    NSLog(@" lowerBack %zd",lowerBack);
-    NSLog(@"upperBack %zd",upperBack);
-    NSLog(@"calves %zd",calves);
-    NSLog(@"quads %zd",quads);
-    NSLog(@"abs %zd",abs);
-    NSLog(@"forearm %zd",forearm);
-    NSLog(@"chest %zd",chest);
-    NSLog(@"biceps %zd",biceps);
-    NSLog(@"triceps %zd",triceps);
-    NSLog(@"shouldersp %zd",shouldersp);
-    NSLog(@"trapsCounter %zd",trapsCounter);
+//    NSLog(@" hamstrings %zd",hamstrings);
+//    NSLog(@" glutes %zd",glutes);
+//    NSLog(@" lowerBack %zd",lowerBack);
+//    NSLog(@"upperBack %zd",upperBack);
+//    NSLog(@"calves %zd",calves);
+//    NSLog(@"quads %zd",quads);
+//    NSLog(@"abs %zd",abs);
+//    NSLog(@"forearm %zd",forearm);
+//    NSLog(@"chest %zd",chest);
+//    NSLog(@"biceps %zd",biceps);
+//    NSLog(@"triceps %zd",triceps);
+//    NSLog(@"shouldersp %zd",shouldersp);
+//    NSLog(@"trapsCounter %zd",trapsCounter);
+    [bodyPartsData addObject:[NSNumber numberWithInt:hamstrings]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:glutes]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:lowerBack]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:upperBack]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:calves]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:quads]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:abs]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:forearm]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:chest]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:biceps]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:triceps]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:shouldersp]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:trapsCounter]];
+    
+    return bodyPartsData;
 }
 
 #pragma mark -save to coredaata

@@ -18,7 +18,6 @@
 @property (nonatomic, strong) NSArray *workoutSessionsArray;
 //@property (nonatomic, strong, readonly) NSArray *user;
 @property (nonatomic, strong, readonly) User *user;
-
 @property (nonatomic, strong) NSArray *currentWeekSessions;
 
 + (ModelController *)sharedInstance;
@@ -39,7 +38,7 @@
 
 - (void)deleteRep:(Rep *)rep;
 
-- (void)numberOfTimesBodyPartWasWorkedOut;
+- (NSArray *)numberOfTimesBodyPartWasWorkedOut;
 
 
 @end
