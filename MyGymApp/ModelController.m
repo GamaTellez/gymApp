@@ -174,7 +174,7 @@ dispatch_once(&onceToken, ^{
     NSMutableArray *bodyPartsData = [[NSMutableArray alloc] init];
     
     int traps = 0;
-    int shouldersp = 0;
+    int shoulders = 0;
     int chest = 0;
     int biceps = 0;
     int forearm = 0;
@@ -197,7 +197,7 @@ dispatch_once(&onceToken, ^{
                 if ([bodyPart.bodyPartTargeted isEqual:@"Traps"])
                     traps ++;
                 if ([bodyPart.bodyPartTargeted isEqual:@"Shoulders"])
-                    shouldersp ++;
+                    shoulders ++;
                 if ([bodyPart.bodyPartTargeted isEqual:@"Chest"])
                     chest ++;
                 if ([bodyPart.bodyPartTargeted isEqual:@"Biceps"])
@@ -233,22 +233,22 @@ dispatch_once(&onceToken, ^{
     NSLog(@"chest %zd",chest);
     NSLog(@"biceps %zd",biceps);
     NSLog(@"triceps %zd",triceps);
-    NSLog(@"shouldersp %zd",shouldersp);
-    NSLog(@"trapsCounter %zd",traps);
+    NSLog(@"shoulders %zd",shoulders);
+    NSLog(@"traps %zd",traps);
     
-    [bodyPartsData addObject:[NSNumber numberWithInt:hamstrings]];
-    [bodyPartsData addObject:[NSNumber numberWithInt:glutes]];
-    [bodyPartsData addObject:[NSNumber numberWithInt:lowerBack]];
-    [bodyPartsData addObject:[NSNumber numberWithInt:upperBack]];
-    [bodyPartsData addObject:[NSNumber numberWithInt:calves]];
-    [bodyPartsData addObject:[NSNumber numberWithInt:quads]];
-    [bodyPartsData addObject:[NSNumber numberWithInt:abs]];
-    [bodyPartsData addObject:[NSNumber numberWithInt:forearm]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:traps]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:shoulders]];
     [bodyPartsData addObject:[NSNumber numberWithInt:chest]];
     [bodyPartsData addObject:[NSNumber numberWithInt:biceps]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:forearm]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:abs]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:quads]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:calves]];
     [bodyPartsData addObject:[NSNumber numberWithInt:triceps]];
-    [bodyPartsData addObject:[NSNumber numberWithInt:shouldersp]];
-    [bodyPartsData addObject:[NSNumber numberWithInt:traps]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:upperBack]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:lowerBack]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:glutes]];
+    [bodyPartsData addObject:[NSNumber numberWithInt:hamstrings]];
     
     return bodyPartsData;
 }
