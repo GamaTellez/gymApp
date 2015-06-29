@@ -37,6 +37,8 @@
 		87497ED21B3D0029004E5355 /* WorkoutSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 87497ECC1B3D0029004E5355 /* WorkoutSession.m */; };
 		87497ED31B3D0029004E5355 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 87497ECE1B3D0029004E5355 /* User.m */; };
 		8755144C1B348A6C003C7FFE /* RepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8755144B1B348A6C003C7FFE /* RepsViewController.m */; };
+		87CE6E371B41D11000AE1E3C /* BodyPartExercisesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CE6E361B41D11000AE1E3C /* BodyPartExercisesDataSource.m */; };
+		87CE6E3A1B41D16100AE1E3C /* BodypartExerciseCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CE6E391B41D16100AE1E3C /* BodypartExerciseCustomCell.m */; };
 		87CFC1A81B1D4EDA004DEC16 /* WorkOutSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CFC1A71B1D4EDA004DEC16 /* WorkOutSessionsViewController.m */; };
 		87CFC1AB1B1D4F4B004DEC16 /* WorkOutSessionsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CFC1AA1B1D4F4B004DEC16 /* WorkOutSessionsDataSource.m */; };
 		87D03C8B1B3869A000AD0CC2 /* AddExerciseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D03C8A1B3869A000AD0CC2 /* AddExerciseDataSource.m */; };
@@ -111,6 +113,10 @@
 		87497ECE1B3D0029004E5355 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		8755144A1B348A6C003C7FFE /* RepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsViewController.h; sourceTree = "<group>"; };
 		8755144B1B348A6C003C7FFE /* RepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsViewController.m; sourceTree = "<group>"; };
+		87CE6E351B41D11000AE1E3C /* BodyPartExercisesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartExercisesDataSource.h; sourceTree = "<group>"; };
+		87CE6E361B41D11000AE1E3C /* BodyPartExercisesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartExercisesDataSource.m; sourceTree = "<group>"; };
+		87CE6E381B41D16100AE1E3C /* BodypartExerciseCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodypartExerciseCustomCell.h; sourceTree = "<group>"; };
+		87CE6E391B41D16100AE1E3C /* BodypartExerciseCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodypartExerciseCustomCell.m; sourceTree = "<group>"; };
 		87CFC1A61B1D4EDA004DEC16 /* WorkOutSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkOutSessionsViewController.h; sourceTree = SOURCE_ROOT; };
 		87CFC1A71B1D4EDA004DEC16 /* WorkOutSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkOutSessionsViewController.m; sourceTree = SOURCE_ROOT; };
 		87CFC1A91B1D4F4B004DEC16 /* WorkOutSessionsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkOutSessionsDataSource.h; sourceTree = "<group>"; };
@@ -145,22 +151,11 @@
 			children = (
 				8731D4581B40428A001F73EB /* BarGraphVC.h */,
 				8731D4591B40428A001F73EB /* BarGraphVC.m */,
-				8731D46C1B4045A5001F73EB /* EColor.h */,
-				8731D46D1B4045A5001F73EB /* EColor.m */,
-				8731D46E1B4045A5001F73EB /* EColumn.h */,
-				8731D46F1B4045A5001F73EB /* EColumn.m */,
-				8731D4701B4045A5001F73EB /* EColumnChart.h */,
-				8731D4711B4045A5001F73EB /* EColumnChart.m */,
-				8731D4721B4045A5001F73EB /* EColumnChartLabel.h */,
-				8731D4731B4045A5001F73EB /* EColumnChartLabel.m */,
-				8731D4741B4045A5001F73EB /* EColumnDataModel.h */,
-				8731D4751B4045A5001F73EB /* EColumnDataModel.m */,
-				8731D4761B4045A5001F73EB /* EFloatBox.h */,
-				8731D4771B4045A5001F73EB /* EFloatBox.m */,
-				8731D4781B4045A5001F73EB /* EViewSwitcher.h */,
-				8731D4791B4045A5001F73EB /* EViewSwitcher.m */,
-				8731D47A1B4045A5001F73EB /* UICountingLabel.h */,
-				8731D47B1B4045A5001F73EB /* UICountingLabel.m */,
+				87CE6E351B41D11000AE1E3C /* BodyPartExercisesDataSource.h */,
+				87CE6E361B41D11000AE1E3C /* BodyPartExercisesDataSource.m */,
+				87CE6E381B41D16100AE1E3C /* BodypartExerciseCustomCell.h */,
+				87CE6E391B41D16100AE1E3C /* BodypartExerciseCustomCell.m */,
+				87CE6E3B1B41D60300AE1E3C /* EchartThirdParty */,
 			);
 			name = GraphBarVC;
 			sourceTree = "<group>";
@@ -293,6 +288,29 @@
 			name = RepsVC;
 			sourceTree = "<group>";
 		};
+		87CE6E3B1B41D60300AE1E3C /* EchartThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				8731D46C1B4045A5001F73EB /* EColor.h */,
+				8731D46D1B4045A5001F73EB /* EColor.m */,
+				8731D46E1B4045A5001F73EB /* EColumn.h */,
+				8731D46F1B4045A5001F73EB /* EColumn.m */,
+				8731D4701B4045A5001F73EB /* EColumnChart.h */,
+				8731D4711B4045A5001F73EB /* EColumnChart.m */,
+				8731D4721B4045A5001F73EB /* EColumnChartLabel.h */,
+				8731D4731B4045A5001F73EB /* EColumnChartLabel.m */,
+				8731D4741B4045A5001F73EB /* EColumnDataModel.h */,
+				8731D4751B4045A5001F73EB /* EColumnDataModel.m */,
+				8731D4761B4045A5001F73EB /* EFloatBox.h */,
+				8731D4771B4045A5001F73EB /* EFloatBox.m */,
+				8731D4781B4045A5001F73EB /* EViewSwitcher.h */,
+				8731D4791B4045A5001F73EB /* EViewSwitcher.m */,
+				8731D47A1B4045A5001F73EB /* UICountingLabel.h */,
+				8731D47B1B4045A5001F73EB /* UICountingLabel.m */,
+			);
+			name = EchartThirdParty;
+			sourceTree = "<group>";
+		};
 		87CFC1A51B1D4E87004DEC16 /* WorkSessionsVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,12 +428,14 @@
 			files = (
 				87497ED31B3D0029004E5355 /* User.m in Sources */,
 				8731D4831B4045A5001F73EB /* UICountingLabel.m in Sources */,
+				87CE6E3A1B41D16100AE1E3C /* BodypartExerciseCustomCell.m in Sources */,
 				8740B8731B0E759900D60630 /* MainViewController.m in Sources */,
 				87497ED21B3D0029004E5355 /* WorkoutSession.m in Sources */,
 				87CFC1A81B1D4EDA004DEC16 /* WorkOutSessionsViewController.m in Sources */,
 				8740B89B1B0EDBDC00D60630 /* Stack.m in Sources */,
 				8740B8701B0E759900D60630 /* AppDelegate.m in Sources */,
 				87376AD21B39FEB200B45CA7 /* RepsDataSource.m in Sources */,
+				87CE6E371B41D11000AE1E3C /* BodyPartExercisesDataSource.m in Sources */,
 				8731D45A1B40428A001F73EB /* BarGraphVC.m in Sources */,
 				87497ED01B3D0029004E5355 /* Rep.m in Sources */,
 				87376AD51B39FFD300B45CA7 /* RepsCustomCell.m in Sources */,

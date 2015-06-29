@@ -19,6 +19,7 @@
 
 //@property (nonatomic, strong) NSArray *user;
 @property (nonatomic, strong) User *user;
+
 //@property (nonatomic, strong) NSArray *exerciseArrayForWorkoutSession;
 
 @end
@@ -251,6 +252,23 @@ dispatch_once(&onceToken, ^{
     [bodyPartsData addObject:[NSNumber numberWithInt:hamstrings]];
     
     return bodyPartsData;
+}
+
+- (NSArray *)allExercisesFetchForKey:(NSString *)bodyPartString {
+    
+    NSFetchRequest *exerciseForBodyPartsFetch = [NSFetchRequest fetchRequestWithEntityName:@"Exercise"];
+    NSArray *allExercisesArray = [[Stack sharedInstance].managedObjectContext executeFetchRequest:exerciseForBodyPartsFetch error:nil];
+    
+    NSMutableArray *arrayWithFilteredExercises = [[NSMutableArray alloc] init];
+    
+    for (Exercise *exercise in allExercisesArray) {
+        for (BodyPart *bodyPart in exercise.bodyParts) {
+            if ([bodyPart.bodyPartTargeted isEqualToString:bodyPartString]) {
+                [arrayWithFilteredExercises addObject:exercise];
+            }
+        }
+    }
+    return arrayWithFilteredExercises;
 }
 
 #pragma mark -save to coredaata

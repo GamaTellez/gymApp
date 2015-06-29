@@ -14,12 +14,16 @@
 #include <stdlib.h>
 #import "ModelController.h"
 
+
+#import "BodyPartExercisesDataSource.h"
+
 static NSString *unit = @"";
 
 @interface BarGraphVC ()
 
 @property (strong, nonatomic) EColumnChart *eColumnChart;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bodyPartExercises;
 
 @property (nonatomic, strong) NSMutableArray *data;
 @property (nonatomic, strong) EFloatBox *eFloatBox;
@@ -31,6 +35,11 @@ static NSString *unit = @"";
 
 @property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGraph;
 @property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGraph;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSString *stringBodyPart;
+
+
+
 
 @end
 
@@ -44,6 +53,7 @@ static NSString *unit = @"";
         // Custom initialization
     }
     return self;
+    
 }
 
 - (void)viewDidLoad
@@ -58,6 +68,9 @@ static NSString *unit = @"";
 //        [temp addObject:eColumnDataModel];
 //    }
 //    _data = [NSArray arrayWithArray:temp];
+    
+   
+    
     
     self.valueForBodyPartInGraph = [[NSArray alloc] init];
     self.valueForBodyPartInGraph = [[ModelController sharedInstance] numberOfTimesBodyPartWasWorkedOut];
@@ -78,7 +91,7 @@ static NSString *unit = @"";
        // NSLog(@"%f", newEcolumnDataModel.value);
         [self.data addObject:newEcolumnDataModel];
     }
-    self.eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(70, 120, 250, 200)];
+    self.eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(70, 130, 250, 200)];
     //[_eColumnChart setNormalColumnColor:[UIColor purpleColor]];
     [self.eColumnChart setColumnsIndexStartFromLeft:YES];
     [self.eColumnChart setDelegate:self];
@@ -184,7 +197,13 @@ static NSString *unit = @"";
     eColumn.barColor = [UIColor blackColor];
     
    // self.valueLabel.text = (@"%@", eColumn.eColumnDataModel.label);
-    self.valueLabel.text = [NSString stringWithFormat:@"%.1f",eColumn.eColumnDataModel.value];
+    self.valueLabel.text = [NSString stringWithFormat:@"You worked out %@ times this bodypart" ,[NSNumber numberWithFloat:eColumn.eColumnDataModel.value]];
+    self.bodyPartExercises.text = [NSString stringWithFormat:@"Exercises performed for %@",eColumn.eColumnDataModel.label];
+    
+     BodyPartExercisesDataSource *dataSource = self.tableView.dataSource;
+    dataSource.bodyPart = eColumn.eColumnDataModel.label;
+    [self.tableView reloadData];
+    NSLog(@"%@", dataSource.bodyPart);
 }
 
 - (void)eColumnChart:(EColumnChart *)eColumnChart

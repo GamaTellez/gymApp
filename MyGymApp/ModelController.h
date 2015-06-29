@@ -46,6 +46,7 @@
 
 - (NSArray *)bodyPartsArray;
 
+- (NSArray *)allExercisesFetchForKey:(NSString *)bodyPartString;
 
 @end
 
