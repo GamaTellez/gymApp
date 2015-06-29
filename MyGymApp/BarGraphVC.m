@@ -29,6 +29,8 @@ static NSString *unit = @"";
 
 @property (nonatomic, strong) NSArray *valueForBodyPartInGraph;
 
+@property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGraph;
+@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGraph;
 
 @end
 
@@ -47,8 +49,7 @@ static NSString *unit = @"";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
+    self.title = @"Overall times bodypart was exercised";
 //    NSMutableArray *temp = [NSMutableArray array];
 //    for (int i = 0; i < 50; i++)
 //    {
@@ -68,13 +69,16 @@ static NSString *unit = @"";
         int value = [self.valueForBodyPartInGraph[index] intValue];
        // NSLog(@"%@", self.valueForBodyPartInGraph[index]);
         //NSLog(@"%d",value);
-        EColumnDataModel *newEcolumnDataModel = [[EColumnDataModel alloc] initWithLabel:bodyPartString value:value index:index unit:@"Overall"];
+        EColumnDataModel *newEcolumnDataModel = [[EColumnDataModel alloc] initWithLabel:bodyPartString value:value index:index unit:@""];
+        if ([newEcolumnDataModel.label isEqualToString:@"Hamstrings"] && newEcolumnDataModel.value == 0.0) {
+            newEcolumnDataModel.value++;
+        }
         index++;
-        NSLog(@"%@", newEcolumnDataModel.label);
-        NSLog(@"%f", newEcolumnDataModel.value);
+       // NSLog(@"%@", newEcolumnDataModel.label);
+       // NSLog(@"%f", newEcolumnDataModel.value);
         [self.data addObject:newEcolumnDataModel];
     }
-    self.eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
+    self.eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(70, 120, 250, 200)];
     //[_eColumnChart setNormalColumnColor:[UIColor purpleColor]];
     [self.eColumnChart setColumnsIndexStartFromLeft:YES];
     [self.eColumnChart setDelegate:self];
@@ -84,6 +88,29 @@ static NSString *unit = @"";
     
     
     [self.view addSubview:self.eColumnChart];
+    
+    
+    self.rightSwipeGraph = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipeGraph:)];
+    self.rightSwipeGraph.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:self.rightSwipeGraph];
+    
+    self.leftSwipeGraph = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftSwipeOnGraph:)];
+    self.leftSwipeGraph.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:self.leftSwipeGraph];
+}
+
+- (void)handleRightSwipeGraph:(UISwipeGestureRecognizer *)rightSwipe {
+    //NSLog(@"right");
+    if (self.eColumnChart == nil) return;
+    [self.eColumnChart moveLeft];
+    
+
+}
+
+- (void)handleLeftSwipeOnGraph:(UISwipeGestureRecognizer*)leftSwipe {
+    //NSLog(@"left");
+    if (self.eColumnChart == nil) return;
+    [self.eColumnChart moveRight];
     
 }
 
@@ -95,7 +122,127 @@ static NSString *unit = @"";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma -mark- Actions
+#pragma -mark- EColumnChartDataSource
+
+- (NSInteger)numberOfColumnsInEColumnChart:(EColumnChart *)eColumnChart
+{
+    return [self.data count];
+}
+
+- (NSInteger)numberOfColumnsPresentedEveryTime:(EColumnChart *)eColumnChart
+{
+    return 3;
+}
+
+- (EColumnDataModel *)highestValueEColumnChart:(EColumnChart *)eColumnChart
+{
+    EColumnDataModel *maxDataModel = nil;
+    float maxValue = -FLT_MIN;
+    for (EColumnDataModel *dataModel in self.data)
+        
+    {
+        if (dataModel.value > maxValue)
+        {
+            maxValue = dataModel.value;
+            maxDataModel = dataModel;
+        }
+    }
+    return maxDataModel;
+}
+
+- (EColumnDataModel *)eColumnChart:(EColumnChart *)eColumnChart valueForIndex:(NSInteger)index
+{
+    if (index >= [self.data count] || index < 0) return nil;
+    return [self.data objectAtIndex:index];
+}
+
+//- (UIColor *)colorForEColumn:(EColumn *)eColumn
+//{
+//    if (eColumn.eColumnDataModel.index < 5)
+//    {
+//        return [UIColor purpleColor];
+//    }
+//    else
+//    {
+//        return [UIColor redColor];
+//    }
+//
+//}
+
+#pragma -mark- EColumnChartDelegate
+- (void)eColumnChart:(EColumnChart *)eColumnChart
+     didSelectColumn:(EColumn *)eColumn
+{
+    //NSLog(@"Index: %ld  Value: %f", (long)eColumn.eColumnDataModel.index, eColumn.eColumnDataModel.value);
+    
+    if (self.eColumnSelected)
+    {
+        self.eColumnSelected.barColor = self.tempColor;
+    }
+    self.eColumnSelected = eColumn;
+    self.tempColor = eColumn.barColor;
+    eColumn.barColor = [UIColor blackColor];
+    
+   // self.valueLabel.text = (@"%@", eColumn.eColumnDataModel.label);
+    self.valueLabel.text = [NSString stringWithFormat:@"%.1f",eColumn.eColumnDataModel.value];
+}
+
+- (void)eColumnChart:(EColumnChart *)eColumnChart
+fingerDidEnterColumn:(EColumn *)eColumn
+{
+    /**The EFloatBox here, is just to show an example of
+     taking adventage of the event handling system of the Echart.
+     You can do even better effects here, according to your needs.*/
+   // NSLog(@"Finger did enter %ld", (long)eColumn.eColumnDataModel.index);
+    CGFloat eFloatBoxX = eColumn.frame.origin.x + eColumn.frame.size.width * 1.25;
+    CGFloat eFloatBoxY = eColumn.frame.origin.y + eColumn.frame.size.height * (1-eColumn.grade);
+    if (self.eFloatBox)
+    {
+        [self.eFloatBox removeFromSuperview];
+        self.eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, self.eFloatBox.frame.size.width, self.eFloatBox.frame.size.height);
+        [self.eFloatBox setValue:eColumn.eColumnDataModel.value];
+        [eColumnChart addSubview:self.eFloatBox];
+    }
+    else
+    {
+        self.eFloatBox = [[EFloatBox alloc] initWithPosition:CGPointMake(eFloatBoxX, eFloatBoxY) value:eColumn.eColumnDataModel.value unit:@"kWh" title:@"Title"];
+        self.eFloatBox.alpha = 0.0;
+        [eColumnChart addSubview:self.eFloatBox];
+        
+    }
+    eFloatBoxY -= (_eFloatBox.frame.size.height + eColumn.frame.size.width * 0.25);
+    _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, self.eFloatBox.frame.size.width, self.eFloatBox.frame.size.height);
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+        self.eFloatBox.alpha = 1.0;
+        
+    } completion:^(BOOL finished) {
+    }];
+    
+}
+
+- (void)eColumnChart:(EColumnChart *)eColumnChart
+fingerDidLeaveColumn:(EColumn *)eColumn
+{
+    //NSLog(@"Finger did leave %ld", (long)eColumn.eColumnDataModel.index);
+    
+}
+
+- (void)fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart
+{
+    if (self.eFloatBox)
+    {
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+            self.eFloatBox.alpha = 0.0;
+            self.eFloatBox.frame = CGRectMake(self.eFloatBox.frame.origin.x, self.eFloatBox.frame.origin.y + self.eFloatBox.frame.size.height, self.eFloatBox.frame.size.width, self.eFloatBox.frame.size.height);
+        } completion:^(BOOL finished) {
+            [self.eFloatBox removeFromSuperview];
+            self.eFloatBox = nil;
+        }];
+        
+    }
+    
+}@end
+
 //- (IBAction)highlightMaxAndMinChanged:(id)sender
 //{
 //    UISwitch *mySwith = (UISwitch *)sender;
@@ -173,133 +320,3 @@ static NSString *unit = @"";
 //    }
 //}
 
-- (IBAction)leftButtonPressed:(id)sender {
-    if (self.eColumnChart == nil) return;
-    [self.eColumnChart moveLeft];
-}
-
-- (IBAction)rightButtonPressed:(id)sender {
-    if (self.eColumnChart == nil) return;
-    [self.eColumnChart moveRight];
-}
-
-
-#pragma -mark- EColumnChartDataSource
-
-- (NSInteger)numberOfColumnsInEColumnChart:(EColumnChart *)eColumnChart
-{
-    return [self.data count];
-}
-
-- (NSInteger)numberOfColumnsPresentedEveryTime:(EColumnChart *)eColumnChart
-{
-    return 4;
-}
-
-- (EColumnDataModel *)highestValueEColumnChart:(EColumnChart *)eColumnChart
-{
-    EColumnDataModel *maxDataModel = nil;
-    float maxValue = -FLT_MIN;
-    for (EColumnDataModel *dataModel in self.data)
-        
-    {
-        if (dataModel.value > maxValue)
-        {
-            maxValue = dataModel.value;
-            maxDataModel = dataModel;
-        }
-    }
-    return maxDataModel;
-}
-
-- (EColumnDataModel *)eColumnChart:(EColumnChart *)eColumnChart valueForIndex:(NSInteger)index
-{
-    if (index >= [self.data count] || index < 0) return nil;
-    return [self.data objectAtIndex:index];
-}
-
-//- (UIColor *)colorForEColumn:(EColumn *)eColumn
-//{
-//    if (eColumn.eColumnDataModel.index < 5)
-//    {
-//        return [UIColor purpleColor];
-//    }
-//    else
-//    {
-//        return [UIColor redColor];
-//    }
-//
-//}
-
-#pragma -mark- EColumnChartDelegate
-- (void)eColumnChart:(EColumnChart *)eColumnChart
-     didSelectColumn:(EColumn *)eColumn
-{
-    NSLog(@"Index: %ld  Value: %f", (long)eColumn.eColumnDataModel.index, eColumn.eColumnDataModel.value);
-    
-    if (self.eColumnSelected)
-    {
-        self.eColumnSelected.barColor = self.tempColor;
-    }
-    self.eColumnSelected = eColumn;
-    self.tempColor = eColumn.barColor;
-    eColumn.barColor = [UIColor blackColor];
-    
-    self.valueLabel.text = [NSString stringWithFormat:@"%.1f",eColumn.eColumnDataModel.value];
-}
-
-- (void)eColumnChart:(EColumnChart *)eColumnChart
-fingerDidEnterColumn:(EColumn *)eColumn
-{
-    /**The EFloatBox here, is just to show an example of
-     taking adventage of the event handling system of the Echart.
-     You can do even better effects here, according to your needs.*/
-    NSLog(@"Finger did enter %ld", (long)eColumn.eColumnDataModel.index);
-    CGFloat eFloatBoxX = eColumn.frame.origin.x + eColumn.frame.size.width * 1.25;
-    CGFloat eFloatBoxY = eColumn.frame.origin.y + eColumn.frame.size.height * (1-eColumn.grade);
-    if (self.eFloatBox)
-    {
-        [self.eFloatBox removeFromSuperview];
-        self.eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, self.eFloatBox.frame.size.width, self.eFloatBox.frame.size.height);
-        [self.eFloatBox setValue:eColumn.eColumnDataModel.value];
-        [eColumnChart addSubview:self.eFloatBox];
-    }
-    else
-    {
-        self.eFloatBox = [[EFloatBox alloc] initWithPosition:CGPointMake(eFloatBoxX, eFloatBoxY) value:eColumn.eColumnDataModel.value unit:@"kWh" title:@"Title"];
-        self.eFloatBox.alpha = 0.0;
-        [eColumnChart addSubview:self.eFloatBox];
-        
-    }
-    eFloatBoxY -= (_eFloatBox.frame.size.height + eColumn.frame.size.width * 0.25);
-    _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, self.eFloatBox.frame.size.width, self.eFloatBox.frame.size.height);
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-        self.eFloatBox.alpha = 1.0;
-        
-    } completion:^(BOOL finished) {
-    }];
-    
-}
-
-- (void)eColumnChart:(EColumnChart *)eColumnChart
-fingerDidLeaveColumn:(EColumn *)eColumn
-{
-    NSLog(@"Finger did leave %ld", (long)eColumn.eColumnDataModel.index);
-    
-}
-
-- (void)fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart
-{
-    if (self.eFloatBox)
-    {
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-            self.eFloatBox.alpha = 0.0;
-            self.eFloatBox.frame = CGRectMake(self.eFloatBox.frame.origin.x, self.eFloatBox.frame.origin.y + self.eFloatBox.frame.size.height, self.eFloatBox.frame.size.width, self.eFloatBox.frame.size.height);
-        } completion:^(BOOL finished) {
-            [self.eFloatBox removeFromSuperview];
-            self.eFloatBox = nil;
-        }];
-        
-    }
-    
-}@end

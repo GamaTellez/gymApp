@@ -150,41 +150,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bf5-c8-lNC">
-                                <rect key="frame" x="279" y="77" width="42" height="21"/>
+                                <rect key="frame" x="279" y="64" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xU-N0-atV">
-                                <rect key="frame" x="403" y="556" width="37" height="30"/>
-                                <state key="normal" title="Right">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="rightButtonPressed:" destination="gai-MD-PUd" eventType="touchUpInside" id="FWm-K8-AO8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsR-wH-xNq">
-                                <rect key="frame" x="101" y="556" width="30" height="30"/>
-                                <state key="normal" title="Left">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="leftButtonPressed:" destination="gai-MD-PUd" eventType="touchUpInside" id="YVk-ra-QBc"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rsR-wH-xNq" firstAttribute="baseline" secondItem="7xU-N0-atV" secondAttribute="baseline" id="1Z0-Jy-dF5"/>
-                            <constraint firstItem="Bf5-c8-lNC" firstAttribute="top" secondItem="iDB-tL-G7m" secondAttribute="bottom" constant="13" id="586-8C-ZYe"/>
-                            <constraint firstItem="LeM-9a-99X" firstAttribute="top" secondItem="Bf5-c8-lNC" secondAttribute="bottom" constant="502" id="6Mj-mj-1ul"/>
-                            <constraint firstAttribute="trailing" secondItem="7xU-N0-atV" secondAttribute="trailing" constant="160" id="9zW-jk-H4o"/>
-                            <constraint firstItem="rsR-wH-xNq" firstAttribute="leading" secondItem="9NO-eL-nDr" secondAttribute="leadingMargin" constant="85" id="L1X-C1-1EA"/>
-                            <constraint firstItem="Bf5-c8-lNC" firstAttribute="centerX" secondItem="9NO-eL-nDr" secondAttribute="centerX" id="gHw-rq-ZIs"/>
-                            <constraint firstItem="LeM-9a-99X" firstAttribute="top" secondItem="rsR-wH-xNq" secondAttribute="bottom" constant="14" id="nyq-fR-U73"/>
+                            <constraint firstItem="Bf5-c8-lNC" firstAttribute="centerX" secondItem="9NO-eL-nDr" secondAttribute="centerX" id="cOy-2l-96d"/>
+                            <constraint firstItem="Bf5-c8-lNC" firstAttribute="top" secondItem="iDB-tL-G7m" secondAttribute="bottom" id="n2T-sv-q2C"/>
+                            <constraint firstItem="LeM-9a-99X" firstAttribute="top" secondItem="Bf5-c8-lNC" secondAttribute="bottom" constant="515" id="oWc-gx-KTV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="valueLabel" destination="Bf5-c8-lNC" id="jt6-XZ-SLE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uKS-HF-a6V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
