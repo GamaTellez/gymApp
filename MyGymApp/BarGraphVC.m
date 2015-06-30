@@ -197,8 +197,8 @@ static NSString *unit = @"";
     eColumn.barColor = [UIColor blackColor];
     
    // self.valueLabel.text = (@"%@", eColumn.eColumnDataModel.label);
-    self.valueLabel.text = [NSString stringWithFormat:@"You worked out %@ times this bodypart" ,[NSNumber numberWithFloat:eColumn.eColumnDataModel.value]];
-    self.bodyPartExercises.text = [NSString stringWithFormat:@"Exercises performed for %@",eColumn.eColumnDataModel.label];
+    self.valueLabel.text = [NSString stringWithFormat:@"Number of times bodypart was worked: %@" ,[NSNumber numberWithFloat:eColumn.eColumnDataModel.value]];
+    self.bodyPartExercises.text = [NSString stringWithFormat:@"Top weight exercises for %@",eColumn.eColumnDataModel.label];
     
      BodyPartExercisesDataSource *dataSource = self.tableView.dataSource;
     dataSource.bodyPart = eColumn.eColumnDataModel.label;
@@ -259,83 +259,5 @@ fingerDidLeaveColumn:(EColumn *)eColumn
         }];
         
     }
-    
-}@end
-
-//- (IBAction)highlightMaxAndMinChanged:(id)sender
-//{
-//    UISwitch *mySwith = (UISwitch *)sender;
-//    if ([mySwith isOn])
-//    {
-//        [self.eColumnChart setShowHighAndLowColumnWithColor:YES];
-//    }
-//    else
-//    {
-//        [self.eColumnChart setShowHighAndLowColumnWithColor:NO];
-//    }
-//}
-//
-//- (IBAction)eventHandleChanged:(id)sender
-//{
-//    UISwitch *mySwith = (UISwitch *)sender;
-//    if ([mySwith isOn])
-//    {
-//        [_eColumnChart setDelegate:self];
-//    }
-//    else
-//    {
-//        [_eColumnChart setDelegate:nil];
-//    }
-//}
-//
-//- (IBAction)shouldOnlyShowInteger:(id)sender
-//{
-//    UISwitch *mySwith = (UISwitch *)sender;
-//    if ([mySwith isOn])
-//    {
-//        [_eColumnChart removeFromSuperview];
-//        _eColumnChart = nil;
-//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-//        [_eColumnChart setColumnsIndexStartFromLeft:YES];
-//        [_eColumnChart setShowHorizontalLabelsWithInteger:YES];
-//        [_eColumnChart setDelegate:self];
-//        [_eColumnChart setDataSource:self];
-//        [self.view addSubview:_eColumnChart];
-//    }
-//    else
-//    {
-//        [_eColumnChart removeFromSuperview];
-//        _eColumnChart = nil;
-//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-//        [_eColumnChart setColumnsIndexStartFromLeft:YES];
-//        [_eColumnChart setDelegate:self];
-//        [_eColumnChart setDataSource:self];
-//        [self.view addSubview:_eColumnChart];
-//    }
-//}
-//
-//
-//- (IBAction)chartDirectionChanged:(id)sender
-//{
-//    UISwitch *mySwith = (UISwitch *)sender;
-//    if ([mySwith isOn])
-//    {
-//        [_eColumnChart removeFromSuperview];
-//        _eColumnChart = nil;
-//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-//        [_eColumnChart setShowHorizontalLabelsWithInteger:YES];
-//        [_eColumnChart setDelegate:self];
-//        [_eColumnChart setDataSource:self];
-//        [self.view addSubview:_eColumnChart];
-//    }
-//    else
-//    {
-//        [_eColumnChart removeFromSuperview];
-//        _eColumnChart = nil;
-//        _eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 100, 250, 200)];
-//        [_eColumnChart setDelegate:self];
-//        [_eColumnChart setDataSource:self];
-//        [self.view addSubview:_eColumnChart];
-//    }
-//}
-
+}
+@end

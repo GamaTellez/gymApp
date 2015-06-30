@@ -19,7 +19,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //BodypartExerciseCustomCell *cell = [BodypartExerciseCustomCell new];
-    BodypartExerciseCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BodypartExerciseCustomCell" forIndexPath:indexPath];
+    BodypartExerciseCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bodypartExerciseCustomCell" forIndexPath:indexPath];
     
     if (!cell) {
         cell = [[BodypartExerciseCustomCell alloc] init];
