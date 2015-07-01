@@ -67,8 +67,6 @@
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    
-    
     if (textField ==  self.bodyPartTextField)  {
         self.bodyPartTextField.text = self.bodyPartsArray[0];
     } else if (textField == self.bodyPart2TextField) {
@@ -90,7 +88,7 @@
     [self.navigationController resignFirstResponder];
     
     if ([self.exerciseNameTextField.text isEqual:@""] || [self.bodyPartTextField.text isEqual:@""]) {
-        UIAlertController *requiredField = [UIAlertController alertControllerWithTitle:@"Missing required fields" message:@"Please fill all fields" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *requiredField = [UIAlertController alertControllerWithTitle:@"Missing required fields" message:@"Please pick one body part" preferredStyle:UIAlertControllerStyleActionSheet];
         [requiredField addAction:[UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             
         }]];

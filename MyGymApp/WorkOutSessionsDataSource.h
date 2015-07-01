@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "CustomCellForWorkoutSession.h"
 
-@interface WorkOutSessionsDataSource : NSObject <UITableViewDataSource, UITableViewDelegate,CustomCellForWorkoutSessionDelegate>
+@interface WorkOutSessionsDataSource : NSObject <UITableViewDataSource, UITableViewDelegate,CustomCellForWorkoutSessionDelegate, UIScrollViewDelegate>
+@property (assign, nonatomic) CGPoint lastContentOffset;
 
 @end

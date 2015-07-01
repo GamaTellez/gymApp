@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (strong, nonatomic) UIPickerView *pickerView;
+
 @property (strong, nonatomic) IBOutlet UIButton *buttonProfilePic;
 
 
@@ -71,9 +72,12 @@
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
+    self.pickerView.showsSelectionIndicator = YES;
+    
     self.genderTextField.inputView = self.pickerView;
     self.birthDateTextField.inputView = self.pickerView;
     self.heightTextField.inputView = self.pickerView;
+   
     
     
     self.genderArray = [[NSArray alloc] initWithObjects:@"Male", @"Female",nil];
@@ -180,45 +184,6 @@
 
 
 
-
-//-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-//    
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-//    UIImage *imagePicked = info[UIImagePickerControllerEditedImage];
-//    self.userPictureImageView.image = imagePicked;
-//}
-
-//-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-//    
-//    
-//    [self dismissViewControllerAnimated:YES completion:NULL];
-//    self.saveButton.enabled = NO;
-//}
-//
-//
-//- (IBAction)takePhotoButtonTapped:(id)sender {
-//    self.saveButton.enabled = YES;
-//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//    picker.delegate = self;
-//    picker.allowsEditing = YES;
-//    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//    
-//    [self presentViewController:picker animated:YES completion:NULL];
-//}
-//
-//
-//- (IBAction)selectPhotoFromLibraryButtonTapped:(id)sender {
-//    self.saveButton.enabled = YES;
-//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//    picker.delegate = self;
-//    picker.allowsEditing = YES;
-//    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//    
-//    [self presentViewController:picker animated:YES completion:NULL];
-//    
-//    
-//}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
@@ -292,10 +257,7 @@
         return 1;
     }else if (self.heightTextField.editing == YES) {
         return 2;
-    }else if (self.weightTextField.editing == YES) {
-        return 3;
-    }
-    else {
+    }else {
         return 0;
     }
 }
@@ -326,6 +288,8 @@
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+   
+    
     if (self.genderTextField.editing == YES) {
            self.genderTextField.text = [self.genderArray objectAtIndex:[pickerView selectedRowInComponent:0]];
     } else if (self.birthDateTextField.editing == YES) {
@@ -338,24 +302,39 @@
         self.heightTextField.text = [NSString stringWithFormat:@"%@.%@",heightFeet,heighInches];
     }
 }
+-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
 
-//-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-////    
-////    
-////    UILabel *viewForPicker = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width/3, 44)];
-////    viewForPicker.backgroundColor = [UIColor grayColor];
-////    viewForPicker.textColor = [UIColor blackColor];
-////    viewForPicker.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
-////    viewForPicker.text = [NSString stringWithFormat:@"%ld", (long)row];
-////    return viewForPicker;
-//}
+    
+    
+    UILabel *pickerViewLabel = (id)view;
+    
+    if (!pickerViewLabel) {
+        pickerViewLabel= [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, [pickerView rowSizeForComponent:component].width - 10.0f, [pickerView rowSizeForComponent:component].height)];
+          pickerViewLabel.backgroundColor = [UIColor clearColor];
+        pickerViewLabel.textAlignment = NSTextAlignmentCenter;
+        pickerViewLabel.font = [UIFont fontWithName:@"ChalkboardSE-Regular" size:20];
+    }
+    
+    if (self.genderTextField.editing == YES)
+        pickerViewLabel.text = self.genderArray[row]; // where therapyTypes[row] is a specific example from my code
+
+    if (self.birthDateTextField.editing == YES)
+        pickerViewLabel.text = self.ageArray[row];
+        
+    if (self.weightTextField.editing == YES)
+        if (component == 0)
+            pickerViewLabel.text = self.feetForHeight[row];
+       if (component == 1)
+           pickerViewLabel.text = self.inchesForHeight[row];
+    
+    
+    return pickerViewLabel;
+    
+}
+//
 
 
 @end
-
-
-
-
 
 
 

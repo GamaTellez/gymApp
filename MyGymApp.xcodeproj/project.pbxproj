@@ -155,7 +155,6 @@
 				87CE6E361B41D11000AE1E3C /* BodyPartExercisesDataSource.m */,
 				87CE6E381B41D16100AE1E3C /* BodypartExerciseCustomCell.h */,
 				87CE6E391B41D16100AE1E3C /* BodypartExerciseCustomCell.m */,
-				87CE6E3B1B41D60300AE1E3C /* EchartThirdParty */,
 			);
 			name = GraphBarVC;
 			sourceTree = "<group>";
@@ -192,6 +191,7 @@
 				8740B8771B0E759900D60630 /* Images.xcassets */,
 				8740B8791B0E759900D60630 /* LaunchScreen.xib */,
 				8740B8A31B0FAB5400D60630 /* CoreData.framework */,
+				87CE6E3B1B41D60300AE1E3C /* EchartThirdParty */,
 				8740B86A1B0E759900D60630 /* Supporting Files */,
 			);
 			path = MyGymApp;

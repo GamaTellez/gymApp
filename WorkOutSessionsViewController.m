@@ -19,12 +19,15 @@
 @property (strong, nonatomic) UIAlertAction *saveAction;
 
 
+
 @end
 
 @implementation WorkOutSessionsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     // Do any additional setup after loading the view.
     self.title = @"Current Week Workouts";
 }
@@ -34,6 +37,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (IBAction)addWorkOutSessionButtonTapped:(id)sender {
     
