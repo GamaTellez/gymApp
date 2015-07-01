@@ -85,9 +85,8 @@ dispatch_once(&onceToken, ^{
 - (NSArray *)workoutSessionsArray {
     //filtering for most recent one on top of tableview
     NSFetchRequest *recentSessionsRequest = [NSFetchRequest fetchRequestWithEntityName:@"WorkoutSession"];
-    //recentSessionsRequest.fetchLimit = 20;
+    //recentSessionsRequest.fetchLimit = 7;
     NSArray *currentSessions = [[Stack sharedInstance].managedObjectContext executeFetchRequest:recentSessionsRequest error:nil];
-    
     NSSortDescriptor *sortDescriptorByDate = [[NSSortDescriptor alloc] initWithKey:@"sessionDate" ascending:NO];
     
     NSArray *descriptorsArray = [NSArray arrayWithObjects:sortDescriptorByDate, nil];

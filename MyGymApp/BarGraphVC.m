@@ -39,8 +39,6 @@ static NSString *unit = @"";
 @property (strong, nonatomic) NSString *stringBodyPart;
 
 
-
-
 @end
 
 @implementation BarGraphVC
@@ -59,7 +57,7 @@ static NSString *unit = @"";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Overall times bodypart was exercised";
+    self.title = @"Bodyparts Info";
 //    NSMutableArray *temp = [NSMutableArray array];
 //    for (int i = 0; i < 50; i++)
 //    {
@@ -91,7 +89,7 @@ static NSString *unit = @"";
        // NSLog(@"%f", newEcolumnDataModel.value);
         [self.data addObject:newEcolumnDataModel];
     }
-    self.eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(70, 130, 250, 200)];
+    self.eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(50, 130, 300, 200)];
     //[_eColumnChart setNormalColumnColor:[UIColor purpleColor]];
     [self.eColumnChart setColumnsIndexStartFromLeft:YES];
     [self.eColumnChart setDelegate:self];
@@ -197,8 +195,8 @@ static NSString *unit = @"";
     eColumn.barColor = [UIColor blackColor];
     
    // self.valueLabel.text = (@"%@", eColumn.eColumnDataModel.label);
-    self.valueLabel.text = [NSString stringWithFormat:@"Number of times bodypart was worked: %@" ,[NSNumber numberWithFloat:eColumn.eColumnDataModel.value]];
-    self.bodyPartExercises.text = [NSString stringWithFormat:@"Top weight exercises for %@",eColumn.eColumnDataModel.label];
+    //self.valueLabel.text = [NSString stringWithFormat:@"Number of times bodypart was worked: %@" ,[NSNumber numberWithFloat:eColumn.eColumnDataModel.value]];
+    self.bodyPartExercises.text = [NSString stringWithFormat:@"%@ top exercises",eColumn.eColumnDataModel.label];
     
      BodyPartExercisesDataSource *dataSource = self.tableView.dataSource;
     dataSource.bodyPart = eColumn.eColumnDataModel.label;

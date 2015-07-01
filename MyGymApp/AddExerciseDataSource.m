@@ -49,8 +49,13 @@ static NSString *exerciseCell = @"exerciseCell";
     if (newExercise.bodyParts.count > 0) {
         BodyPart * bodyPartOne = newExercise.bodyParts[0];
         BodyPart * bodyPartTwo = newExercise.bodyParts[1];
-
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@",bodyPartOne.bodyPartTargeted,bodyPartTwo.bodyPartTargeted];
+    }
+    
+    if (newExercise.reps.count < 1 || newExercise.reps == nil) {
+        cell.backgroundColor = [UIColor redColor];
+    } else if (newExercise.reps.count > 0 || newExercise.reps != nil) {
+        cell.backgroundColor = [UIColor greenColor];
     }
     
     return cell;

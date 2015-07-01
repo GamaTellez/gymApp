@@ -24,8 +24,14 @@
 
 @implementation AddExercisesVC
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
     self.bodyPartTextField.inputView = self.pickerView;
     self.bodyPart2TextField.inputView = self.pickerView;
 

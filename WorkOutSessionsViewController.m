@@ -29,7 +29,7 @@
     
     
     // Do any additional setup after loading the view.
-    self.title = @"Current Week Workouts";
+    self.title = @"This Week Gym Sessions";
 }
 
 - (void)didReceiveMemoryWarning {

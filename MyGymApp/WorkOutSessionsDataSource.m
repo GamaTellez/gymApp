@@ -43,7 +43,6 @@ static NSString *cellID = @"sessionCell";
     return cell;
 }
 
-
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -53,6 +52,8 @@ static NSString *cellID = @"sessionCell";
         [[ModelController sharedInstance] deleteSession:session];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } if (editingStyle == UITableViewCellEditingStyleInsert) {
+        NSLog(@"Fdfdfd");
     }
 }
 
