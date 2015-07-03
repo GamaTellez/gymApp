@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		870AF1981B45A1CB00B8DF40 /* AppAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 870AF1971B45A1CB00B8DF40 /* AppAppearance.m */; };
 		870FDEBA1B2BC833009F48A7 /* CustomCellForWorkoutSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 870FDEB91B2BC833009F48A7 /* CustomCellForWorkoutSession.m */; };
 		8731D45A1B40428A001F73EB /* BarGraphVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D4591B40428A001F73EB /* BarGraphVC.m */; };
 		8731D47C1B4045A5001F73EB /* EColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D46D1B4045A5001F73EB /* EColor.m */; };
@@ -56,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		870AF1961B45A1CB00B8DF40 /* AppAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppAppearance.h; path = ../AppAppearance.h; sourceTree = "<group>"; };
+		870AF1971B45A1CB00B8DF40 /* AppAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppAppearance.m; path = ../AppAppearance.m; sourceTree = "<group>"; };
 		870FDEB81B2BC833009F48A7 /* CustomCellForWorkoutSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCellForWorkoutSession.h; path = ../CustomCellForWorkoutSession.h; sourceTree = "<group>"; };
 		870FDEB91B2BC833009F48A7 /* CustomCellForWorkoutSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCellForWorkoutSession.m; path = ../CustomCellForWorkoutSession.m; sourceTree = "<group>"; };
 		8731D4581B40428A001F73EB /* BarGraphVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarGraphVC.h; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 			children = (
 				8740B86E1B0E759900D60630 /* AppDelegate.h */,
 				8740B86F1B0E759900D60630 /* AppDelegate.m */,
+				870AF1961B45A1CB00B8DF40 /* AppAppearance.h */,
+				870AF1971B45A1CB00B8DF40 /* AppAppearance.m */,
 				8740B8741B0E759900D60630 /* Main.storyboard */,
 				8740B89F1B0EDCA200D60630 /* Model */,
 				8740B8A51B1033CE00D60630 /* MainVC */,
@@ -453,6 +458,7 @@
 				8740B89E1B0EDC9300D60630 /* ModelController.m in Sources */,
 				8740B8921B0E78B000D60630 /* ProfilleViewController.m in Sources */,
 				8731D4821B4045A5001F73EB /* EViewSwitcher.m in Sources */,
+				870AF1981B45A1CB00B8DF40 /* AppAppearance.m in Sources */,
 				87497ED11B3D0029004E5355 /* BodyPart.m in Sources */,
 				87497ECF1B3D0029004E5355 /* Exercise.m in Sources */,
 				87CFC1AB1B1D4F4B004DEC16 /* WorkOutSessionsDataSource.m in Sources */,

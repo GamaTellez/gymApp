@@ -32,6 +32,7 @@
     self.title = @"This Week Gym Sessions";
 }
 
+
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];

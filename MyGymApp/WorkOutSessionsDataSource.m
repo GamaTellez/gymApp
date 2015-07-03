@@ -75,66 +75,66 @@ static NSString *cellID = @"sessionCell";
 //    self.lastContentOffset = currentOffset;
 //}
 //animating tableViewCells
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //seting yo the cat transformr
-//    CATransform3D rotation;
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 //    
-//    rotation = CATransform3DMakeRotation(90.0 * M_PI/180, 0.0, 0.7,0.4);
-//    rotation.m34 = 1.0 / -600;
+//    //seting yo the cat transformr
+////    CATransform3D rotation;
+////    
+////    rotation = CATransform3DMakeRotation(90.0 * M_PI/180, 0.0, 0.7,0.4);
+////    rotation.m34 = 1.0 / -600;
+////    
+////    //define the initial state, before animation
+////    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
+////    cell.layer.shadowOffset = CGSizeMake(10, 10);
+////    cell.alpha = 0;
+////    
+////    cell.layer.transform = rotation;
+////    cell.layer.anchorPoint = CGPointMake(0, 0.5);
+////    
+////    //define final state after animation and coomit the animation
+////    [UIView beginAnimations:@"rotation" context:NULL];
+////    [UIView setAnimationDuration:0.8];
+////    cell.layer.transform = CATransform3DIdentity;
+////    cell.alpha = 1;
+////    cell.layer.shadowOffset = CGSizeMake(0,0);
+////    [UIView commitAnimations];
 //    
-//    //define the initial state, before animation
-//    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
-//    cell.layer.shadowOffset = CGSizeMake(10, 10);
-//    cell.alpha = 0;
+//    CGPoint currentOffset = tableView.contentOffset;
 //    
-//    cell.layer.transform = rotation;
-//    cell.layer.anchorPoint = CGPointMake(0, 0.5);
-//    
-//    //define final state after animation and coomit the animation
-//    [UIView beginAnimations:@"rotation" context:NULL];
-//    [UIView setAnimationDuration:0.8];
-//    cell.layer.transform = CATransform3DIdentity;
-//    cell.alpha = 1;
-//    cell.layer.shadowOffset = CGSizeMake(0,0);
-//    [UIView commitAnimations];
-    
-    CGPoint currentOffset = tableView.contentOffset;
-    
-    if (currentOffset.y < self.lastContentOffset.y) {
-        
-        NSLog(@"dow");
-    } else  if ( currentOffset.y > self.lastContentOffset.y){
-        CATransform3D scalate;
-        scalate = CATransform3DMakeScale(10.0, 10.0, 10.0);
-        scalate.m34 = 1.0 / - 600;
-        
-        cell.layer.transform = scalate;
-        [UIView beginAnimations:@"scale" context:NULL];
-        [UIView setAnimationDuration:0.8];
-        cell.layer.transform = CATransform3DIdentity;
-        [UIView commitAnimations];
-        NSLog(@"up");
-    }
-    self.lastContentOffset = currentOffset;
-
-//    
-//    CATransform3D translation;
-//    translation = CATransform3DMakeTranslation(10.0, 10.0, 10.0);
-//    translation.m34 = 1.0 / -60;
-//    
-//    cell.layer.transform = translation;
-//    cell.layer.shadowOffset = CGSizeMake(10, 10);
-//    
-//    [UIView beginAnimations:@"translation" context:NULL];
-//    [UIView setAnimationDuration:0.8];
-//    cell.layer.transform = CATransform3DIdentity;
-//    cell.alpha = 1;
-//    cell.layer.shadowOffset = CGSizeMake(0, 0);
-//    [UIView commitAnimations];
-//    
-
-}
+//    if (currentOffset.y < self.lastContentOffset.y) {
+//        
+//        NSLog(@"dow");
+//    } else  if ( currentOffset.y > self.lastContentOffset.y){
+//        CATransform3D scalate;
+//        scalate = CATransform3DMakeScale(10.0, 10.0, 10.0);
+//        scalate.m34 = 1.0 / - 600;
+//        
+//        cell.layer.transform = scalate;
+//        [UIView beginAnimations:@"scale" context:NULL];
+//        [UIView setAnimationDuration:0.8];
+//        cell.layer.transform = CATransform3DIdentity;
+//        [UIView commitAnimations];
+//        NSLog(@"up");
+//    }
+//    self.lastContentOffset = currentOffset;
+//
+////    
+////    CATransform3D translation;
+////    translation = CATransform3DMakeTranslation(10.0, 10.0, 10.0);
+////    translation.m34 = 1.0 / -60;
+////    
+////    cell.layer.transform = translation;
+////    cell.layer.shadowOffset = CGSizeMake(10, 10);
+////    
+////    [UIView beginAnimations:@"translation" context:NULL];
+////    [UIView setAnimationDuration:0.8];
+////    cell.layer.transform = CATransform3DIdentity;
+////    cell.alpha = 1;
+////    cell.layer.shadowOffset = CGSizeMake(0, 0);
+////    [UIView commitAnimations];
+////    
+//
+//}
 
 
 

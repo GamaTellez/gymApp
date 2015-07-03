@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ModelController.h"
+#import "AppAppearance.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [[ModelController sharedInstance] numberOfTimesBodyPartWasWorkedOut];
+   [AppAppearance setNavBarAppearance];
     
     
     return YES;

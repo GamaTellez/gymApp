@@ -49,19 +49,6 @@
     
     self.bodyPartsArray = [[NSArray alloc] init];
     self.bodyPartsArray = [[ModelController sharedInstance] bodyPartsArray];
-//    self.bodyPartsArray = @[@"Traps"
-//                            ,@"Shoulders"
-//                            ,@"Chest"
-//                            ,@"Biceps"
-//                            ,@"Forearm"
-//                            ,@"Abs"
-//                            ,@"Quads"
-//                            ,@"Calves"
-//                            ,@"Triceps"
-//                            ,@"Upper Back"
-//                            ,@"Lower Back"
-//                            ,@"Glutes"
-//                            ,@"Hamstrings"];
     
  
     
@@ -139,6 +126,7 @@
 - (void)handleTapOutsideTextField:(UITapGestureRecognizer *)tap {
     
     [self.view endEditing:YES];
+  
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
