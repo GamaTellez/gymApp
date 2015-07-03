@@ -76,10 +76,13 @@
     UIToolbar *pickerViewToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width, 44)];
     pickerViewToolBar.barStyle = UIBarStyleBlackOpaque;
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonInPickerTapped:)];
-    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    pickerViewToolBar.items = [[NSArray alloc] initWithObjects:flexibleSpaceLeft, doneButton,nil];
-    //[self.pickerView addSubview:pickerViewToolBar];
+    UIBarButtonItem *leftArrow = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Back-32"] style:UIBarButtonItemStylePlain target:self action:@selector(moveToLastTextField:)];
+    UIBarButtonItem *rightArrow = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Forward-32"] style:UIBarButtonItemStylePlain target:self action:@selector(moveToNextTextField:)];
+    //images for toolbar buttons were gotten from https://icons8.com.
     
+    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    pickerViewToolBar.items = [[NSArray alloc] initWithObjects:leftArrow, rightArrow, flexibleSpaceLeft, doneButton,nil];
+    //[self.pickerView addSubview:pickerViewToolBar];
     
     self.genderTextField.inputView  = self.pickerView;
     self.genderTextField.inputAccessoryView = pickerViewToolBar;
@@ -88,8 +91,7 @@
     self.heightTextField.inputView = self.pickerView;
     self.heightTextField.inputAccessoryView = pickerViewToolBar;
 
-    
-    
+
     self.genderArray = [[NSArray alloc] initWithObjects:@"Male", @"Female",nil];
     self.ageArray = [[NSArray alloc] initWithObjects:@"12", @"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20", @"21", @"22", @"23", @"24", @"25", @"26", @"27", @"28", @"29", @"30", @"31", @"32", @"33", @"34", @"35", @"36", @"37", @"38", @"39", @"40", @"41", @"42", @"43", @"44", @"45", @"46", @"47", @"48", @"49", @"50", @"51", @"52", @"53", @"54", @"55", @"56", @"57", @"58", @"59", @"60", @"61", @"63", @"64", @"65", @"66", @"67", @"68", @"69", @"70", @"80", @"81", @"82", @"85", @"86", @"87", @"88", @"89", @"90",nil];
     self.feetForHeight = [[NSArray alloc] initWithObjects:@"4", @"5", @"6", @"7", @"8", @"9", nil];
@@ -100,6 +102,28 @@
     [self.view endEditing:YES];
 }
 
+- (void)moveToNextTextField:(id)sender {
+    if (self.genderTextField.editing == YES) {
+        [self.birthDateTextField becomeFirstResponder];
+    } else if (self.birthDateTextField.editing == YES) {
+        [self.heightTextField becomeFirstResponder];
+    } else if (self.heightTextField.isEditing == YES) {
+        [self.weightTextField becomeFirstResponder];
+    } else {
+        [self.view endEditing:YES];
+    }
+}
+
+- (void)moveToLastTextField:(id)sender {
+    
+    if (self.heightTextField.isEditing == YES) {
+        [self.birthDateTextField becomeFirstResponder];
+    } else if (self.birthDateTextField.isEditing == YES) {
+        [self.genderTextField becomeFirstResponder];
+    } else if (self.genderTextField.isEditing == YES) {
+        [self.nameTextField becomeFirstResponder];
+    }
+}
 
 - (IBAction)buttonProfilePicTapped:(id)sender {
     
@@ -302,7 +326,6 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
    
-    
     if (self.genderTextField.editing == YES) {
            self.genderTextField.text = [self.genderArray objectAtIndex:[pickerView selectedRowInComponent:0]];
     } else if (self.birthDateTextField.editing == YES) {
@@ -315,37 +338,7 @@
         self.heightTextField.text = [NSString stringWithFormat:@"%@.%@",heightFeet,heighInches];
     }
 }
-//-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-//
-//    
-//    
-//    UILabel *pickerViewLabel = (id)view;
-//    
-//    if (!pickerViewLabel) {
-//        pickerViewLabel= [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, [pickerView rowSizeForComponent:component].width - 10.0f, [pickerView rowSizeForComponent:component].height)];
-//          pickerViewLabel.backgroundColor = [UIColor clearColor];
-//        pickerViewLabel.textAlignment = NSTextAlignmentCenter;
-//        pickerViewLabel.font = [UIFont fontWithName:@"ChalkboardSE-Regular" size:20];
-//    }
-//    
-//    if (self.genderTextField.editing == YES)
-//        pickerViewLabel.text = self.genderArray[row]; // where therapyTypes[row] is a specific example from my code
-//
-//    if (self.birthDateTextField.editing == YES)
-//        pickerViewLabel.text = self.ageArray[row];
-//        
-//    if (self.weightTextField.editing == YES)
-//        if (component == 0)
-//            pickerViewLabel.text = self.feetForHeight[row];
-//       if (component == 1)
-//           pickerViewLabel.text = self.inchesForHeight[row];
-//    
-//    
-//    return pickerViewLabel;
-//    
-//}
-////
-//
+
 
 @end
 
