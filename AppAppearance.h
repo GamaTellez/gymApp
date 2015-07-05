@@ -13,6 +13,6 @@
 
 @interface AppAppearance : NSObject
 
-+(void)setNavBarAppearance;
++(void)setAppAppearance;
 
 @end

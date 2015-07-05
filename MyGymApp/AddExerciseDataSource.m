@@ -53,9 +53,10 @@ static NSString *exerciseCell = @"exerciseCell";
     }
     
     if (newExercise.reps.count < 1 || newExercise.reps == nil) {
-        cell.backgroundColor = [UIColor redColor];
+        cell.textLabel.textColor = [UIColor redColor];
     } else if (newExercise.reps.count > 0 || newExercise.reps != nil) {
-        cell.backgroundColor = [UIColor greenColor];
+        cell.textLabel.textColor = [UIColor greenColor];
+    
     }
     
     return cell;

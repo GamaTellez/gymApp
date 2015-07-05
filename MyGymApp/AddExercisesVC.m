@@ -42,7 +42,17 @@
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
+    
+    UIToolbar *toolBarForPicker = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width, 44)];
+    toolBarForPicker.barStyle = UIBarStyleBlackOpaque;
+    UIBarButtonItem *doneButtonInBar = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissPickerViewButton)];
+    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+    toolBarForPicker.items = @[flexibleSpaceLeft ,doneButtonInBar];
+    //[self.pickerView addSubview:toolBarForPicker];
+    
     self.bodyPartTextField.inputView = self.pickerView;
+    self.bodyPartTextField.inputAccessoryView = toolBarForPicker;
     self.bodyPart2TextField.inputView = self.pickerView;
     self.bodyPart2TextField.delegate = self;
     self.bodyPartTextField.delegate = self;
@@ -55,8 +65,10 @@
      UITapGestureRecognizer *tapOutsideTextfields = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOutsideTextField:)];
     tapOutsideTextfields.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapOutsideTextfields];
- 
+}
 
+- (void) dismissPickerViewButton {
+    [self.view endEditing:YES];
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     

@@ -89,7 +89,7 @@ static NSString *unit = @"";
        // NSLog(@"%f", newEcolumnDataModel.value);
         [self.data addObject:newEcolumnDataModel];
     }
-    self.eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(50, 130, 300, 200)];
+    self.eColumnChart = [[EColumnChart alloc] initWithFrame:CGRectMake(50, 60, 300, 200)];
     //[_eColumnChart setNormalColumnColor:[UIColor purpleColor]];
     [self.eColumnChart setColumnsIndexStartFromLeft:YES];
     [self.eColumnChart setDelegate:self];
