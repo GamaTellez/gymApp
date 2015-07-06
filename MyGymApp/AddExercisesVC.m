@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSArray *bodyPartsArray;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
 
 
 @end
@@ -34,7 +35,7 @@
   
     self.bodyPartTextField.inputView = self.pickerView;
     self.bodyPart2TextField.inputView = self.pickerView;
-
+    
     
     AddExerciseDataSource *dataSource = self.tableView.dataSource;
     [dataSource updateWithSession:self.session];
@@ -42,6 +43,15 @@
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
+    
+    //setting border for textview
+    self.exerciseDescriptionTextField.layer.borderColor = [[UIColor colorWithWhite:0.815 alpha:1.000]CGColor];
+    self.exerciseDescriptionTextField.layer.borderWidth = 1.0;
+    self.exerciseDescriptionTextField.layer.cornerRadius = 5;
+    //setting button appearance
+    self.saveButton.layer.cornerRadius = 10;
+    self.saveButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000];
+    self.saveButton.tintColor = [UIColor blackColor];
     
     UIToolbar *toolBarForPicker = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width, 44)];
     toolBarForPicker.barStyle = UIBarStyleBlackOpaque;

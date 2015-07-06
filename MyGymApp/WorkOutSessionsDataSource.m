@@ -17,8 +17,6 @@ static NSString *cellID = @"sessionCell";
 @implementation WorkOutSessionsDataSource
 
 
-
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return [ModelController sharedInstance].workoutSessionsArray.count;
@@ -52,8 +50,6 @@ static NSString *cellID = @"sessionCell";
         [[ModelController sharedInstance] deleteSession:session];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    } if (editingStyle == UITableViewCellEditingStyleInsert) {
-        NSLog(@"Fdfdfd");
     }
 }
 

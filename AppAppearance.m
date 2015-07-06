@@ -9,7 +9,11 @@
 #import "AppAppearance.h"
 #import "AddExercisesVC.h"
 #import "BarGraphVC.h"
+#import "ProfilleViewController.h"
 #import "WorkOutSessionsViewController.h"
+#import "RepsViewController.h"
+#import "BarGraphVC.h"
+
 
 @implementation AppAppearance
 //
@@ -27,21 +31,27 @@
     [[UIToolbar appearance] setBackgroundColor:[UIColor colorWithWhite:0.271 alpha:1.000]];
     
     //bar items apperance
-    [[UIBarButtonItem appearance] setTitleTextAttributes:textTitleOptions forState:UIControlStateNormal];
+    [[UIButton appearanceWhenContainedIn:[ProfilleViewController class], nil] setBackgroundColor:[UIColor clearColor]];
 
     //views apperance
-    [[UIView appearanceWhenContainedIn:[AddExercisesVC class], nil] setBackgroundColor:[UIColor colorWithWhite:0.917 alpha:1.000]];
+    [[UIView appearanceWhenContainedIn:[AddExercisesVC class], nil] setBackgroundColor:[UIColor colorWithWhite:0.944 alpha:1.000]];
     [[UIView appearanceWhenContainedIn:[BarGraphVC class], nil] setBackgroundColor:[UIColor colorWithWhite:0.944 alpha:1.000]];
+    [[UIView appearanceWhenContainedIn:[ProfilleViewController class], nil] setBackgroundColor:[UIColor colorWithWhite:0.944 alpha:1.000]];
+    [[UIView appearanceWhenContainedIn:[RepsViewController class], nil] setBackgroundColor:[UIColor colorWithWhite:0.944 alpha:1.000]];
     
-    [[UITableView appearance] setBackgroundColor:[UIColor colorWithRed:0.255 green:0.682 blue:0.976 alpha:1.000]];
+//    //labels apperance
+//    [UILabel appearanceWhenContainedIn:[BarGraphVC class], nil].backgroundColor = [UIColor colorWithWhite:0.398 alpha:1.000];
     
     
-    //textview in add exercises
-    [[UITextView appearanceWhenContainedIn:[AddExercisesVC class], nil] setBackgroundColor:[UIColor whiteColor]];
+    //button in addexercisesr
+//    [UIButton appearance].layer.cornerRadius = 10.0;
+//    [UIButton appearance].backgroundColor = [UIColor colorWithRed:0.355 green:0.516 blue:1.000 alpha:1.000];
+//    [UIButton appearance].tintColor = [UIColor blackColor];
     
-    //textfields in addexercises vc
-      [[UITextField appearance] setBorderStyle:UITextBorderStyleRoundedRect];
-    [[UITextField appearance] setBackgroundColor:[UIColor whiteColor]];
+
+    //textfields
+    [[UITextField appearanceWhenContainedIn:[ProfilleViewController class], nil] setBackgroundColor:[UIColor clearColor]];
+
 
 }
 

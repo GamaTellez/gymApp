@@ -46,7 +46,6 @@
     [super viewDidLoad];
 
     
-    
     self.nameTextField.text = [ModelController sharedInstance].user.name;
     self.birthDateTextField.text = [ModelController sharedInstance].user.birthdate;
     self.weightTextField.text = [[ModelController sharedInstance].user.weight stringValue];
@@ -183,7 +182,6 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
-
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView.contentOffset.x > 0 || scrollView.contentOffset.x < 0)

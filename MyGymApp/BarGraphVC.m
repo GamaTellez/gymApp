@@ -22,7 +22,7 @@ static NSString *unit = @"";
 @interface BarGraphVC ()
 
 @property (strong, nonatomic) EColumnChart *eColumnChart;
-@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @property (strong, nonatomic) IBOutlet UILabel *bodyPartExercises;
 
 @property (nonatomic, strong) NSMutableArray *data;
@@ -37,6 +37,8 @@ static NSString *unit = @"";
 @property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGraph;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSString *stringBodyPart;
+@property (strong, nonatomic) IBOutlet UILabel *exerciseNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *exerciseWeightLabel;
 
 
 @end
@@ -58,6 +60,21 @@ static NSString *unit = @"";
 {
     [super viewDidLoad];
     self.title = @"Bodyparts Info";
+    
+    
+    
+    
+    self.bodyPartExercises.layer.cornerRadius = 8;
+    self.bodyPartExercises.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.bodyPartExercises.layer.borderWidth = 1.0;
+
+    self.exerciseNameLabel.layer.cornerRadius = 8;
+    self.exerciseNameLabel.layer.borderWidth = 1.0;
+    self.exerciseNameLabel.backgroundColor = [UIColor clearColor];
+    
+    self.exerciseWeightLabel.layer.cornerRadius = 8;
+    self.exerciseWeightLabel.layer.borderWidth = 1.0;
+    self.exerciseWeightLabel.backgroundColor = [UIColor clearColor];
 //    NSMutableArray *temp = [NSMutableArray array];
 //    for (int i = 0; i < 50; i++)
 //    {
@@ -198,7 +215,7 @@ static NSString *unit = @"";
     //self.valueLabel.text = [NSString stringWithFormat:@"Number of times bodypart was worked: %@" ,[NSNumber numberWithFloat:eColumn.eColumnDataModel.value]];
     self.bodyPartExercises.text = [NSString stringWithFormat:@"%@ top exercises",eColumn.eColumnDataModel.label];
     
-     BodyPartExercisesDataSource *dataSource = self.tableView.dataSource;
+     BodyPartExercisesDataSource *dataSource =(BodyPartExercisesDataSource *)self.tableView.dataSource;
     dataSource.bodyPart = eColumn.eColumnDataModel.label;
     [self.tableView reloadData];
     NSLog(@"%@", dataSource.bodyPart);

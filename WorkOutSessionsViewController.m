@@ -26,10 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    // Do any additional setup after loading the view.
-    self.title = @"This Week Gym Sessions";
+    self.title = @"Lift Buddy";
 }
 
 

@@ -12,6 +12,7 @@
 
 @interface RepsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
 
 @end
 
@@ -21,6 +22,11 @@
     [super viewDidLoad];
     RepsDataSource *dataSource = self.tableView.dataSource;
     [dataSource updateWithExercise:self.exercise];
+    
+    //setting savebuttton appearance
+    self.saveButton.layer.cornerRadius = 10;
+    self.saveButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000];
+    self.saveButton.tintColor = [UIColor blackColor];
     
     // Do any additional setup after loading the view.
 }
