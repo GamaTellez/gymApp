@@ -132,6 +132,10 @@ dispatch_once(&onceToken, ^{
     newRep.weights = weight;
     newRep.exercise = exercise;
     
+    if (newRep.weights > exercise.maxWeight) {
+        exercise.maxWeight = newRep.weights;
+    }
+    
     [self saveToCoreData];
 }
 #pragma mark - Reps
@@ -258,9 +262,14 @@ dispatch_once(&onceToken, ^{
     NSFetchRequest *exerciseForBodyPartsFetch = [NSFetchRequest fetchRequestWithEntityName:@"Exercise"];
     NSArray *allExercisesArray = [[Stack sharedInstance].managedObjectContext executeFetchRequest:exerciseForBodyPartsFetch error:nil];
     
+    
+    NSSortDescriptor *sortDescriptorByMaxWeight = [[NSSortDescriptor alloc] initWithKey:@"maxWeight" ascending:NO];
+    NSArray *sortedExercisesArray = [allExercisesArray sortedArrayUsingDescriptors:@[sortDescriptorByMaxWeight]];
+    
+    
     NSMutableArray *arrayWithFilteredExercises = [[NSMutableArray alloc] init];
     
-    for (Exercise *exercise in allExercisesArray) {
+    for (Exercise *exercise in sortedExercisesArray) {
         for (BodyPart *bodyPart in exercise.bodyParts) {
             if ([bodyPart.bodyPartTargeted isEqualToString:bodyPartString]) {
                 [arrayWithFilteredExercises addObject:exercise];
@@ -268,6 +277,7 @@ dispatch_once(&onceToken, ^{
         }
     }
     return arrayWithFilteredExercises;
+    
 }
 
 #pragma mark -save to coredaata

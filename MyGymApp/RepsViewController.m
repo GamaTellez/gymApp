@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    RepsDataSource *dataSource = self.tableView.dataSource;
+    RepsDataSource *dataSource = (RepsDataSource *)self.tableView.dataSource;
     [dataSource updateWithExercise:self.exercise];
     
     //setting savebuttton appearance

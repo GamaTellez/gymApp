@@ -7,6 +7,7 @@
     <entity name="Exercise" representedClassName="Exercise" syncable="YES">
         <attribute name="exerciseDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="exerciseName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="maxWeight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="bodyParts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="BodyPart" inverseName="exercise" inverseEntity="BodyPart" syncable="YES"/>
         <relationship name="reps" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Rep" inverseName="exercise" inverseEntity="Rep" syncable="YES"/>
         <relationship name="workoutSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutSession" inverseName="exercises" inverseEntity="WorkoutSession" syncable="YES"/>
@@ -21,11 +22,19 @@
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="birthdate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="heaviestWeight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lightestWeight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="weights" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Weight" inverseName="user" inverseEntity="Weight" syncable="YES"/>
         <relationship name="workoutsessions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="WorkoutSession" inverseName="user" inverseEntity="WorkoutSession" syncable="YES"/>
+    </entity>
+    <entity name="Weight" representedClassName="Weight" syncable="YES">
+        <attribute name="imageForWeight" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="weights" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="WorkoutSession" representedClassName="WorkoutSession" syncable="YES">
         <attribute name="sessionDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -38,9 +47,10 @@
     </entity>
     <elements>
         <element name="BodyPart" positionX="-45" positionY="99" width="128" height="75"/>
-        <element name="Exercise" positionX="-54" positionY="90" width="128" height="120"/>
+        <element name="Exercise" positionX="-54" positionY="90" width="128" height="135"/>
         <element name="Rep" positionX="-54" positionY="81" width="128" height="120"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="WorkoutSession" positionX="-54" positionY="54" width="128" height="150"/>
+        <element name="Weight" positionX="-54" positionY="90" width="128" height="90"/>
     </elements>
 </model>
