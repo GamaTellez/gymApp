@@ -113,13 +113,12 @@
     //self.bodyParts = [[NSMutableArray alloc] init];
     
     BodyPart * bodyPartOne = [[ModelController sharedInstance] createBodyPart:self.bodyPartTextField.text];
-    BodyPart * bodyPartTwo = [[ModelController sharedInstance] createBodyPart:self.bodyPart2TextField.text];
+    //BodyPart * bodyPartTwo = [[ModelController sharedInstance] createBodyPart:self.bodyPart2TextField.text];
     
-    NSArray *arrayOfBodyParts = @[bodyPartOne, bodyPartTwo];
+    NSArray *arrayOfBodyParts = @[bodyPartOne];
     
     [[ModelController sharedInstance] addExerciseWithName:self.exerciseNameTextField.text withDescription:self.exerciseDescriptionTextField.text withBodyPartstTaget:arrayOfBodyParts andWorkoutSession:self.session];
     
-//    NSOrderedSet *orderedBodyParts = [NSOrderedSet orderedSetWithArray:self.bodyParts];
     self.exerciseNameTextField.text = @"";
     self.exerciseDescriptionTextField.text = @"";
     self.bodyPartTextField.text = @"";

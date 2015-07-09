@@ -26,15 +26,7 @@
     }
     Exercise *newExercise = self.exercisesOfBP[indexPath.row];
     cell.exerciseNameLabel.text = newExercise.exerciseName;
-//    int newWeight = 0;
-//    int maxWeight = 0;
-//    for (Rep *rep in newExercise.reps) {
-//        newWeight = [rep.weights intValue];
-//        if   (newWeight > maxWeight) {
-//            maxWeight = newWeight;
-//        }
-//    }
-//    cell.exerciseWeightLabel.text = [NSString stringWithFormat:@"%i", maxWeight];
+
     cell.exerciseWeightLabel.text = [NSString stringWithFormat:@"%ld",(long)[newExercise.maxWeight integerValue]];
     return cell;
 }

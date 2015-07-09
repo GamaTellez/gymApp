@@ -111,6 +111,7 @@ dispatch_once(&onceToken, ^{
     newExercise.exerciseName = name;
     newExercise.exerciseDescription = description;
     newExercise.workoutSession = session;
+    newExercise.maxWeight = 0;
     
     newExercise.bodyParts = [[NSOrderedSet alloc] initWithArray:bodyParts];
     
@@ -132,9 +133,10 @@ dispatch_once(&onceToken, ^{
     newRep.weights = weight;
     newRep.exercise = exercise;
     
-    if (newRep.weights > exercise.maxWeight) {
+    
+    
+    if (newRep.weights > exercise.maxWeight) 
         exercise.maxWeight = newRep.weights;
-    }
     
     [self saveToCoreData];
 }
@@ -226,20 +228,7 @@ dispatch_once(&onceToken, ^{
                     hamstrings ++;
             }
     }
-    NSLog(@" hamstrings %zd",hamstrings);
-    NSLog(@" glutes %zd",glutes);
-    NSLog(@" lowerBack %zd",lowerBack);
-    NSLog(@"upperBack %zd",upperBack);
-    NSLog(@"calves %zd",calves);
-    NSLog(@"quads %zd",quads);
-    NSLog(@"abs %zd",abs);
-    NSLog(@"forearm %zd",forearm);
-    NSLog(@"chest %zd",chest);
-    NSLog(@"biceps %zd",biceps);
-    NSLog(@"triceps %zd",triceps);
-    NSLog(@"shoulders %zd",shoulders);
-    NSLog(@"traps %zd",traps);
-    
+
     [bodyPartsData addObject:[NSNumber numberWithInt:traps]];
     [bodyPartsData addObject:[NSNumber numberWithInt:shoulders]];
     [bodyPartsData addObject:[NSNumber numberWithInt:chest]];
@@ -263,20 +252,23 @@ dispatch_once(&onceToken, ^{
     NSArray *allExercisesArray = [[Stack sharedInstance].managedObjectContext executeFetchRequest:exerciseForBodyPartsFetch error:nil];
     
     
-    NSSortDescriptor *sortDescriptorByMaxWeight = [[NSSortDescriptor alloc] initWithKey:@"maxWeight" ascending:NO];
-    NSArray *sortedExercisesArray = [allExercisesArray sortedArrayUsingDescriptors:@[sortDescriptorByMaxWeight]];
     
     
     NSMutableArray *arrayWithFilteredExercises = [[NSMutableArray alloc] init];
     
-    for (Exercise *exercise in sortedExercisesArray) {
+    for (Exercise *exercise in allExercisesArray) {
         for (BodyPart *bodyPart in exercise.bodyParts) {
             if ([bodyPart.bodyPartTargeted isEqualToString:bodyPartString]) {
                 [arrayWithFilteredExercises addObject:exercise];
             }
         }
     }
-    return arrayWithFilteredExercises;
+    
+    NSSortDescriptor *sortDescriptorByMaxWeight = [[NSSortDescriptor alloc] initWithKey:@"maxWeight" ascending:NO];
+    NSArray *sortedExercisesArray = [arrayWithFilteredExercises sortedArrayUsingDescriptors:@[sortDescriptorByMaxWeight]];
+
+    
+    return sortedExercisesArray;
     
 }
 

@@ -39,19 +39,13 @@ static NSString *exerciseCell = @"exerciseCell";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:exerciseCell];
     }
     
-//    
-//    NSArray* reversedArray = [[self.workoutsession.exercises reverseObjectEnumerator] allObjects];
-//    Exercise *newExercise = reversedArray[indexPath.row];
-    
    Exercise *newExercise = self.workoutsession.exercises[indexPath.row];
     cell.textLabel.text = newExercise.exerciseName;
-    
-    if (newExercise.bodyParts.count > 0) {
+        if (newExercise.bodyParts.count > 0) {
         BodyPart * bodyPartOne = newExercise.bodyParts[0];
-        BodyPart * bodyPartTwo = newExercise.bodyParts[1];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@",bodyPartOne.bodyPartTargeted,bodyPartTwo.bodyPartTargeted];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",bodyPartOne.bodyPartTargeted];
     }
-    
+
     if (newExercise.reps.count < 1 || newExercise.reps == nil) {
         cell.textLabel.textColor = [UIColor colorWithRed:0.945 green:0.247 blue:0.250 alpha:1.000];
     } else if (newExercise.reps.count > 0 || newExercise.reps != nil) {

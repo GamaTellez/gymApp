@@ -49,7 +49,12 @@
     self.nameTextField.text = [ModelController sharedInstance].user.name;
     self.birthDateTextField.text = [ModelController sharedInstance].user.birthdate;
     self.weightTextField.text = [[ModelController sharedInstance].user.weight stringValue];
-    self.heightTextField.text = [NSString stringWithFormat:@"%2@",[[ModelController sharedInstance].user.height stringValue]];
+    if ([ModelController sharedInstance].user.height != nil) {
+         self.heightTextField.text = [NSString stringWithFormat:@"%2@",[[ModelController sharedInstance].user.height stringValue]];
+    } else {
+        self.heightTextField.text = @"";
+    }
+
     self.userPictureImageView.image = [UIImage imageWithData:[ModelController sharedInstance].user.userImage];
     self.genderTextField.text = [ModelController sharedInstance].user.gender;
     

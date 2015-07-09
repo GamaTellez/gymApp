@@ -50,7 +50,7 @@
         <element name="Exercise" positionX="-54" positionY="90" width="128" height="135"/>
         <element name="Rep" positionX="-54" positionY="81" width="128" height="120"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="195"/>
-        <element name="WorkoutSession" positionX="-54" positionY="54" width="128" height="150"/>
         <element name="Weight" positionX="-54" positionY="90" width="128" height="90"/>
+        <element name="WorkoutSession" positionX="-54" positionY="54" width="128" height="150"/>
     </elements>
 </model>
