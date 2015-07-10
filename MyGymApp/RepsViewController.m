@@ -10,7 +10,7 @@
 #import "RepsDataSource.h"
 #import "ModelController.h"
 
-@interface RepsViewController () <UIPopoverControllerDelegate>
+@interface RepsViewController () <UIPopoverControllerDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UIButton *viewExerciseDescription;
@@ -89,7 +89,7 @@
 }
 
 - (IBAction)addSetButtonTapped:(id)sender {
-   
+  
     if ([self.numOfRepstextField.text  isEqual: @""] || [self.numOfSetsTextField.text isEqual:@"" ]|| [self.weightTextField.text isEqual:@""]) {
         
         UIAlertController *emptyFieldAlert = [UIAlertController alertControllerWithTitle:@"Missing Fields" message:@"All fields must be completed" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -101,12 +101,14 @@
     
     [[ModelController sharedInstance] addRepToExerciseWithNumOfSets:[NSNumber numberWithDouble:[self.numOfSetsTextField.text doubleValue]] withReps:[NSNumber numberWithDouble:[self.numOfRepstextField.text doubleValue]] andWeight:[NSNumber numberWithDouble:[self.weightTextField.text doubleValue]] inExercise:self.exercise];
     [self.tableView reloadData];
-    
     self.numOfRepstextField.text = @"";
     self.numOfSetsTextField.text = @"";
     self.weightTextField.text = @"";
          }
+    [self.view endEditing:YES];
 }
+
+
 
 /*
 #pragma mark - Navigation

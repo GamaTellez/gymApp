@@ -131,7 +131,7 @@
     //self.bodyPart2TextField.text = @"";
     
     }
-    
+    [self resignFirstResponder];
     [self.tableView reloadData];
 }
 
