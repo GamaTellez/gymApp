@@ -22,7 +22,7 @@
 
 
 
-- (void)showInView:(UIView *)theView withExerciseName:(NSString *)exerciseName fromSession:(NSString *)session withMaxweight:(NSString *)maxWeight andwithDate:(NSDate *)date animated:(BOOL)animated;
+- (void)showInView:(UIView *)theView withExerciseName:(NSString *)exerciseName fromSession:(NSString *)session withMaxweight:(NSString *)maxWeight  withReps:(NSString *)reps withSets:(NSString *)sets andwithDate:(NSDate *)date animated:(BOOL)animated;
 
 
 @end

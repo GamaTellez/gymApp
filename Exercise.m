@@ -2,7 +2,7 @@
 //  Exercise.m
 //  MyGymApp
 //
-//  Created by Gamaliel Tellez on 7/7/15.
+//  Created by Gamaliel Tellez on 7/9/15.
 //  Copyright (c) 2015 Gamaliel Tellez. All rights reserved.
 //
 
@@ -17,6 +17,8 @@
 @dynamic exerciseDescription;
 @dynamic exerciseName;
 @dynamic maxWeight;
+@dynamic repsWithMaxWeight;
+@dynamic setsWithMaxWeight;
 @dynamic bodyParts;
 @dynamic reps;
 @dynamic workoutSession;

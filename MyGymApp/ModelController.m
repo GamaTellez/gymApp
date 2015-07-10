@@ -137,6 +137,8 @@ dispatch_once(&onceToken, ^{
     
     if (newRep.weights > exercise.maxWeight) 
         exercise.maxWeight = newRep.weights;
+        exercise.repsWithMaxWeight = newRep.numOfReps;
+        exercise.setsWithMaxWeight = newRep.numOfSets;
     
     [self saveToCoreData];
 }

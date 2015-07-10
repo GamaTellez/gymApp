@@ -2,31 +2,41 @@
 //  User.h
 //  MyGymApp
 //
-//  Created by Gamaliel Tellez on 7/7/15.
+//  Created by Gamaliel Tellez on 7/9/15.
 //  Copyright (c) 2015 Gamaliel Tellez. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class NSManagedObject, WorkoutSession;
+@class Weight, WorkoutSession;
 
 @interface User : NSManagedObject
 
 @property (nonatomic, retain) NSString * birthdate;
 @property (nonatomic, retain) NSString * gender;
+@property (nonatomic, retain) NSNumber * heaviestWeight;
 @property (nonatomic, retain) NSNumber * height;
+@property (nonatomic, retain) NSNumber * lightestWeight;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSData * userImage;
-@property (nonatomic, retain) NSNumber * lightestWeight;
-@property (nonatomic, retain) NSNumber * heaviestWeight;
 @property (nonatomic, retain) NSNumber * weight;
-@property (nonatomic, retain) NSOrderedSet *workoutsessions;
 @property (nonatomic, retain) NSOrderedSet *weights;
+@property (nonatomic, retain) NSOrderedSet *workoutsessions;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
 
+- (void)insertObject:(Weight *)value inWeightsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromWeightsAtIndex:(NSUInteger)idx;
+- (void)insertWeights:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeWeightsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInWeightsAtIndex:(NSUInteger)idx withObject:(Weight *)value;
+- (void)replaceWeightsAtIndexes:(NSIndexSet *)indexes withWeights:(NSArray *)values;
+- (void)addWeightsObject:(Weight *)value;
+- (void)removeWeightsObject:(Weight *)value;
+- (void)addWeights:(NSOrderedSet *)values;
+- (void)removeWeights:(NSOrderedSet *)values;
 - (void)insertObject:(WorkoutSession *)value inWorkoutsessionsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromWorkoutsessionsAtIndex:(NSUInteger)idx;
 - (void)insertWorkoutsessions:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
@@ -37,14 +47,4 @@
 - (void)removeWorkoutsessionsObject:(WorkoutSession *)value;
 - (void)addWorkoutsessions:(NSOrderedSet *)values;
 - (void)removeWorkoutsessions:(NSOrderedSet *)values;
-- (void)insertObject:(NSManagedObject *)value inWeightsAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromWeightsAtIndex:(NSUInteger)idx;
-- (void)insertWeights:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeWeightsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInWeightsAtIndex:(NSUInteger)idx withObject:(NSManagedObject *)value;
-- (void)replaceWeightsAtIndexes:(NSIndexSet *)indexes withWeights:(NSArray *)values;
-- (void)addWeightsObject:(NSManagedObject *)value;
-- (void)removeWeightsObject:(NSManagedObject *)value;
-- (void)addWeights:(NSOrderedSet *)values;
-- (void)removeWeights:(NSOrderedSet *)values;
 @end

@@ -2,7 +2,7 @@
 //  Exercise.h
 //  MyGymApp
 //
-//  Created by Gamaliel Tellez on 7/7/15.
+//  Created by Gamaliel Tellez on 7/9/15.
 //  Copyright (c) 2015 Gamaliel Tellez. All rights reserved.
 //
 
@@ -16,6 +16,8 @@
 @property (nonatomic, retain) NSString * exerciseDescription;
 @property (nonatomic, retain) NSString * exerciseName;
 @property (nonatomic, retain) NSNumber * maxWeight;
+@property (nonatomic, retain) NSNumber * repsWithMaxWeight;
+@property (nonatomic, retain) NSNumber * setsWithMaxWeight;
 @property (nonatomic, retain) NSOrderedSet *bodyParts;
 @property (nonatomic, retain) NSOrderedSet *reps;
 @property (nonatomic, retain) WorkoutSession *workoutSession;

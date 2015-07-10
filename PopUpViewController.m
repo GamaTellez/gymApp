@@ -9,6 +9,7 @@
 #import "PopUpViewController.h"
 
 @interface PopUpViewController ()
+@property (strong, nonatomic) IBOutlet UIButton *dissmissButton;
 
 @end
 
@@ -38,6 +39,12 @@
     self.popUpView.layer.cornerRadius = 8;
     self.popUpView.layer.shadowOpacity = 0.8;
     self.popUpView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    
+    
+    self.dissmissButton.layer.cornerRadius = 10;
+    self.dissmissButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000];
+    self.dissmissButton.tintColor = [UIColor blackColor];
+
     
     [super viewDidLoad];
 }
@@ -70,7 +77,7 @@
 }
 
 
-- (void)showInView:(UIView *)theView withExerciseName:(NSString *)exerciseName fromSession:(NSString *)session withMaxweight:(NSString *)maxWeight andwithDate:(NSDate *)date animated:(BOOL)animated {
+- (void)showInView:(UIView *)theView withExerciseName:(NSString *)exerciseName fromSession:(NSString *)session withMaxweight:(NSString *)maxWeight withReps:(NSString *)reps withSets:(NSString *)sets andwithDate:(NSDate *)date animated:(BOOL)animated {
     
  dispatch_async(dispatch_get_main_queue(), ^{
      [theView addSubview:self.view];
@@ -81,6 +88,9 @@
                                                            timeStyle:NSDateFormatterShortStyle];
      self.dateLabel.text = dateString;
      self.maxWeightLabel.text = maxWeight;
+     self.repsLabel.text = reps;
+     self.setsLabel.text = sets;
+     
      if (animated) {
          [self showAnimate];
      }

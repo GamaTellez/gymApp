@@ -132,10 +132,9 @@ static NSString *unit = @"";
     self.popUpViewController = [[PopUpViewController alloc] initWithNibName:@"PopUpViewController" bundle:nil];
     [self.popUpViewController setTitle:self.exerciseToDisplayInPopUp.exerciseName];
 
+    [self.popUpViewController showInView:self.view withExerciseName:self.exerciseToDisplayInPopUp.exerciseName fromSession:self.exerciseToDisplayInPopUp.workoutSession.sessionName withMaxweight:[self.exerciseToDisplayInPopUp.maxWeight stringValue] withReps:[self.exerciseToDisplayInPopUp.repsWithMaxWeight stringValue] withSets:[self.exerciseToDisplayInPopUp.setsWithMaxWeight stringValue] andwithDate:self.exerciseToDisplayInPopUp.workoutSession.sessionDate animated:YES];
     
-    [self.popUpViewController showInView:self.view withExerciseName:self.exerciseToDisplayInPopUp.exerciseName fromSession:self.exerciseToDisplayInPopUp.workoutSession.sessionName withMaxweight:[self.exerciseToDisplayInPopUp.maxWeight stringValue] andwithDate:self.exerciseToDisplayInPopUp.workoutSession.sessionDate animated:YES];
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 
