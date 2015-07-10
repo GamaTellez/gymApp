@@ -39,6 +39,7 @@
     [[UIView appearanceWhenContainedIn:[ProfilleViewController class], nil] setBackgroundColor:[UIColor colorWithWhite:0.944 alpha:1.000]];
     [[UIView appearanceWhenContainedIn:[RepsViewController class], nil] setBackgroundColor:[UIColor colorWithWhite:0.944 alpha:1.000]];
     
+    
 //    //labels apperance
 //    [UILabel appearanceWhenContainedIn:[BarGraphVC class], nil].backgroundColor = [UIColor colorWithWhite:0.398 alpha:1.000];
     

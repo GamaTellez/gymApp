@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EColumnChart.h"
 
-@interface BarGraphVC : UIViewController <EColumnChartDelegate, EColumnChartDataSource>
+@interface BarGraphVC : UIViewController <EColumnChartDelegate, EColumnChartDataSource, UITableViewDelegate>
+
 
 @end

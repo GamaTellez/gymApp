@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		870AF1981B45A1CB00B8DF40 /* AppAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 870AF1971B45A1CB00B8DF40 /* AppAppearance.m */; };
 		870FDEBA1B2BC833009F48A7 /* CustomCellForWorkoutSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 870FDEB91B2BC833009F48A7 /* CustomCellForWorkoutSession.m */; };
+		872052131B4EF0E2009F6043 /* PopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872052111B4EF0E2009F6043 /* PopUpViewController.m */; };
+		872052141B4EF0E2009F6043 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872052121B4EF0E2009F6043 /* PopUpViewController.xib */; };
 		8731D45A1B40428A001F73EB /* BarGraphVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D4591B40428A001F73EB /* BarGraphVC.m */; };
 		8731D47C1B4045A5001F73EB /* EColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D46D1B4045A5001F73EB /* EColor.m */; };
 		8731D47D1B4045A5001F73EB /* EColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731D46F1B4045A5001F73EB /* EColumn.m */; };
@@ -62,6 +64,10 @@
 		870AF1971B45A1CB00B8DF40 /* AppAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppAppearance.m; path = ../AppAppearance.m; sourceTree = "<group>"; };
 		870FDEB81B2BC833009F48A7 /* CustomCellForWorkoutSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCellForWorkoutSession.h; path = ../CustomCellForWorkoutSession.h; sourceTree = "<group>"; };
 		870FDEB91B2BC833009F48A7 /* CustomCellForWorkoutSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCellForWorkoutSession.m; path = ../CustomCellForWorkoutSession.m; sourceTree = "<group>"; };
+		872052101B4EF0E2009F6043 /* PopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopUpViewController.h; path = ../PopUpViewController.h; sourceTree = "<group>"; };
+		872052111B4EF0E2009F6043 /* PopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopUpViewController.m; path = ../PopUpViewController.m; sourceTree = "<group>"; };
+		872052121B4EF0E2009F6043 /* PopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PopUpViewController.xib; path = ../PopUpViewController.xib; sourceTree = "<group>"; };
+		872052151B4F09AE009F6043 /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
 		8731D4581B40428A001F73EB /* BarGraphVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarGraphVC.h; sourceTree = "<group>"; };
 		8731D4591B40428A001F73EB /* BarGraphVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarGraphVC.m; sourceTree = "<group>"; };
 		8731D46C1B4045A5001F73EB /* EColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColor.h; sourceTree = "<group>"; };
@@ -161,6 +167,9 @@
 				87CE6E361B41D11000AE1E3C /* BodyPartExercisesDataSource.m */,
 				87CE6E381B41D16100AE1E3C /* BodypartExerciseCustomCell.h */,
 				87CE6E391B41D16100AE1E3C /* BodypartExerciseCustomCell.m */,
+				872052101B4EF0E2009F6043 /* PopUpViewController.h */,
+				872052111B4EF0E2009F6043 /* PopUpViewController.m */,
+				872052121B4EF0E2009F6043 /* PopUpViewController.xib */,
 			);
 			name = GraphBarVC;
 			sourceTree = "<group>";
@@ -168,6 +177,7 @@
 		8740B85E1B0E759900D60630 = {
 			isa = PBXGroup;
 			children = (
+				872052151B4F09AE009F6043 /* PopUpViewController.xib */,
 				8740B8691B0E759900D60630 /* MyGymApp */,
 				8740B8831B0E759900D60630 /* MyGymAppTests */,
 				8740B8681B0E759900D60630 /* Products */,
@@ -416,6 +426,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				872052141B4EF0E2009F6043 /* PopUpViewController.xib in Resources */,
 				8740B8761B0E759900D60630 /* Main.storyboard in Resources */,
 				8740B87B1B0E759900D60630 /* LaunchScreen.xib in Resources */,
 				8740B8781B0E759900D60630 /* Images.xcassets in Resources */,
@@ -467,6 +478,7 @@
 				8740B8921B0E78B000D60630 /* ProfilleViewController.m in Sources */,
 				8731D4821B4045A5001F73EB /* EViewSwitcher.m in Sources */,
 				870AF1981B45A1CB00B8DF40 /* AppAppearance.m in Sources */,
+				872052131B4EF0E2009F6043 /* PopUpViewController.m in Sources */,
 				87CFC1AB1B1D4F4B004DEC16 /* WorkOutSessionsDataSource.m in Sources */,
 				87D171A31B30C86C00D3995D /* AddExercisesVC.m in Sources */,
 			);

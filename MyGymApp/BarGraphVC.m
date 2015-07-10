@@ -13,9 +13,11 @@
 #import "EColor.h"
 #include <stdlib.h>
 #import "ModelController.h"
-
-
 #import "BodyPartExercisesDataSource.h"
+#import "Rep.h"
+#import "PopUpViewController.h"
+
+
 
 static NSString *unit = @"";
 
@@ -39,13 +41,17 @@ static NSString *unit = @"";
 @property (strong, nonatomic) NSString *stringBodyPart;
 @property (strong, nonatomic) IBOutlet UILabel *exerciseNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *exerciseWeightLabel;
+//adding popupview
 
+@property (strong, nonatomic) BodyPartExercisesDataSource *dataSource;
+@property (strong, nonatomic) Exercise *exerciseToDisplayInPopUp;
+@property (strong, nonatomic) PopUpViewController *popUpViewController;
 
 @end
 
 @implementation BarGraphVC
 
-#pragma -mark- ViewController Life Circle
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -61,32 +67,21 @@ static NSString *unit = @"";
     [super viewDidLoad];
     self.title = @"Bodyparts Info";
     
-    
-    
-    
+    self.dataSource = (BodyPartExercisesDataSource *)self.tableView.dataSource;
+    //setting up pop up view
+    ////
     self.bodyPartExercises.layer.cornerRadius = 8;
     self.bodyPartExercises.layer.borderColor = [[UIColor blackColor] CGColor];
     self.bodyPartExercises.layer.borderWidth = 1.0;
-
+    ///
     self.exerciseNameLabel.layer.cornerRadius = 8;
     self.exerciseNameLabel.layer.borderWidth = 1.0;
     self.exerciseNameLabel.backgroundColor = [UIColor clearColor];
-    
+    ///
     self.exerciseWeightLabel.layer.cornerRadius = 8;
     self.exerciseWeightLabel.layer.borderWidth = 1.0;
     self.exerciseWeightLabel.backgroundColor = [UIColor clearColor];
-//    NSMutableArray *temp = [NSMutableArray array];
-//    for (int i = 0; i < 50; i++)
-//    {
-//        int value = arc4random() % 100;
-//        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:value index:i unit:@"kWh"];
-//        [temp addObject:eColumnDataModel];
-//    }
-//    _data = [NSArray arrayWithArray:temp];
-    
-   
-    
-    
+    ////
     self.valueForBodyPartInGraph = [[NSArray alloc] init];
     self.valueForBodyPartInGraph = [[ModelController sharedInstance] numberOfTimesBodyPartWasWorkedOut];
     NSInteger index = 0;
@@ -127,11 +122,30 @@ static NSString *unit = @"";
     [self.view addGestureRecognizer:self.leftSwipeGraph];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSArray *newArray = [[ModelController sharedInstance] allExercisesFetchForKey:self.dataSource.bodyPart];
+    self.exerciseToDisplayInPopUp = newArray[indexPath.row];
+   
+   // NSLog(@"%@", self.exerciseToDisplayInPopUp.exerciseName);
+
+    self.popUpViewController = [[PopUpViewController alloc] initWithNibName:@"PopUpViewController" bundle:nil];
+    [self.popUpViewController setTitle:self.exerciseToDisplayInPopUp.exerciseName];
+
+    
+    [self.popUpViewController showInView:self.view withExerciseName:self.exerciseToDisplayInPopUp.exerciseName fromSession:self.exerciseToDisplayInPopUp.workoutSession.sessionName withMaxweight:[self.exerciseToDisplayInPopUp.maxWeight stringValue] andwithDate:self.exerciseToDisplayInPopUp.workoutSession.sessionDate animated:YES];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
+
+#pragma handling swipe for graph
+
 - (void)handleRightSwipeGraph:(UISwipeGestureRecognizer *)rightSwipe {
     //NSLog(@"right");
     if (self.eColumnChart == nil) return;
     [self.eColumnChart moveLeft];
-    
 
 }
 
@@ -215,10 +229,9 @@ static NSString *unit = @"";
     //self.valueLabel.text = [NSString stringWithFormat:@"Number of times bodypart was worked: %@" ,[NSNumber numberWithFloat:eColumn.eColumnDataModel.value]];
     self.bodyPartExercises.text = [NSString stringWithFormat:@"%@ top exercises",eColumn.eColumnDataModel.label];
     
-     BodyPartExercisesDataSource *dataSource =(BodyPartExercisesDataSource *)self.tableView.dataSource;
-    dataSource.bodyPart = eColumn.eColumnDataModel.label;
+    self.dataSource.bodyPart = eColumn.eColumnDataModel.label;
     [self.tableView reloadData];
-    NSLog(@"%@", dataSource.bodyPart);
+    NSLog(@"%@", self.dataSource.bodyPart);
 }
 
 - (void)eColumnChart:(EColumnChart *)eColumnChart

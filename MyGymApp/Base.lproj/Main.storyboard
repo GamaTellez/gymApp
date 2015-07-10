@@ -329,7 +329,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="950-HQ-aTE" id="Bhe-jV-tNR"/>
-                                    <outlet property="delegate" destination="950-HQ-aTE" id="hwN-Zb-35N"/>
+                                    <outlet property="delegate" destination="gai-MD-PUd" id="xDJ-Oo-PUW"/>
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0C2-AZ-XIe">
@@ -370,7 +370,7 @@
                         <outlet property="bodyPartExercises" destination="fHI-H4-dmY" id="eOJ-gk-gpu"/>
                         <outlet property="exerciseNameLabel" destination="0C2-AZ-XIe" id="blE-JY-WB9"/>
                         <outlet property="exerciseWeightLabel" destination="yJB-na-Au4" id="H7I-ZS-xEA"/>
-                        <outlet property="tableView" destination="eh6-Ea-Lfo" id="APz-i9-coV"/>
+                        <outlet property="tableView" destination="eh6-Ea-Lfo" id="WR6-nl-jeN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uKS-HF-a6V" userLabel="First Responder" sceneMemberID="firstResponder"/>
