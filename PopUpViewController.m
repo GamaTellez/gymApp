@@ -10,6 +10,9 @@
 
 @interface PopUpViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *dissmissButton;
+@property (strong, nonatomic) IBOutlet UILabel *staticLabelSets;
+@property (strong, nonatomic) IBOutlet UILabel *staticLabelReps;
+@property (strong, nonatomic) IBOutlet UIView *staticLabelMax;
 
 @end
 
@@ -36,10 +39,40 @@
     self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];
     self.view.frame = [[UIScreen mainScreen] bounds];
     
+    self.popUpView.backgroundColor = [UIColor colorWithWhite:0.841 alpha:1.000];
     self.popUpView.layer.cornerRadius = 8;
     self.popUpView.layer.shadowOpacity = 0.8;
     self.popUpView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     
+    
+    self.exerciseNameLabel.layer.cornerRadius = 8;
+    self.exerciseNameLabel.layer.borderWidth = 1.0;
+    self.exerciseNameLabel.backgroundColor = [UIColor clearColor];
+    
+    self.workoutSessionLabel.layer.cornerRadius = 8;
+    self.workoutSessionLabel.layer.borderWidth = 1.0;
+    self.workoutSessionLabel.backgroundColor = [UIColor clearColor];
+    
+    self.staticLabelMax.backgroundColor = [UIColor clearColor];
+    self.staticLabelReps.backgroundColor = [UIColor clearColor];
+    self.staticLabelSets.backgroundColor = [UIColor clearColor];
+    
+    
+    self.dateLabel.layer.cornerRadius = 8;
+    self.dateLabel.layer.borderWidth = 1.0;
+    self.dateLabel.backgroundColor = [UIColor clearColor];
+    
+    self.repsLabel.layer.cornerRadius = 8;
+    self.repsLabel.layer.borderWidth = 1.0;
+    self.repsLabel.backgroundColor = [UIColor clearColor];
+    
+    self.setsLabel.layer.cornerRadius = 8;
+    self.setsLabel.layer.borderWidth = 1.0;
+    self.setsLabel.backgroundColor = [UIColor clearColor];
+    
+    self.maxWeightLabel.layer.cornerRadius = 8;
+    self.maxWeightLabel.layer.borderWidth = 1.0;
+    self.maxWeightLabel.backgroundColor = [UIColor clearColor];
     
     self.dissmissButton.layer.cornerRadius = 10;
     self.dissmissButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000];
