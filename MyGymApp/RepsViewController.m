@@ -10,9 +10,14 @@
 #import "RepsDataSource.h"
 #import "ModelController.h"
 
-@interface RepsViewController ()
+@interface RepsViewController () <UIPopoverControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
+@property (strong, nonatomic) IBOutlet UIButton *viewExerciseDescription;
+@property (strong, nonatomic) UITextView *textViewForNotes;
+@property (strong, nonatomic) UIView *viewForNotes;
+
+
 
 @end
 
@@ -22,15 +27,60 @@
     [super viewDidLoad];
     RepsDataSource *dataSource = (RepsDataSource *)self.tableView.dataSource;
     [dataSource updateWithExercise:self.exercise];
+    //viewexecercise description button
+    self.viewExerciseDescription.layer.cornerRadius = 8;
+    self.viewExerciseDescription.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000];
+    self.viewExerciseDescription.tintColor = [UIColor blackColor];
+
+
     
     //setting savebuttton appearance
     self.saveButton.layer.cornerRadius = 10;
     self.saveButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000];
     self.saveButton.tintColor = [UIColor blackColor];
     
-    // Do any additional setup after loading the view.
+    //set gesture recoginizer to dismiss notesTexview.
+    UITapGestureRecognizer *dismissTextViewNotes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissLabelNotes:)];
+    [self.view addGestureRecognizer:dismissTextViewNotes];
+
+}
+#pragma removing textviewnotes
+- (void)dismissLabelNotes:(id)sender {
+    
+   
+    [UIView animateWithDuration:0.4 animations:^{
+        [self.viewForNotes setAlpha:0];
+    } completion:^(BOOL finished) {
+         [self.viewForNotes removeFromSuperview];
+    }];
+
 }
 
+
+- (IBAction)viewExerciseDescriptionButtonTapped:(id)sender {
+    self.viewForNotes = [[UIView alloc] initWithFrame:CGRectMake(25, 25, self.view.frame.size.width -60, 100)];
+    self.textViewForNotes = [UITextView new];
+    self.textViewForNotes.editable = NO;
+    self.textViewForNotes.frame = CGRectMake(0, 0, self.viewForNotes.frame.size.width, self.viewForNotes.frame.size.height);
+    self.textViewForNotes.text = self.exercise.exerciseDescription;
+    self.textViewForNotes.backgroundColor = [UIColor colorWithWhite:0.920 alpha:1.000];
+   
+    self.viewForNotes.alpha = 0.0;
+    self.viewForNotes.layer.cornerRadius = 5;
+    self.viewForNotes.layer.borderWidth = 1.5f;
+    self.viewForNotes.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.viewForNotes.layer.masksToBounds = YES;
+    
+
+    [self.viewForNotes addSubview:self.textViewForNotes];
+    [self.view addSubview:self.viewForNotes];
+    
+    //Display the customView with animation
+    [UIView animateWithDuration:0.4 animations:^{
+        [self.viewForNotes setAlpha:1.0];
+    } completion:^(BOOL finished) {}];
+
+}
 
 
 - (void)didReceiveMemoryWarning {

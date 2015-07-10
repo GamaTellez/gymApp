@@ -35,7 +35,10 @@
   
     self.bodyPartTextField.inputView = self.pickerView;
     self.bodyPart2TextField.inputView = self.pickerView;
-    
+    //
+    self.exerciseNotesLabel.layer.cornerRadius = 8;
+    self.exerciseNotesLabel.layer.borderWidth = 1.0;
+    self.exerciseNotesLabel.layer.borderColor = [[UIColor blackColor] CGColor];
     
     AddExerciseDataSource *dataSource = self.tableView.dataSource;
     [dataSource updateWithSession:self.session];
@@ -63,8 +66,8 @@
     
     self.bodyPartTextField.inputView = self.pickerView;
     self.bodyPartTextField.inputAccessoryView = toolBarForPicker;
-    self.bodyPart2TextField.inputView = self.pickerView;
-    self.bodyPart2TextField.delegate = self;
+    //self.bodyPart2TextField.inputView = self.pickerView;
+    //self.bodyPart2TextField.delegate = self;
     self.bodyPartTextField.delegate = self;
     
     self.bodyPartsArray = [[NSArray alloc] init];
@@ -81,12 +84,12 @@
     [self.view endEditing:YES];
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    
-    if (textField ==  self.bodyPartTextField)  {
-        self.bodyPartTextField.text = self.bodyPartsArray[0];
-    } else if (textField == self.bodyPart2TextField) {
-        self.bodyPart2TextField.text = self.bodyPartsArray[1];
-    }
+//    
+//    if (textField ==  self.bodyPartTextField)  {
+//        self.bodyPartTextField.text = self.bodyPartsArray[0];
+//    } else if (textField == self.bodyPart2TextField) {
+//        self.bodyPart2TextField.text = self.bodyPartsArray[1];
+//    }
 }
 //
 //- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -96,6 +99,8 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+#pragma saveButton method
 
 - (IBAction)saveButtonTapped:(id)sender {
    
@@ -121,9 +126,12 @@
     
     self.exerciseNameTextField.text = @"";
     self.exerciseDescriptionTextField.text = @"";
-    self.bodyPartTextField.text = @"";
-    self.bodyPart2TextField.text = @"";
+        self.bodyPartTextField.text = [self.bodyPartsArray objectAtIndex:[self.pickerView selectedRowInComponent:0]];
+        
+    //self.bodyPart2TextField.text = @"";
+    
     }
+    
     [self.tableView reloadData];
 }
 

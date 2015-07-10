@@ -14,6 +14,7 @@
 
 
 @interface ProfilleViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIScrollViewDelegate,UIPickerViewDataSource, UIPickerViewDelegate>
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *birthDateTextField;
@@ -44,7 +45,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     
     self.nameTextField.text = [ModelController sharedInstance].user.name;
     self.birthDateTextField.text = [ModelController sharedInstance].user.birthdate;
@@ -54,7 +54,16 @@
     } else {
         self.heightTextField.text = @"";
     }
-
+    
+    self.saveButton.layer.cornerRadius = 8;
+    self.saveButton.layer.borderWidth = 1.0;
+    self.saveButton.tintColor = [UIColor blackColor];
+    self.saveButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000]
+    ;
+    
+    self.userPictureImageView.layer.borderColor = [[UIColor colorWithWhite:0.273 alpha:1.000] CGColor];
+    self.userPictureImageView.layer.borderWidth = 1.0;
+    
     self.userPictureImageView.image = [UIImage imageWithData:[ModelController sharedInstance].user.userImage];
     self.genderTextField.text = [ModelController sharedInstance].user.gender;
     
@@ -143,6 +152,7 @@
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             
             [self presentViewController:picker animated:YES completion:nil];
+            
         }]];
         
         [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil ]];
@@ -151,6 +161,7 @@
     } else {
        [alertController addAction:[UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
    
+           
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
         [self presentViewController:picker animated:YES completion:NULL];

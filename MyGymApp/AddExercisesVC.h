@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *bodyPartTextField;
 @property (strong, nonatomic) IBOutlet UITextField *bodyPart2TextField;
 @property (strong, nonatomic) IBOutlet UITextView *exerciseDescriptionTextField;
+@property (strong, nonatomic) IBOutlet UILabel *exerciseNotesLabel;
 
 
 @end

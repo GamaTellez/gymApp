@@ -15,4 +15,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *weightTextField;
 @property (strong, nonatomic) Exercise *exercise;
 
+
+
 @end
