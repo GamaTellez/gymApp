@@ -17,8 +17,10 @@
 @property (nonatomic, strong) NSMutableArray *bodyParts;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSArray *bodyPartsArray;
+@property (nonatomic, assign) BOOL isFavorite;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
+@property (strong, nonatomic) IBOutlet UISwitch *favoriteSwitch;
 
 
 @end
@@ -28,13 +30,28 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
+    
+    
+}
+
+
+- (IBAction)favoriteSwitchToggled:(id)sender {
+ 
+    if ([self.favoriteSwitch isOn]) {
+        self.isFavorite = YES;
+        NSLog(@"the switch is on");
+    } else {
+        self.isFavorite = NO;
+        NSLog(@"the switch is off");
+    }
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
+    [self.favoriteSwitch setOn:NO animated:NO];
     self.bodyPartTextField.inputView = self.pickerView;
-    self.bodyPart2TextField.inputView = self.pickerView;
+    //self.bodyPart2TextField.inputView = self.pickerView;
     //
     self.exerciseNotesLabel.layer.cornerRadius = 8;
     self.exerciseNotesLabel.layer.borderWidth = 1.0;
@@ -122,12 +139,12 @@
     
     NSArray *arrayOfBodyParts = @[bodyPartOne];
     
-    [[ModelController sharedInstance] addExerciseWithName:self.exerciseNameTextField.text withDescription:self.exerciseDescriptionTextField.text withBodyPartstTaget:arrayOfBodyParts andWorkoutSession:self.session];
+    [[ModelController sharedInstance] addExerciseWithName:self.exerciseNameTextField.text withDescription:self.exerciseDescriptionTextField.text withBodyPartstTaget:arrayOfBodyParts isFavorite:self.isFavorite andWorkoutSession:self.session];
     
     self.exerciseNameTextField.text = @"";
     self.exerciseDescriptionTextField.text = @"";
         self.bodyPartTextField.text = [self.bodyPartsArray objectAtIndex:[self.pickerView selectedRowInComponent:0]];
-        
+        [self.favoriteSwitch setOn:NO animated:YES];
     //self.bodyPart2TextField.text = @"";
     
     }

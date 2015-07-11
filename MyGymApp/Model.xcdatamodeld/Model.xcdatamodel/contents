@@ -7,6 +7,7 @@
     <entity name="Exercise" representedClassName="Exercise" syncable="YES">
         <attribute name="exerciseDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="exerciseName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="maxWeight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="repsWithMaxWeight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="setsWithMaxWeight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -49,7 +50,7 @@
     </entity>
     <elements>
         <element name="BodyPart" positionX="-45" positionY="99" width="128" height="75"/>
-        <element name="Exercise" positionX="-54" positionY="90" width="128" height="165"/>
+        <element name="Exercise" positionX="-54" positionY="90" width="128" height="180"/>
         <element name="Rep" positionX="-54" positionY="81" width="128" height="120"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="Weight" positionX="-54" positionY="90" width="128" height="90"/>

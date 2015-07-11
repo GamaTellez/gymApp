@@ -138,7 +138,7 @@
                     
                     EColumnChartLabel *eColumnChartLabel = [[EColumnChartLabel alloc] initWithFrame:CGRectMake(-1 * Y_COORDINATE_LABEL_WIDTH, -heightGap / 2.0 + heightGap * i, Y_COORDINATE_LABEL_WIDTH, heightGap)];
                     [eColumnChartLabel setTextAlignment:NSTextAlignmentCenter];
-                    eColumnChartLabel.text = [[NSString stringWithFormat:@"%ld ", valueGap * (horizontalLabelsCount - i)] stringByAppendingString:[_dataSource highestValueEColumnChart:self].unit];;
+                    eColumnChartLabel.text = [[NSString stringWithFormat:@"%ld", valueGap * (horizontalLabelsCount - i)] stringByAppendingString:[_dataSource highestValueEColumnChart:self].unit];;
                     [self addSubview:eColumnChartLabel];
                 }
                 

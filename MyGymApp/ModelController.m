@@ -105,13 +105,14 @@ dispatch_once(&onceToken, ^{
 
 #pragma mark- exercises methods
 
-- (void)addExerciseWithName:(NSString *)name withDescription:(NSString *)description withBodyPartstTaget:(NSArray *)bodyParts andWorkoutSession:(WorkoutSession *)session {
+- (void)addExerciseWithName:(NSString *)name withDescription:(NSString *)description withBodyPartstTaget:(NSArray *)bodyParts isFavorite:(BOOL)yesOrNo andWorkoutSession:(WorkoutSession *)session {
     
     Exercise *newExercise = [NSEntityDescription insertNewObjectForEntityForName:@"Exercise" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
     newExercise.exerciseName = name;
     newExercise.exerciseDescription = description;
     newExercise.workoutSession = session;
-    newExercise.maxWeight = 0;
+    //newExercise.maxWeight = 0;
+    newExercise.isFavorite = [NSNumber numberWithBool:yesOrNo];
     
     newExercise.bodyParts = [[NSOrderedSet alloc] initWithArray:bodyParts];
     
@@ -195,10 +196,6 @@ dispatch_once(&onceToken, ^{
     int glutes = 0;
     int hamstrings = 0;
     
-//    __block NSArray *bodyPartsArray;
-//    for (Exercise *exercise in allExercisesArray) {
-//        bodyPartsArray = [[NSArray alloc] initWithArray:[exercise.bodyParts array]];
-//    }
     for (Exercise *exercise in allExercisesArray) {
     
         for (BodyPart *bodyPart in exercise.bodyParts) {
@@ -269,9 +266,7 @@ dispatch_once(&onceToken, ^{
     NSSortDescriptor *sortDescriptorByMaxWeight = [[NSSortDescriptor alloc] initWithKey:@"maxWeight" ascending:NO];
     NSArray *sortedExercisesArray = [arrayWithFilteredExercises sortedArrayUsingDescriptors:@[sortDescriptorByMaxWeight]];
 
-    
     return sortedExercisesArray;
-    
 }
 
 #pragma mark -save to coredaata
