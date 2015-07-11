@@ -66,7 +66,7 @@ static NSString *unit = @"";
 {
     [super viewDidLoad];
     self.title = @"Bodyparts Info";
-    
+    self.view.backgroundColor = [UIColor colorWithWhite:0.944 alpha:1.000];
     self.dataSource = (BodyPartExercisesDataSource *)self.tableView.dataSource;
     //setting up pop up view
     ////
@@ -90,7 +90,6 @@ static NSString *unit = @"";
     self.valueForBodyPartInGraph = [[ModelController sharedInstance] numberOfTimesBodyPartWasWorkedOut];
     NSInteger index = 0;
     self.data = [[NSMutableArray alloc] init];
-    
     for (NSString *bodyPartString in [[ModelController sharedInstance] bodyPartsArray]) {
         
         int value = [self.valueForBodyPartInGraph[index] intValue];

@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UISwitch *favoriteSwitch;
+@property (strong, nonatomic) IBOutlet UILabel *isFavoriteLabel;
 
 
 @end
@@ -30,8 +31,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
-    
-    
 }
 
 
@@ -44,7 +43,6 @@
         self.isFavorite = NO;
         NSLog(@"the switch is off");
     }
-    
 }
 
 - (void)viewDidLoad {
@@ -52,13 +50,21 @@
     [self.favoriteSwitch setOn:NO animated:NO];
     self.bodyPartTextField.inputView = self.pickerView;
     //self.bodyPart2TextField.inputView = self.pickerView;
-    //
+    self.view.backgroundColor = [UIColor colorWithWhite:0.944 alpha:1.000];
+    
+    self.isFavoriteLabel.layer.cornerRadius = 8;
+    self.isFavoriteLabel.layer.borderWidth = 1.0;
+    self.isFavoriteLabel.layer.borderColor = [[UIColor blackColor] CGColor];
+
+    
+    
     self.exerciseNotesLabel.layer.cornerRadius = 8;
     self.exerciseNotesLabel.layer.borderWidth = 1.0;
     self.exerciseNotesLabel.layer.borderColor = [[UIColor blackColor] CGColor];
     
     self.tableView.layer.borderColor = [[UIColor colorWithWhite:0.207 alpha:1.000] CGColor];
     self.tableView.layer.borderWidth = 1.0;
+    self.tableView.backgroundColor = [UIColor whiteColor];
 
     
     AddExerciseDataSource *dataSource = self.tableView.dataSource;
@@ -72,6 +78,8 @@
     self.exerciseDescriptionTextField.layer.borderColor = [[UIColor colorWithWhite:0.815 alpha:1.000]CGColor];
     self.exerciseDescriptionTextField.layer.borderWidth = 1.0;
     self.exerciseDescriptionTextField.layer.cornerRadius = 5;
+    self.exerciseDescriptionTextField.backgroundColor = [UIColor whiteColor];
+    
     //setting button appearance
     self.saveButton.layer.cornerRadius = 10;
     self.saveButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000];

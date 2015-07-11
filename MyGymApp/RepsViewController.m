@@ -31,6 +31,8 @@
     self.viewExerciseDescription.layer.cornerRadius = 8;
     self.viewExerciseDescription.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000];
     self.viewExerciseDescription.tintColor = [UIColor blackColor];
+    
+    self.view.backgroundColor = [UIColor colorWithWhite:0.944 alpha:1.000];
 
     self.tableView.layer.borderColor = [[UIColor colorWithWhite:0.207 alpha:1.000] CGColor];
     self.tableView.layer.borderWidth = 1.0;
