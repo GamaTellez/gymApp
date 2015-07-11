@@ -77,6 +77,10 @@ static NSString *unit = @"";
     self.exerciseNameLabel.layer.cornerRadius = 8;
     self.exerciseNameLabel.layer.borderWidth = 1.0;
     self.exerciseNameLabel.backgroundColor = [UIColor clearColor];
+    
+    self.tableView.layer.borderColor = [[UIColor colorWithWhite:0.207 alpha:1.000] CGColor];
+    self.tableView.layer.borderWidth = 1.0;
+
     ///
     self.exerciseWeightLabel.layer.cornerRadius = 8;
     self.exerciseWeightLabel.layer.borderWidth = 1.0;

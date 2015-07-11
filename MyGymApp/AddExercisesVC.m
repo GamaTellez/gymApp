@@ -57,6 +57,10 @@
     self.exerciseNotesLabel.layer.borderWidth = 1.0;
     self.exerciseNotesLabel.layer.borderColor = [[UIColor blackColor] CGColor];
     
+    self.tableView.layer.borderColor = [[UIColor colorWithWhite:0.207 alpha:1.000] CGColor];
+    self.tableView.layer.borderWidth = 1.0;
+
+    
     AddExerciseDataSource *dataSource = self.tableView.dataSource;
     [dataSource updateWithSession:self.session];
     
