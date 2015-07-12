@@ -271,6 +271,18 @@ dispatch_once(&onceToken, ^{
     return sortedExercisesArray;
 }
 
+
+- (NSArray *)favoriteExercises {
+    
+    NSArray *favoriteExercises = [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Exercise"] error:nil];
+    
+    NSSortDescriptor *sortByWeight = [[NSSortDescriptor alloc] initWithKey:@"maxWeight" ascending:NO];
+    
+return [favoriteExercises sortedArrayUsingDescriptors:@[sortByWeight]];
+    
+}
+
+
 #pragma mark -save to coredaata
 
 - (void)saveToCoreData {

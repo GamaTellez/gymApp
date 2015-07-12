@@ -48,6 +48,8 @@
 
 - (NSArray *)allExercisesFetchForKey:(NSString *)bodyPartString;
 
+- (NSArray *)favoriteExercises;
+
 @end
 
 

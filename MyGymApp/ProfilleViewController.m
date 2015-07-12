@@ -103,6 +103,8 @@
     self.birthDateTextField.inputAccessoryView = pickerViewToolBar;
     self.heightTextField.inputView = self.pickerView;
     self.heightTextField.inputAccessoryView = pickerViewToolBar;
+    self.nameTextField.inputAccessoryView = pickerViewToolBar;
+    self.weightTextField.inputAccessoryView = pickerViewToolBar;
 
 
     self.genderArray = [[NSArray alloc] initWithObjects:@"Male", @"Female",nil];
@@ -116,10 +118,16 @@
 }
 
 - (void)moveToNextTextField:(id)sender {
-    if (self.genderTextField.editing == YES) {
+    
+    if (self.nameTextField.isEditing == YES) {
+        [self.genderTextField becomeFirstResponder];
+        
+    } else if (self.genderTextField.editing == YES) {
         [self.birthDateTextField becomeFirstResponder];
+        
     } else if (self.birthDateTextField.editing == YES) {
         [self.heightTextField becomeFirstResponder];
+        
     } else if (self.heightTextField.isEditing == YES) {
         [self.weightTextField becomeFirstResponder];
     } else {
@@ -129,12 +137,16 @@
 
 - (void)moveToLastTextField:(id)sender {
     
-    if (self.heightTextField.isEditing == YES) {
+    if (self.weightTextField.isEditing == YES) {
+        [self.heightTextField becomeFirstResponder];
+    } else if (self.heightTextField.isEditing == YES) {
         [self.birthDateTextField becomeFirstResponder];
     } else if (self.birthDateTextField.isEditing == YES) {
         [self.genderTextField becomeFirstResponder];
     } else if (self.genderTextField.isEditing == YES) {
         [self.nameTextField becomeFirstResponder];
+    } else {
+        [self.view endEditing:YES];
     }
 }
 
