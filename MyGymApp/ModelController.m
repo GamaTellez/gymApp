@@ -111,7 +111,8 @@ dispatch_once(&onceToken, ^{
     newExercise.exerciseName = name;
     newExercise.exerciseDescription = description;
     newExercise.workoutSession = session;
-    //newExercise.maxWeight = 0;
+#pragma fix max weight
+    newExercise.maxWeight = 0;
     newExercise.isFavorite = [NSNumber numberWithBool:yesOrNo];
     
     newExercise.bodyParts = [[NSOrderedSet alloc] initWithArray:bodyParts];
@@ -134,12 +135,13 @@ dispatch_once(&onceToken, ^{
     newRep.weights = weight;
     newRep.exercise = exercise;
     
+    Exercise *originalExercise = newRep.exercise;
     
-    
-    if (newRep.weights > exercise.maxWeight) 
-        exercise.maxWeight = newRep.weights;
-        exercise.repsWithMaxWeight = newRep.numOfReps;
-        exercise.setsWithMaxWeight = newRep.numOfSets;
+    if ([newRep.weights doubleValue] > [originalExercise.maxWeight doubleValue]) {
+        originalExercise.maxWeight = newRep.weights;
+    }
+        originalExercise.repsWithMaxWeight = newRep.numOfReps;
+        originalExercise.setsWithMaxWeight = newRep.numOfSets;
     
     [self saveToCoreData];
 }
@@ -249,7 +251,7 @@ dispatch_once(&onceToken, ^{
     
     NSFetchRequest *exerciseForBodyPartsFetch = [NSFetchRequest fetchRequestWithEntityName:@"Exercise"];
     NSArray *allExercisesArray = [[Stack sharedInstance].managedObjectContext executeFetchRequest:exerciseForBodyPartsFetch error:nil];
-    
+    NSLog(@"%@", allExercisesArray);
     
     
     
@@ -265,7 +267,7 @@ dispatch_once(&onceToken, ^{
     
     NSSortDescriptor *sortDescriptorByMaxWeight = [[NSSortDescriptor alloc] initWithKey:@"maxWeight" ascending:NO];
     NSArray *sortedExercisesArray = [arrayWithFilteredExercises sortedArrayUsingDescriptors:@[sortDescriptorByMaxWeight]];
-
+    NSLog(@"%@",sortedExercisesArray);
     return sortedExercisesArray;
 }
 

@@ -34,7 +34,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     self.exercisesOfBP = [[NSArray alloc] initWithArray:[[ModelController sharedInstance] allExercisesFetchForKey:self.bodyPart]];
-    //NSLog(@"%lu", (unsigned long)self.exercisesOfBP.count);
+    NSLog(@"%lu", (unsigned long)self.exercisesOfBP);
     
     return self.exercisesOfBP.count;
 }
