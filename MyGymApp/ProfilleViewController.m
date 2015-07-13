@@ -139,10 +139,13 @@
     
     if (self.weightTextField.isEditing == YES) {
         [self.heightTextField becomeFirstResponder];
+        
     } else if (self.heightTextField.isEditing == YES) {
         [self.birthDateTextField becomeFirstResponder];
+        
     } else if (self.birthDateTextField.isEditing == YES) {
         [self.genderTextField becomeFirstResponder];
+        
     } else if (self.genderTextField.isEditing == YES) {
         [self.nameTextField becomeFirstResponder];
     } else {
@@ -158,40 +161,28 @@
     picker.allowsEditing = YES;
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
         [alertController addAction:[UIAlertAction actionWithTitle:@"Select Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-           
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            
             [self presentViewController:picker animated:YES completion:nil];
-            
         }]];
         
         [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil ]];
-
         
     } else {
        [alertController addAction:[UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-   
-           
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        
         [self presentViewController:picker animated:YES completion:NULL];
-           
-           
     }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Select Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
         [self presentViewController:picker animated:YES completion:nil];
     }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil ]];
-  
     }
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 

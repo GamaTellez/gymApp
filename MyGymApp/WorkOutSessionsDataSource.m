@@ -37,10 +37,17 @@ static NSString *cellID = @"sessionCell";
                                                           dateStyle:NSDateFormatterFullStyle
                                                           timeStyle:NSDateFormatterShortStyle];
     cell.sessionDateLabel.text = dateString;
-   // cell.sessionLengthLabel.text = @"fdfdfdffd";
+    
+    if (workoutSession.sessionStartTime == nil || workoutSession.sessionEndTime == nil) {
+        cell.sessionLengthLabel.text = @"";
+    } else {
+       
+        NSString *duration = [self calculateDuration:workoutSession.sessionStartTime secondDate:workoutSession.sessionEndTime];
+        cell.sessionLengthLabel.text = duration;
+    }
+    
     return cell;
 }
-
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -58,6 +65,29 @@ static NSString *cellID = @"sessionCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
+
+//calculate the time betwen sessionStarttime and sessionEndTime
+
+- (NSString *)calculateDuration:(NSDate *)oldTime secondDate:(NSDate *)currentTime
+{
+    NSDate *date1 = oldTime;
+    NSDate *date2 = currentTime;
+    
+    NSTimeInterval secondsBetween = [date2 timeIntervalSinceDate:date1];
+    
+    int hh = secondsBetween / (60*60);
+    double rem = fmod(secondsBetween, (60*60));
+    int mm = rem / 60;
+    rem = fmod(rem, 60);
+    int ss = rem;
+    
+    NSString *str = [NSString stringWithFormat:@"%02d:%02d:%02d",hh,mm,ss];
+    
+    return str;
+}
+
+
+
 //-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
 //    CGPoint currentOffset = scrollView.contentOffset;
 //    if (currentOffset.y > self.lastContentOffset.y)

@@ -32,7 +32,6 @@ static NSString *exerciseCell = @"exerciseCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
- 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:exerciseCell];
     
     if (!cell) {
@@ -40,6 +39,8 @@ static NSString *exerciseCell = @"exerciseCell";
     }
     
    Exercise *newExercise = self.workoutsession.exercises[indexPath.row];
+    
+    
     cell.textLabel.text = newExercise.exerciseName;
         if (newExercise.bodyParts.count > 0) {
         BodyPart * bodyPartOne = newExercise.bodyParts[0];
@@ -50,7 +51,11 @@ static NSString *exerciseCell = @"exerciseCell";
         cell.textLabel.textColor = [UIColor colorWithRed:0.945 green:0.247 blue:0.250 alpha:1.000];
     } else if (newExercise.reps.count > 0 || newExercise.reps != nil) {
         cell.textLabel.textColor = [UIColor colorWithRed:0.017 green:0.415 blue:0.090 alpha:1.000];
-    
+    }
+    if ([newExercise.isFavorite integerValue] == 1) {
+        cell.backgroundColor =[UIColor colorWithWhite:0.835 alpha:1.000];
+    } else {
+        cell.backgroundColor = [UIColor whiteColor];
     }
     
     return cell;

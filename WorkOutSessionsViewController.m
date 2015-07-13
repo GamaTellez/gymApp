@@ -34,8 +34,10 @@
     self.view.backgroundColor = [UIColor colorWithWhite:0.835 alpha:1.000];
     self.profileImage.layer.borderColor = [[UIColor blackColor] CGColor];
     self.profileImage.layer.borderWidth = 1.0;
+    
     self.tableView.layer.borderColor = [[UIColor blackColor] CGColor];
     self.tableView.layer.borderWidth = 1.0;
+    self.tableView.layer.cornerRadius = 1.0;
     self.nameLabel.tintColor = [UIColor blackColor];
 //    
 ////    

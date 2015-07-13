@@ -16,13 +16,17 @@
 @interface AddExercisesVC () <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) NSMutableArray *bodyParts;
 @property (nonatomic, strong) UIPickerView *pickerView;
+@property (nonatomic, strong) UIPickerView *favsExercisesPickerView;
 @property (nonatomic, strong) NSArray *bodyPartsArray;
 @property (nonatomic, assign) BOOL isFavorite;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UISwitch *favoriteSwitch;
 @property (strong, nonatomic) IBOutlet UILabel *isFavoriteLabel;
-
+@property (strong, nonatomic) IBOutlet UIButton *startSession;
+@property (strong, nonatomic) IBOutlet UIButton *endSession;
+@property (strong, nonatomic) IBOutlet UIButton *selectFromFavoritesButton;
+@property (strong, nonatomic) NSArray *favoriteExercisesArray;
 
 @end
 
@@ -45,6 +49,7 @@
     }
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.favoriteSwitch setOn:NO animated:NO];
@@ -56,6 +61,10 @@
     self.isFavoriteLabel.layer.borderWidth = 1.0;
     self.isFavoriteLabel.layer.borderColor = [[UIColor blackColor] CGColor];
 
+    self.selectFromFavoritesButton.layer.cornerRadius = 8;
+    self.selectFromFavoritesButton.layer.borderWidth = 1.0;
+    self.selectFromFavoritesButton.layer.shadowColor = [[UIColor grayColor] CGColor];
+    
     
     
     self.exerciseNotesLabel.layer.cornerRadius = 8;
@@ -70,6 +79,7 @@
     AddExerciseDataSource *dataSource = self.tableView.dataSource;
     [dataSource updateWithSession:self.session];
     
+  
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
@@ -80,23 +90,43 @@
     self.exerciseDescriptionTextField.layer.cornerRadius = 5;
     self.exerciseDescriptionTextField.backgroundColor = [UIColor whiteColor];
     
+    //setting up pickerview and itsdata
+    self.favoriteExercisesArray = [[NSArray alloc] initWithArray:[[ModelController sharedInstance] favoriteExercises]];
+    self.favsExercisesPickerView = [UIPickerView new
+                                    ];
+    //self.favsExercisesPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height)];
+    self.favsExercisesPickerView.delegate = self;
+    self.favsExercisesPickerView.dataSource = self;
+    
+    
     //setting button appearance
     self.saveButton.layer.cornerRadius = 10;
     self.saveButton.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000];
     self.saveButton.tintColor = [UIColor blackColor];
     
+    //start and end Session buttons apperance
+    self.startSession.layer.cornerRadius = 10;
+    self.startSession.backgroundColor = [UIColor colorWithRed:0.523 green:1.000 blue:0.398 alpha:1.000];
+    self.startSession.tintColor = [UIColor blackColor];
+    
+    self.endSession.layer.cornerRadius = 10;
+    self.endSession.backgroundColor = [UIColor colorWithRed:1.000 green:0.585 blue:0.549 alpha:1.000];
+    self.endSession.tintColor = [UIColor blackColor];
+    self.endSession.enabled = NO;
+    
     UIToolbar *toolBarForPicker = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.pickerView.frame.size.width, 44)];
     toolBarForPicker.barStyle = UIBarStyleBlackOpaque;
     UIBarButtonItem *doneButtonInBar = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissPickerViewButton)];
+    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelToolBarButton:) ];
     UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
-    toolBarForPicker.items = @[flexibleSpaceLeft ,doneButtonInBar];
+    toolBarForPicker.items = @[cancel,flexibleSpaceLeft ,doneButtonInBar];
     //[self.pickerView addSubview:toolBarForPicker];
     
+    self.exerciseNameTextField.inputAccessoryView = toolBarForPicker;
     self.bodyPartTextField.inputView = self.pickerView;
     self.bodyPartTextField.inputAccessoryView = toolBarForPicker;
-    //self.bodyPart2TextField.inputView = self.pickerView;
-    //self.bodyPart2TextField.delegate = self;
+    self.exerciseDescriptionTextField.inputAccessoryView = toolBarForPicker;
     self.bodyPartTextField.delegate = self;
     
     self.bodyPartsArray = [[NSArray alloc] init];
@@ -112,18 +142,28 @@
 - (void) dismissPickerViewButton {
     [self.view endEditing:YES];
 }
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-//    
-//    if (textField ==  self.bodyPartTextField)  {
-//        self.bodyPartTextField.text = self.bodyPartsArray[0];
-//    } else if (textField == self.bodyPart2TextField) {
-//        self.bodyPart2TextField.text = self.bodyPartsArray[1];
-//    }
+
+- (IBAction)selectFromFavsButton:(id)sender {
+    
+    self.exerciseNameTextField.inputView = self.favsExercisesPickerView;
+    [self.exerciseNameTextField becomeFirstResponder];
 }
-//
-//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-//    return NO;
-//}
+//dismiss picker view for favorite exercises
+- (void)cancelToolBarButton:(id)sender {
+    if (self.exerciseNameTextField.isFirstResponder) {
+        [self.exerciseNameTextField resignFirstResponder];
+         self.exerciseNameTextField.inputView = nil;
+    } else if (self.bodyPartTextField.isFirstResponder) {
+        [self.bodyPartTextField resignFirstResponder];
+    }
+   
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -155,19 +195,71 @@
     
     self.exerciseNameTextField.text = @"";
     self.exerciseDescriptionTextField.text = @"";
-        self.bodyPartTextField.text = [self.bodyPartsArray objectAtIndex:[self.pickerView selectedRowInComponent:0]];
+    self.bodyPartTextField.text = @"";
         [self.favoriteSwitch setOn:NO animated:YES];
     //self.bodyPart2TextField.text = @"";
     
     }
     [self resignFirstResponder];
     [self.tableView reloadData];
+    
+    if (self.tableView.contentSize.height > self.tableView.frame.size.height)
+    {
+        CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
+        [self.tableView setContentOffset:offset animated:YES];
+    }
 }
+
+#pragma startSession and endSessions button methods
+- (IBAction)startSessionButtonTapped:(id)sender {
+    
+    if (self.endSession.enabled == NO) {
+        UIAlertController *startAlert = [UIAlertController alertControllerWithTitle:@"Starting session timing" message:@"About to start the time for the session" preferredStyle:UIAlertControllerStyleActionSheet];
+        [startAlert addAction:[UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            self.session.sessionStartTime = [NSDate date];
+            self.startSession.enabled = NO;
+            self.endSession.enabled = YES;
+            
+            
+        }]];
+        [startAlert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            
+        }]];
+        [self presentViewController:startAlert animated:YES completion:nil];
+    }
+    
+}
+
+- (IBAction)endSessionButtonTapped:(id)sender {
+    
+    if (self.startSession.enabled == NO) {
+        UIAlertController *endAlert = [UIAlertController alertControllerWithTitle:@"Stoping session timing" message:@"About to stop the time for this session" preferredStyle:UIAlertControllerStyleActionSheet];
+        [endAlert addAction:[UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            self.session.sessionEndTime = [NSDate date];
+             self.endSession.enabled = NO;
+        }]];
+        [endAlert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            
+        }]];
+        [self presentViewController:endAlert animated:YES completion:nil];
+    }
+   
+    
+}
+
+
+
 
 #pragma mark - picker view protocol methods
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
+    if (self.exerciseNameTextField.isFirstResponder) {
+        return self.favoriteExercisesArray.count;
+    } else if (self.bodyPartTextField.isEditing == YES) {
     return self.bodyPartsArray.count;
+    }
+    return 0;
+
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -178,24 +270,38 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
+    if (self.exerciseNameTextField.isFirstResponder) {
+        Exercise *newExercise = self.favoriteExercisesArray[row];
+        return newExercise.exerciseName;
+    } else if (self.bodyPartTextField.isEditing == YES) {
     return self.bodyPartsArray[row];
+    } else
+        return nil;
 }
 
 - (void)handleTapOutsideTextField:(UITapGestureRecognizer *)tap {
     
+    self.exerciseNameTextField.inputView = nil;
     [self.view endEditing:YES];
-  
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    if (self.bodyPartTextField.isEditing == YES) {
-        self.bodyPartTextField.text = [self.bodyPartsArray objectAtIndex:row];
-    } if (self.bodyPart2TextField.isEditing == YES) {
-        self.bodyPart2TextField.text = [self.bodyPartsArray objectAtIndex:row];
-    }
-    
+ 
+    if (self.exerciseNameTextField.isEditing == YES) {
+        Exercise *newExercise = [self.favoriteExercisesArray objectAtIndex:[self.favsExercisesPickerView selectedRowInComponent:0]];
+        self.exerciseNameTextField.text = newExercise.exerciseName;
+        BodyPart *newBodyPart = newExercise.bodyParts[0];
+        self.bodyPartTextField.text = newBodyPart.bodyPartTargeted;
+        self.bodyPartTextField.enabled = NO;
+        self.exerciseDescriptionTextField.text = newExercise.exerciseDescription;
+        self.exerciseDescriptionTextField.editable = NO;
+        NSLog(@"%@", newExercise.exerciseName);
+    } else if (self.bodyPartTextField.isEditing == YES) {
+            self.bodyPartTextField.text = [self.bodyPartsArray objectAtIndex:row];
+    } 
 }
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
