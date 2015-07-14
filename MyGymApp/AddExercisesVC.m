@@ -139,6 +139,14 @@
     [self.view addGestureRecognizer:tapOutsideTextfields];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    if (self.session.sessionStartTime) {
+        self.session.sessionEndTime = [NSDate date];
+    }
+    
+}
+
+
 - (void) dismissPickerViewButton {
     [self.view endEditing:YES];
 }
@@ -156,12 +164,29 @@
     } else if (self.bodyPartTextField.isFirstResponder) {
         [self.bodyPartTextField resignFirstResponder];
     }
+    
+    self.exerciseNameTextField.text = @"";
+    //self.bodyPartTextField.enabled = YES;
+    self.bodyPartTextField.text = @"";
+    //self.exerciseDescriptionTextField.editable = YES;
+    self.exerciseDescriptionTextField.text = @"";
+    self.favoriteSwitch.enabled = YES;
+    [self.favoriteSwitch setOn:NO animated:YES];
    
 }
 
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
 
+    if (self.exerciseNameTextField.isEditing == YES) {
+        self.exerciseNameTextField.text = @"";
+        self.bodyPartTextField.enabled = YES;
+        self.bodyPartTextField.text = @"";
+        self.exerciseDescriptionTextField.editable = YES;
+        self.exerciseDescriptionTextField.text = @"";
+        self.favoriteSwitch.enabled = YES;
+        [self.favoriteSwitch setOn:NO animated:YES];
+    }
 }
 
 
@@ -196,9 +221,8 @@
     self.exerciseNameTextField.text = @"";
     self.exerciseDescriptionTextField.text = @"";
     self.bodyPartTextField.text = @"";
-        [self.favoriteSwitch setOn:NO animated:YES];
-    //self.bodyPart2TextField.text = @"";
-    
+    [self.favoriteSwitch setOn:NO animated:YES];
+        self.favoriteSwitch.enabled = YES;
     }
     [self resignFirstResponder];
     [self.tableView reloadData];
@@ -216,7 +240,10 @@
     if (self.endSession.enabled == NO) {
         UIAlertController *startAlert = [UIAlertController alertControllerWithTitle:@"Starting session timing" message:@"About to start the time for the session" preferredStyle:UIAlertControllerStyleActionSheet];
         [startAlert addAction:[UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
             self.session.sessionStartTime = [NSDate date];
+            [[ModelController sharedInstance] saveToCoreData];
+            
             self.startSession.enabled = NO;
             self.endSession.enabled = YES;
             
@@ -236,6 +263,7 @@
         UIAlertController *endAlert = [UIAlertController alertControllerWithTitle:@"Stoping session timing" message:@"About to stop the time for this session" preferredStyle:UIAlertControllerStyleActionSheet];
         [endAlert addAction:[UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             self.session.sessionEndTime = [NSDate date];
+            [[ModelController sharedInstance] saveToCoreData];
              self.endSession.enabled = NO;
         }]];
         [endAlert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
@@ -246,9 +274,6 @@
    
     
 }
-
-
-
 
 #pragma mark - picker view protocol methods
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
@@ -296,6 +321,9 @@
         self.bodyPartTextField.enabled = NO;
         self.exerciseDescriptionTextField.text = newExercise.exerciseDescription;
         self.exerciseDescriptionTextField.editable = NO;
+        [self.favoriteSwitch setOn:YES animated:YES];
+        self.favoriteSwitch.enabled = NO;
+    
         NSLog(@"%@", newExercise.exerciseName);
     } else if (self.bodyPartTextField.isEditing == YES) {
             self.bodyPartTextField.text = [self.bodyPartsArray objectAtIndex:row];

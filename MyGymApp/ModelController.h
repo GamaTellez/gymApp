@@ -50,6 +50,7 @@
 
 - (NSArray *)favoriteExercises;
 
+- (void)saveToCoreData;
 @end
 
 

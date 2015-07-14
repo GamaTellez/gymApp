@@ -38,7 +38,7 @@ static NSString *cellID = @"sessionCell";
                                                           timeStyle:NSDateFormatterShortStyle];
     cell.sessionDateLabel.text = dateString;
     
-    if (workoutSession.sessionStartTime == nil || workoutSession.sessionEndTime == nil) {
+    if ( workoutSession.sessionStartTime  == nil || workoutSession.sessionEndTime == nil) {
         cell.sessionLengthLabel.text = @"";
     } else {
        
