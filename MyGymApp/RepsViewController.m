@@ -16,7 +16,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *viewExerciseDescription;
 @property (strong, nonatomic) UITextView *textViewForNotes;
 @property (strong, nonatomic) UIView *viewForNotes;
-
+@property (strong, nonatomic) IBOutlet UILabel *setsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *repsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *weightLabel;
 
 
 @end
@@ -27,16 +29,22 @@
     [super viewDidLoad];
     RepsDataSource *dataSource = (RepsDataSource *)self.tableView.dataSource;
     [dataSource updateWithExercise:self.exercise];
-    //viewexecercise description button
-    self.viewExerciseDescription.layer.cornerRadius = 8;
-    self.viewExerciseDescription.backgroundColor = [UIColor colorWithRed:0.141 green:0.443 blue:1.000 alpha:1.000];
-    self.viewExerciseDescription.tintColor = [UIColor blackColor];
     
     self.view.backgroundColor = [UIColor colorWithWhite:0.944 alpha:1.000];
 
     self.tableView.layer.borderColor = [[UIColor colorWithWhite:0.207 alpha:1.000] CGColor];
     self.tableView.layer.borderWidth = 1.0;
-
+    //setting labels
+    self.setsLabel.layer.cornerRadius = 8;
+    self.setsLabel.layer.borderWidth = 1.0;
+    self.setsLabel.backgroundColor = [UIColor clearColor];
+    
+    self.repsLabel.layer.cornerRadius = 8;
+    self.repsLabel.layer.borderWidth = 1.0;
+    self.repsLabel.backgroundColor = [UIColor clearColor];
+    self.weightLabel.layer.cornerRadius = 8;
+    self.weightLabel.layer.borderWidth = 1.0;
+    self.weightLabel.backgroundColor = [UIColor clearColor];
     
     //setting savebuttton appearance
     self.saveButton.layer.cornerRadius = 10;

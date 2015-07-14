@@ -74,9 +74,10 @@
  
     
     //adding geture recognizer to dismisskeybaord if touch outside extfield
-    UITapGestureRecognizer *tapOutsideTextfields = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOutsideTextField:)];
-    tapOutsideTextfields.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:tapOutsideTextfields];
+//    UITapGestureRecognizer *tapOutsideTextfields = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOutsideTextField:)];
+//    tapOutsideTextfields.cancelsTouchesInView = NO;
+//    tapOutsideTextfields.delegate = self;
+//    [self.view addGestureRecognizer:tapOutsideTextfields];
     
     //setting up picker view for profile info
    
@@ -112,6 +113,7 @@
     self.feetForHeight = [[NSArray alloc] initWithObjects:@"4", @"5", @"6", @"7", @"8", @"9", nil];
     self.inchesForHeight = [[NSArray alloc] initWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", nil];
     }
+
 
 - (void)doneButtonInPickerTapped:(id)sender {
     [self.view endEditing:YES];
@@ -195,6 +197,11 @@
         self.userPictureImageView.image = image;
     }];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+
+    
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
@@ -258,11 +265,12 @@
     
     return YES;
 }
-- (void)handleTapOutsideTextField:(UITapGestureRecognizer *)tap {
-    
-    [self.view endEditing:YES];
-    
-}
+//- (void)handleTapOutsideTextField:(UITapGestureRecognizer *)tap {
+//
+//    [self.view endEditing:YES];
+//
+//}
+
 
 
 - (IBAction)backButtonTapped:(id)sender {
@@ -302,6 +310,7 @@
         self.genderTextField.text = self.genderArray[0];
     }
 }
+
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
 

@@ -76,8 +76,10 @@ dispatch_once(&onceToken, ^{
     newWorkOutSession.sessionName = name;
     newWorkOutSession.sessionDate = [NSDate date];
     newWorkOutSession.user = user;
-    NSDate *endDate = [[NSDate alloc] init];
-    newWorkOutSession.sessionStartTime = [endDate dateByAddingTimeInterval:24.0f * 60.0f * 60.0f - 1.0f];
+    newWorkOutSession.sessionStartTime = [NSDate new];
+    newWorkOutSession.sessionStartTime = [NSDate new];
+   // NSDate *endDate = [[NSDate alloc] init];
+    //newWorkOutSession.sessionStartTime = [endDate dateByAddingTimeInterval:24.0f * 60.0f * 60.0f - 1.0f];
 
     [self saveToCoreData];
 }
@@ -107,18 +109,21 @@ dispatch_once(&onceToken, ^{
 
 - (void)addExerciseWithName:(NSString *)name withDescription:(NSString *)description withBodyPartstTaget:(NSArray *)bodyParts isFavorite:(BOOL)yesOrNo andWorkoutSession:(WorkoutSession *)session {
     
-    Exercise *newExercise = [NSEntityDescription insertNewObjectForEntityForName:@"Exercise" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
-    newExercise.exerciseName = name;
-    newExercise.exerciseDescription = description;
-    newExercise.workoutSession = session;
+                    Exercise *newExercise = [NSEntityDescription insertNewObjectForEntityForName:@"Exercise" inManagedObjectContext:[Stack sharedInstance].managedObjectContext];
+                newExercise.exerciseName = name;
+                newExercise.exerciseDescription = description;
+                newExercise.workoutSession = session;
 #pragma fix max weight
-    newExercise.maxWeight = 0;
-    newExercise.isFavorite = [NSNumber numberWithBool:yesOrNo];
-    
-    newExercise.bodyParts = [[NSOrderedSet alloc] initWithArray:bodyParts];
-    
-    [self saveToCoreData];
-}
+                newExercise.maxWeight = 0;
+                if (yesOrNo == YES) {
+                    newExercise.isFavorite = @1;
+                }else{
+                    newExercise.isFavorite = @0;
+                }
+                newExercise.bodyParts = [[NSOrderedSet alloc] initWithArray:bodyParts];
+                
+                [self saveToCoreData];
+    }
 
 - (void)deleteExercise:(Exercise *)exercise{
     
@@ -251,7 +256,7 @@ dispatch_once(&onceToken, ^{
     
     NSFetchRequest *exerciseForBodyPartsFetch = [NSFetchRequest fetchRequestWithEntityName:@"Exercise"];
     NSArray *allExercisesArray = [[Stack sharedInstance].managedObjectContext executeFetchRequest:exerciseForBodyPartsFetch error:nil];
-    NSLog(@"%@", allExercisesArray);
+    //NSLog(@"%@", allExercisesArray);
     
     
     
@@ -275,12 +280,18 @@ dispatch_once(&onceToken, ^{
 - (NSArray *)favoriteExercises {
     
     NSArray *favoriteExercises = [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Exercise"] error:nil];
+    NSMutableSet *existingExercises = [NSMutableSet set];
+    NSMutableArray *filteredArray = [NSMutableArray array];
     
-    NSSortDescriptor *sortByWeight = [[NSSortDescriptor alloc] initWithKey:@"maxWeight" ascending:NO];
-    
-return [favoriteExercises sortedArrayUsingDescriptors:@[sortByWeight]];
-    
+    for (Exercise *exercise in favoriteExercises) {
+        if (![existingExercises containsObject:exercise.exerciseName]) {
+            [existingExercises addObject:exercise.exerciseName];
+            [filteredArray addObject:exercise];
+        }
+    }
+    return filteredArray;
 }
+
 
 
 #pragma mark -save to coredaata

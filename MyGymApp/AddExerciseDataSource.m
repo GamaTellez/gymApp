@@ -53,7 +53,7 @@ static NSString *exerciseCell = @"exerciseCell";
         cell.textLabel.textColor = [UIColor colorWithRed:0.017 green:0.415 blue:0.090 alpha:1.000];
     }
     if ([newExercise.isFavorite integerValue] == 1) {
-        cell.backgroundColor =[UIColor colorWithWhite:0.835 alpha:1.000];
+        cell.backgroundColor =[UIColor colorWithWhite:0.915 alpha:1.000];
     } else {
         cell.backgroundColor = [UIColor whiteColor];
     }

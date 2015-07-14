@@ -32,20 +32,20 @@
 
 @implementation AddExercisesVC
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
 }
 
 
 - (IBAction)favoriteSwitchToggled:(id)sender {
- 
+    
+   // self.favoriteSwitch.selected = !self.favoriteSwitch.selected;
     if ([self.favoriteSwitch isOn]) {
         self.isFavorite = YES;
-        NSLog(@"the switch is on");
+        NSLog(@"%id", [self.favoriteSwitch isOn]);
     } else {
         self.isFavorite = NO;
-        NSLog(@"the switch is off");
+        NSLog(@"%id", [self.favoriteSwitch isOn]);
     }
 }
 
@@ -53,6 +53,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.favoriteSwitch setOn:NO animated:NO];
+    //NSLog(@"%id", [self.favoriteSwitch isOn]);
+
     self.bodyPartTextField.inputView = self.pickerView;
     //self.bodyPart2TextField.inputView = self.pickerView;
     self.view.backgroundColor = [UIColor colorWithWhite:0.944 alpha:1.000];
@@ -139,13 +141,6 @@
     [self.view addGestureRecognizer:tapOutsideTextfields];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    if (self.session.sessionStartTime) {
-        self.session.sessionEndTime = [NSDate date];
-    }
-    
-}
-
 
 - (void) dismissPickerViewButton {
     [self.view endEditing:YES];
@@ -156,7 +151,7 @@
     self.exerciseNameTextField.inputView = self.favsExercisesPickerView;
     [self.exerciseNameTextField becomeFirstResponder];
 }
-//dismiss picker view for favorite exercises
+
 - (void)cancelToolBarButton:(id)sender {
     if (self.exerciseNameTextField.isFirstResponder) {
         [self.exerciseNameTextField resignFirstResponder];
@@ -223,6 +218,7 @@
     self.bodyPartTextField.text = @"";
     [self.favoriteSwitch setOn:NO animated:YES];
         self.favoriteSwitch.enabled = YES;
+        self.isFavorite = NO;
     }
     [self resignFirstResponder];
     [self.tableView reloadData];
@@ -296,10 +292,14 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
     if (self.exerciseNameTextField.isFirstResponder) {
+        
         Exercise *newExercise = self.favoriteExercisesArray[row];
         return newExercise.exerciseName;
+        
     } else if (self.bodyPartTextField.isEditing == YES) {
+        
     return self.bodyPartsArray[row];
+    
     } else
         return nil;
 }
@@ -312,7 +312,7 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
- 
+
     if (self.exerciseNameTextField.isEditing == YES) {
         Exercise *newExercise = [self.favoriteExercisesArray objectAtIndex:[self.favsExercisesPickerView selectedRowInComponent:0]];
         self.exerciseNameTextField.text = newExercise.exerciseName;
@@ -323,6 +323,8 @@
         self.exerciseDescriptionTextField.editable = NO;
         [self.favoriteSwitch setOn:YES animated:YES];
         self.favoriteSwitch.enabled = NO;
+        self.isFavorite = YES;
+
     
         NSLog(@"%@", newExercise.exerciseName);
     } else if (self.bodyPartTextField.isEditing == YES) {
