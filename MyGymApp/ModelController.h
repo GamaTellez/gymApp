@@ -50,7 +50,10 @@
 
 - (NSArray *)favoriteExercises;
 
+- (NSArray *) maxWeightOfFavoriteExercisesWithName:(NSString *)favExerciseName;
+
 - (void)saveToCoreData;
+
 @end
 
 

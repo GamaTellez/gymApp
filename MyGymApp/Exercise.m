@@ -1,9 +1,9 @@
 //
 //  Exercise.m
-//  MyGymApp
+//  
 //
-//  Created by Gamaliel Tellez on 7/11/15.
-//  Copyright (c) 2015 Gamaliel Tellez. All rights reserved.
+//  Created by Gamaliel Tellez on 7/15/15.
+//
 //
 
 #import "Exercise.h"
@@ -16,10 +16,11 @@
 
 @dynamic exerciseDescription;
 @dynamic exerciseName;
+@dynamic isFavorite;
 @dynamic maxWeight;
 @dynamic repsWithMaxWeight;
 @dynamic setsWithMaxWeight;
-@dynamic isFavorite;
+@dynamic exerciseDate;
 @dynamic bodyParts;
 @dynamic reps;
 @dynamic workoutSession;

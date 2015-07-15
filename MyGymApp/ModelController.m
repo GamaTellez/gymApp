@@ -113,6 +113,7 @@ dispatch_once(&onceToken, ^{
                 newExercise.exerciseName = name;
                 newExercise.exerciseDescription = description;
                 newExercise.workoutSession = session;
+    newExercise.exerciseDate = [NSDate date];
 #pragma fix max weight
                 newExercise.maxWeight = 0;
                 if (yesOrNo == YES) {
@@ -272,7 +273,7 @@ dispatch_once(&onceToken, ^{
     
     NSSortDescriptor *sortDescriptorByMaxWeight = [[NSSortDescriptor alloc] initWithKey:@"maxWeight" ascending:NO];
     NSArray *sortedExercisesArray = [arrayWithFilteredExercises sortedArrayUsingDescriptors:@[sortDescriptorByMaxWeight]];
-    NSLog(@"%@",sortedExercisesArray);
+   // NSLog(@"%@",sortedExercisesArray);
     return sortedExercisesArray;
 }
 
@@ -282,7 +283,7 @@ dispatch_once(&onceToken, ^{
     NSArray *favoriteExercises = [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Exercise"] error:nil];
     NSMutableSet *existingExercises = [NSMutableSet set];
     NSMutableArray *filteredArray = [NSMutableArray array];
-    
+   // NSLog(@"%lu", (unsigned long)favoriteExercises.count);
     for (Exercise *exercise in favoriteExercises) {
         if (![existingExercises containsObject:exercise.exerciseName]) {
             [existingExercises addObject:exercise.exerciseName];
@@ -292,6 +293,25 @@ dispatch_once(&onceToken, ^{
     return filteredArray;
 }
 
+- (NSArray *) maxWeightOfFavoriteExercisesWithName:(NSString *)favExerciseName {
+    
+    NSArray *allFavoriteExercises = [[Stack sharedInstance].managedObjectContext executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Exercise"] error:nil];
+    
+    NSMutableArray *favExercisesWithNamePassed = [[NSMutableArray alloc] init];
+    
+    for (Exercise *favExercise in allFavoriteExercises) {
+        if ([favExercise.exerciseName isEqual:favExerciseName]) {
+            [favExercisesWithNamePassed addObject:favExercise];
+        }
+        
+    }
+    NSSortDescriptor *sortDescriptorByDate = [[NSSortDescriptor alloc] initWithKey:@"exerciseDate" ascending:NO];
+    NSArray *exerciseWithMaxWeightsByDate = [favExercisesWithNamePassed sortedArrayUsingDescriptors:@[sortDescriptorByDate]];
+    NSLog(@"%@", exerciseWithMaxWeightsByDate);
+    
+    return exerciseWithMaxWeightsByDate;
+    
+}
 
 
 #pragma mark -save to coredaata

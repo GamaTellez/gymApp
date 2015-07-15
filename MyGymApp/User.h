@@ -1,9 +1,9 @@
 //
 //  User.h
-//  MyGymApp
+//  
 //
-//  Created by Gamaliel Tellez on 7/11/15.
-//  Copyright (c) 2015 Gamaliel Tellez. All rights reserved.
+//  Created by Gamaliel Tellez on 7/15/15.
+//
 //
 
 #import <Foundation/Foundation.h>

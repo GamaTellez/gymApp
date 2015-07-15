@@ -1,9 +1,9 @@
 //
 //  Exercise.h
-//  MyGymApp
+//  
 //
-//  Created by Gamaliel Tellez on 7/11/15.
-//  Copyright (c) 2015 Gamaliel Tellez. All rights reserved.
+//  Created by Gamaliel Tellez on 7/15/15.
+//
 //
 
 #import <Foundation/Foundation.h>
@@ -15,10 +15,11 @@
 
 @property (nonatomic, retain) NSString * exerciseDescription;
 @property (nonatomic, retain) NSString * exerciseName;
+@property (nonatomic, retain) NSNumber * isFavorite;
 @property (nonatomic, retain) NSNumber * maxWeight;
 @property (nonatomic, retain) NSNumber * repsWithMaxWeight;
 @property (nonatomic, retain) NSNumber * setsWithMaxWeight;
-@property (nonatomic, retain) NSNumber * isFavorite;
+@property (nonatomic, retain) NSDate * exerciseDate;
 @property (nonatomic, retain) NSOrderedSet *bodyParts;
 @property (nonatomic, retain) NSOrderedSet *reps;
 @property (nonatomic, retain) WorkoutSession *workoutSession;
